@@ -17,10 +17,10 @@ public class BinarySearch {
     public static void main(String[] args) {
         int[] whitelist = In.readInts(args[0]);
 
-        Array.sort(whitelist);
+        Arrays.sort(whitelist);
 
         while (!StdIn.isEmpty()) {
-            int key = In.readInts();
+            int key = StdIn.readInt();
             if (rank(key, whitelist) == -1) {
                 StdOut.println(key);
             }
