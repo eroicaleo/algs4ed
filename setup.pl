@@ -8,18 +8,26 @@ use File::Copy;
 
 mkdir "./bin" unless -d "./bin";
 system("wget http://algs4.cs.princeton.edu/linux/drjava.jar") unless -f "drjava.jar";
-system("wget http://algs4.cs.princeton.edu/linux/drjava") unless -f "bin/drjava";
-chmod 0700, "drjava";
-move "drjava", "./bin";
+unless (-f "bin/drjava") {
+  system("wget http://algs4.cs.princeton.edu/linux/drjava");
+  chmod 0700, "drjava";
+  move "drjava", "./bin";
+}
 
 system("wget http://algs4.cs.princeton.edu/code/stdlib.jar") unless -f "stdlib.jar";
 system("wget http://algs4.cs.princeton.edu/code/algs4.jar") unless -f "algs4.jar";
-system("wget http://algs4.cs.princeton.edu/linux/javac-algs4") unless -f "bin/javac-algs4";
-system("wget http://algs4.cs.princeton.edu/linux/java-algs4") unless -f "bin/java-algs4";
-chmod 0700, "javac-algs4";
-chmod 0700, "java-algs4";
-move "javac-algs4", "./bin";
-move "java-algs4", "./bin";
+
+unless (-f "bin/javac-algs4") {
+  system("wget http://algs4.cs.princeton.edu/linux/javac-algs4");
+  chmod 0700, "javac-algs4";
+  move "javac-algs4", "./bin";
+}
+
+unless (-f "bin/java-algs4") {
+  system("wget http://algs4.cs.princeton.edu/linux/java-algs4");
+  chmod 0700, "java-algs4";
+  move "java-algs4", "./bin";
+}
 
 # system("wget http://algs4.cs.princeton.edu/linux/checkstyle.zip") unless -f "checkstyle.zip";
 # system("wget http://algs4.cs.princeton.edu/linux/findbugs.zip") unless -f "findbugs.zip";
