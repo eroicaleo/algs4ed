@@ -4,8 +4,8 @@ public class Percolation {
     private WeightedQuickUnionUF UF;
     private int[] siteStatus;
     private int[] botmStatus;
-    final private int virtualTop;
-    final private int virtualBot;
+    private final int virtualTop;
+    private final int virtualBot;
 
     // create N-by-N grid, with all sites blocked
     public Percolation(int N) {
@@ -38,26 +38,33 @@ public class Percolation {
         siteStatus[xyTo1D(i, j)] = 1;
         // 3. Union
         // left
-        if (j > 1 && isOpen(i, j-1)) unionWrapper(xyTo1D(i, j), xyTo1D(i, j-1));
+        if (j > 1 && isOpen(i, j-1))
+            unionWrapper(xyTo1D(i, j), xyTo1D(i, j-1));
         // right
-        if (j < gridSize && isOpen(i, j+1)) unionWrapper(xyTo1D(i, j), xyTo1D(i, j+1));
+        if (j < gridSize && isOpen(i, j+1))
+            unionWrapper(xyTo1D(i, j), xyTo1D(i, j+1));
         // up
-        if (isOpen(i-1, j)) unionWrapper(xyTo1D(i, j), xyTo1D(i-1, j));
+        if (i == 1 || isOpen(i-1, j))
+            unionWrapper(xyTo1D(i, j), xyTo1D(i-1, j));
         // down
-        if (i < gridSize && isOpen(i+1, j)) unionWrapper(xyTo1D(i, j), xyTo1D(i+1, j));
+        if (i < gridSize && isOpen(i+1, j))
+            unionWrapper(xyTo1D(i, j), xyTo1D(i+1, j));
 
         // To prevent backwash
         int botmSite = botmStatus[UF.find(xyTo1D(i, j))];
-        if (isFull(i, j) && isBottom(botmSite)) UF.union(botmSite, virtualBot);
+        if (isFull(i, j) && isBottom(botmSite))
+            UF.union(botmSite, virtualBot);
 
         return;
     }
     // is site (row i, column j) open?
     public boolean isOpen(int i, int j) {
+        checkIndices(i, j);
         return (siteStatus[xyTo1D(i, j)] == 1);
     }
     // is site (row i, column j) full?
     public boolean isFull(int i, int j) {
+        checkIndices(i, j);
         return UF.connected(virtualTop, xyTo1D(i, j));
     }
     // does the system percolate?
@@ -75,7 +82,8 @@ public class Percolation {
 
         UF.union(p, q);
         rootp = UF.find(p);
-        botmStatus[rootp] = (botmp > botmq) ? botmp : botmq;
+        if (botmp > botmq) botmStatus[rootp] = botmp;
+        else               botmStatus[rootp] = botmq;
 
         return;
     }
@@ -88,8 +96,10 @@ public class Percolation {
         return ((i-1)*gridSize + j);
     }
     private void checkIndices(int i, int j) {
-        if (i <= 0 || i > gridSize) throw new IndexOutOfBoundsException("row index i out of bounds");
-        if (j <= 0 || j > gridSize) throw new IndexOutOfBoundsException("col index j out of bounds");
+        if (i <= 0 || i > gridSize)
+            throw new IndexOutOfBoundsException("row index i out of bounds");
+        if (j <= 0 || j > gridSize)
+            throw new IndexOutOfBoundsException("col index j out of bounds");
         return;
     }
     // test client, optional
