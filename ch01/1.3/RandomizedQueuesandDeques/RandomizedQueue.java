@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class RandomizedQueue<Item> implements Iterable<Item> {
     private Item [] a;
@@ -22,6 +23,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
     public void enqueue(Item item)           // add the item
     {
+        if (item == null) throw new NullPointerException("add null element in enqueue!");
         if (sz == a.length - 1) resize(2 * a.length);
         a[tail] = item;
         sz++;
@@ -37,8 +39,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         a = copy;
         head = 0;
         tail = sz;
-        StdOut.println("After resizeing: head = " + head + ", tail = " + tail + ", sz = " + sz + ".");
-        StdOut.println("After resizeing: a.length = " + a.length + ", a[head] = " + a[head] + ", sz = " + sz + ".");
+        // StdOut.println("After resizeing: head = " + head + ", tail = " + tail + ", sz = " + sz + ".");
+        // StdOut.println("After resizeing: a.length = " + a.length + ", a[head] = " + a[head] + ", sz = " + sz + ".");
     }
     private void moveTail() {
         tail = (++tail) % a.length;
@@ -48,7 +50,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
     public Item dequeue()                    // delete and return a random item
     {
-        Item item = a[head];
+        if (sz == 0) throw new NoSuchElementException("from dequeue()!");
+        int candidate = StdRandom.uniform(sz);
+        // The trick is swap the head element with the random dequeued element.
+        Item item = a[(head+candidate)%a.length];
+        a[(head+candidate)%a.length] = a[head];
         a[head] = null;
         moveHead();
         sz--;
@@ -57,11 +63,32 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
     public Item sample()                     // return (but do not delete) a random item
     {
-        return a[head];
+        int candidate = StdRandom.uniform(sz);
+        return a[(head+candidate)%a.length];
     }
     public Iterator<Item> iterator()         // return an independent iterator over items in random order
     {
-        return new randomQueueIterator();
+        return new randomQueueIterator2();
+    }
+    private class randomQueueIterator2 implements Iterator<Item> {
+        int current;
+        int[] randomOrder;
+        public randomQueueIterator2() {
+            current = 0;
+            randomOrder = new int[sz];
+            for (int i = 0; i < sz; ++i) {
+                randomOrder[i] = i;
+            }
+            StdRandom.shuffle(randomOrder);
+        }
+        public void remove() { throw new UnsupportedOperationException(); }
+        public boolean hasNext() { return current != sz; }
+        public Item next() {
+            if (current == sz) { throw new java.util.NoSuchElementException("from next() of randomQueueIterator!"); }
+            Item item = a[(head+randomOrder[current])%a.length];
+            current++;
+            return item;
+        }
     }
     private class randomQueueIterator implements Iterator<Item> {
         int current;
