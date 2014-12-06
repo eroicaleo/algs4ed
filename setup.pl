@@ -4,7 +4,10 @@ use warnings;
 use strict;
 use 5.014;
 
+use Env;
 use File::Copy;
+
+use Env qw(PWD HOME);
 
 mkdir "./bin" unless -d "./bin";
 system("wget http://algs4.cs.princeton.edu/linux/drjava.jar") unless -f "drjava.jar";
@@ -29,16 +32,19 @@ unless (-f "bin/java-algs4") {
   move "java-algs4", "./bin";
 }
 
-# system("wget http://algs4.cs.princeton.edu/linux/checkstyle.zip") unless -f "checkstyle.zip";
-# system("wget http://algs4.cs.princeton.edu/linux/findbugs.zip") unless -f "findbugs.zip";
-# system("unzip checkstyle.zip
-# system("unzip findbugs.zip
-# system("wget http://algs4.cs.princeton.edu/linux/checkstyle.xml
-# system("wget http://algs4.cs.princeton.edu/linux/findbugs.xml
-# system("wget http://algs4.cs.princeton.edu/linux/checkstyle-algs4
-# system("wget http://algs4.cs.princeton.edu/linux/findbugs-algs4
-# [username:~/algs4/] chmod 700 checkstyle-algs4 findbugs-algs4
-# [username:~/algs4/] mv checkstyle-algs4 bin
-# [username:~/algs4/] mv findbugs-algs4 bin
-# [username:~/algs4/] mv checkstyle.xml checkstyle-5.5
-# [username:~/algs4/] mv findbugs.xml findbugs-2.0.1
+system("wget http://algs4.cs.princeton.edu/linux/checkstyle.zip") unless -f "checkstyle.zip";
+system("wget http://algs4.cs.princeton.edu/linux/findbugs.zip") unless -f "findbugs.zip";
+system("unzip checkstyle.zip");
+system("unzip findbugs.zip");
+system("wget http://algs4.cs.princeton.edu/linux/checkstyle.xml");
+system("wget http://algs4.cs.princeton.edu/linux/findbugs.xml");
+system("wget http://algs4.cs.princeton.edu/linux/checkstyle-algs4");
+system("wget http://algs4.cs.princeton.edu/linux/findbugs-algs4");
+chmod 0700, "checkstyle-algs4" ;
+chmod 0700, "findbugs-algs4";
+move "checkstyle-algs4", "./bin";
+move "findbugs-algs4",   "./bin";
+move "checkstyle.xml",   "checkstyle-5.5";
+move "findbugs.xml",     "findbugs-2.0.3";
+
+symlink "${PWD}", "${HOME}/algs4" unless "${PWD}" eq "${HOME}/algs4";
