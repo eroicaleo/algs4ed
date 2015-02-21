@@ -2,7 +2,7 @@
 
 CFLAGS = -classpath ".:/home/yang/programming/algs4ed/algs4.jar:/home/yang/programming/algs4ed/stdlib.jar"
 
-all :  Experiment StringSorter FileSorter Sort SelectionSort InsertionSort
+all :  Experiment StringSorter FileSorter Sort SelectionSort InsertionSort ShellSort Shuffling
 
 Experiment : Experiment.class Sort.class
 
@@ -15,6 +15,10 @@ Sort : Sort.class
 SelectionSort : SelectionSort.class
 
 InsertionSort : InsertionSort.class
+
+ShellSort : ShellSort.class
+
+Shuffling : Shuffling.class
 
 %.class : %.java
 	export CLASSPATH=".:/home/yang/programming/algs4ed/algs4.jar:/home/yang/programming/algs4ed/stdlib.jar"
