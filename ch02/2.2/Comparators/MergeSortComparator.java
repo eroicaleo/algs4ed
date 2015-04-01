@@ -13,7 +13,7 @@ public class MergeSortComparator {
         for (int k = lo; k <= hi; k++) {
             if (i > mid)                  a[k] = aux[j++];
             else if (j > hi)              a[k] = aux[i++];
-            else if (less(c, a[j], a[i])) a[k] = aux[j++];
+            else if (less(c, aux[j], aux[i])) a[k] = aux[j++];
             else                          a[k] = aux[i++];
         }
     }
