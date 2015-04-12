@@ -5,17 +5,17 @@
 
 using namespace std;
 
-void sort(vector<int> &a, size_t lo, size_t hi) {
+void sort(vector<int> &a, int lo, int hi) {
     // Return condition
     if (hi <= lo)
         return;
 
-    size_t lt = lo, gt = hi, i = lo;
+    int lt = lo, gt = hi, i = lo;
     int v = a[lo];
     while (i <= gt) {
         if (v > a[i])      swap(a[i++], a[lt++]);
         else if (v < a[i]) swap(a[i], a[gt--]);
-        else               ++lt;
+        else               ++i;
     }
 
     sort(a, lo, lt-1);
@@ -32,5 +32,22 @@ void sort(vector<int> &a) {
 }
 
 int main() {
+
+    // Generate random number
+    vector<int> a(10);
+
+    for (auto &i : a) {
+        i = rand() % 5;
+    }
+    for (auto i : a) {
+        cout << i << " ";
+    }
+    cout << endl;
+
+    sort(a);
+    for (auto i : a) {
+        cout << i << " ";
+    }
+    cout << endl;
     return 0;
 }
