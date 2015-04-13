@@ -1,13 +1,15 @@
 import java.util.Random;
 
 public class HeapSort {
+    private HeapSort {
+    }
     private static boolean less(Comparable[] a, int i, int j) {
-        return (a[i].compareTo(a[j]) < 0);
+        return (a[i-1].compareTo(a[j-1]) < 0);
     }
     private static void swap(Comparable[] a, int i, int j) {
-        Comparable swap = a[i];
-        a[i] = a[j];
-        a[j] = swap;
+        Comparable swap = a[i-1];
+        a[i-1] = a[j-1];
+        a[j-1] = swap;
     }
     private static void sink(Comparable[] a, int k, int N) {
         while (2*k <= N) {
@@ -29,13 +31,15 @@ public class HeapSort {
         }
     }
     public static void sort(Comparable[] a) {
-        Comparable[] aux = new Comparable[a.length+1];
-        for (int i = 0; i < a.length; i++)
-            aux[i+1] = a[i];
-        heapify(aux);
-        heapifysort(aux);
-        for (int i = 0; i < a.length; i++)
-            a[i] = aux[i+1];
+        int N = a.length;
+        for (int k = N/2; k >= 1; k--) {
+            sink(a, k, N);
+        }
+
+        while (N > 1) {
+            swap(a, 1, N--);
+            sink(a, 1, N);
+        }
     }
     private static void show(Comparable[] a) {
         for (int i = 0; i < a.length; i++) {
