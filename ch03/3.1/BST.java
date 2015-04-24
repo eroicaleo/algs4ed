@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 public class BST<Key extends Comparable<Key>, Value> {
     private Node root;
 
@@ -33,6 +35,10 @@ public class BST<Key extends Comparable<Key>, Value> {
         return x.count;
     }
 
+    public boolean isEmpty() {
+        return (size() == 0);
+    }
+
     public Node put(Node x, Key key, Value val) {
         if (x == null) return new Node(key, val, 1);
         int cmp = key.compareTo(x.key);
@@ -62,10 +68,11 @@ public class BST<Key extends Comparable<Key>, Value> {
     // Ordered operations
     public Key min() {
         if (root == null) return null;
-        Node x = root;
-        while (x.left != null)
-            x = x.left;
-        return x.key;
+        return min(root).key;
+    }
+    public Node min(Node x) {
+        if (x.left == null) return x;
+        else                return min(x.left);
     }
     public Key max() {
         if (root == null) return null;
@@ -121,6 +128,48 @@ public class BST<Key extends Comparable<Key>, Value> {
         inorder(q, x.right);
     }
 
+    /***********************************************************************
+     * deletion
+     ***********************************************************************/
+
+    public void deleteMin() {
+        if (isEmpty()) throw new NoSuchElementException("deleteMin() underflow!");
+        root = deleteMin(root);
+    }
+    private Node deleteMin(Node x) {
+        if (x.left == null) return x.right;
+        x.left = deleteMin(x.left);
+        x.count = 1 + size(x.left) + size(x.right);
+        return x;
+    }
+
+    /* Hibbart deletion */
+    public void delete(Key key) {
+        delete(root, key);
+    }
+    private Node delete(Node x, Key key) {
+        if (x == null) return null;
+        int cmp = key.compareTo(x.key);
+        if      (cmp < 0) x.left  = delete(x.left, key);
+        else if (cmp > 0) x.right = delete(x.right, key);
+        else {
+            if (x.left == null) return x.right;
+            if (x.right == null) return x.left;
+
+            Node t = x;
+            x = min(t.right);
+            x.right = deleteMin(t.right);
+            x.left = t.left;
+        }
+        x.count = 1 + size(x.left) + size(x.right);
+        return x;
+    }
+
+
+    /***********************************************************************
+     * unit test
+     ***********************************************************************/
+
     public static void main(String[] args) {
 
         System.out.format("################################!\n");
@@ -168,7 +217,25 @@ public class BST<Key extends Comparable<Key>, Value> {
         key = "09:00:00";
         System.out.format("The rank of 09:00:00 is %d.\n", st2.rank(key));
         // System.out.format("The 7th is %s : %s\n", st2.select(7), st2.get(st2.select(7)));
-    }
 
+        System.out.format("################################!\n");
+        System.out.format("deleteMin!\n");
+        System.out.format("################################!\n");
+        st2.deleteMin();
+        for (String s : st2.keys()) {
+            System.out.format("%s : %s\n", s, st2.get(s));
+        }
+        System.out.format("The size of the symbol table is %d.\n", st2.size());
+
+        key = "09:22:54";
+        System.out.format("################################!\n");
+        System.out.format("delete key: %s!\n", key);
+        System.out.format("################################!\n");
+        st2.delete(key);
+        for (String s : st2.keys()) {
+            System.out.format("%s : %s\n", s, st2.get(s));
+        }
+        System.out.format("The size of the symbol table is %d.\n", st2.size());
+    }
 
 }
