@@ -165,6 +165,19 @@ public class BST<Key extends Comparable<Key>, Value> {
         return x;
     }
 
+    /***********************************************************************
+     * check function
+     ***********************************************************************/
+
+    public boolean isBST() {
+        return isBST(root, null, null);
+    }
+    public boolean isBST(Node x, Key min, Key max) {
+        if (x == null) return true;
+        if (min != null && min.compareTo(x.key) > 0) return false;
+        if (max != null && max.compareTo(x.key) < 0) return false;
+        return isBST(x.left, min, x.key) && isBST(x.right, x.key, max);
+    }
 
     /***********************************************************************
      * unit test
