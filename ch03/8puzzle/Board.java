@@ -1,15 +1,22 @@
 public class Board {
     private final int N;
     private final int[][] tiles;
+    private final int hammingDistance;
+    private final int manhattanDistance;
 
-    public Board(int[][] blocks) {           // construct a board from an N-by-N array of blocks (where blocks[i][j] = block in row i, column j)
+    // construct a board from an N-by-N array of blocks 
+    // (where blocks[i][j] = block in row i, column j)
+    public Board(int[][] blocks) {
         N = blocks.length;
         tiles = new int[N][N];
         for (int i = 0; i < N; i++)
             for (int j = 0; j < N; j++)
                 tiles[i][j] = blocks[i][j];
+        hammingDistance = hammingInternal();
+        manhattanDistance = manhattanInternal();
     }
-    public int dimension() {                 // board dimension N
+    // board dimension N
+    public int dimension() {                 
         return N;
     }
     private boolean isOnTarget(int k) {
@@ -18,22 +25,26 @@ public class Board {
         int j = k-i*N-1;
         return (tiles[i][j] == k);
     }
-    public int hamming() {                   // number of blocks out of place
-        for (int i = 0; i < N*N-1; i++) {
-            System.out.format("%d ", i+1);
-        }
-        System.out.format("\n-----------------\n");
+    public int hamming() {
+        return hammingDistance;
+    }
+    // number of blocks out of place
+    private int hammingInternal() {                   
+        // for (int i = 0; i < N*N-1; i++) {
+        //     System.out.format("%d ", i+1);
+        // }
+        // System.out.format("\n-----------------\n");
         int d = 0;
         for (int i = 1; i < N*N; i++) {
             if (isOnTarget(i)) {
-                System.out.format("%d ", 0);
+                // System.out.format("%d ", 0);
             }
             else {
                 d++;
-                System.out.format("%d ", 1);
+                // System.out.format("%d ", 1);
             }
         }
-        System.out.format("\nHamming distance is %d.\n", d);
+        // System.out.format("\nHamming distance is %d.\n", d);
         return d;
     }
     private int manhattan(int i, int j) {
@@ -41,43 +52,111 @@ public class Board {
         if (k == 0) return 0;
         int ii = (k-1)/N;
         int jj = k-ii*N-1;
-        // System.out.format("i = %d, j = %d, k = %d, ii = %d, jj = %d\n", i, j, k, ii, jj);
         return Math.abs(ii - i) + Math.abs(jj - j);
     }
-    public int manhattan() {                 // sum of Manhattan distances between blocks and goal
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                if (tiles[i][j] == 0) continue;
-                System.out.format("%d ", tiles[i][j]);
-            }
-        }
-        System.out.format("\n-----------------\n");
+    public int manhattan() {
+        return manhattanDistance;
+    }
+    // sum of Manhattan distances between blocks and goal
+    private int manhattanInternal() {                 
+        // for (int i = 0; i < N; i++) {
+        //     for (int j = 0; j < N; j++) {
+        //         if (tiles[i][j] == 0) continue;
+        //         System.out.format("%d ", tiles[i][j]);
+        //     }
+        // }
+        // System.out.format("\n-----------------\n");
         int d = 0;
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 if (tiles[i][j] == 0) continue;
                 int md = manhattan(i, j);
-                System.out.format("%d ", md);
+                // System.out.format("%d ", md);
                 d += md;
             }
         }
-        System.out.format("\nManhattan distance is %d.\n", d);
+        // System.out.format("\nManhattan distance is %d.\n", d);
         return d;
     }
-    public boolean isGoal() {                // is this board the goal board?
+    // is this board the goal board?
+    public boolean isGoal() {                
         return (hamming() == 0);
     }
-    public Board twin() {                    // a board that is obtained by exchanging two adjacent blocks in the same row
-        return this;
+    // a board that is obtained by exchanging two adjacent blocks in the same row
+    public Board twin() {                    
+        int row = 0;
+        for (int i = 0; i < N; i++) {
+            if (tiles[i][0] != 0 && tiles[i][1] != 0) {
+                row = i;
+                break;
+            }
+        }
+
+        int[][] nTiles = new int[N][N];
+        for (int i = 0; i < N; i++)
+            for (int j = 0; j < N; j++)
+                nTiles[i][j] = tiles[i][j];
+
+        int tmp = nTiles[row][0];
+        nTiles[row][0] = nTiles[row][1];
+        nTiles[row][1] = tmp;
+        return new Board(nTiles);
     }
-    public boolean equals(Object y) {        // does this board equal y?
-        return false;
+    // does this board equal y?
+    public boolean equals(Object y) {        
+        if (this == y) return true;
+        if (y == null) return false;
+
+        if (y.getClass() != this.getClass()) return false;
+
+        Board that = (Board) y;
+
+        if (this.N != that.N) return false;
+        for (int i = 0; i < N; i++)
+            for (int j = 0; j < N; j++)
+                if (this.tiles[i][j] != that.tiles[i][j]) return false;
+
+        return true;
     }
-    public Iterable<Board> neighbors() {     // all neighboring boards
+    // all neighboring boards
+    public Iterable<Board> neighbors() {     
         Queue<Board> queue = new Queue<Board>();
+        for (int i = 0; i < N; i++)
+            for (int j = 0; j < N; j++)
+                if (this.tiles[i][j] == 0) {
+                   if (i > 0) {
+                       /* left neighbor */
+                       Board c = new Board(tiles);
+                       c.tiles[i][j] = tiles[i-1][j];
+                       c.tiles[i-1][j] = 0;
+                       queue.enqueue(new Board(c.tiles));
+                   }
+                   if (i < N-1) {
+                       /* right neighbor */
+                       Board c = new Board(tiles);
+                       c.tiles[i][j] = tiles[i+1][j];
+                       c.tiles[i+1][j] = 0;
+                       queue.enqueue(new Board(c.tiles));
+                   }
+                   if (j > 0) {
+                       /* up neighbor */
+                       Board c = new Board(tiles);
+                       c.tiles[i][j] = tiles[i][j-1];
+                       c.tiles[i][j-1] = 0;
+                       queue.enqueue(new Board(c.tiles));
+                   }
+                   if (j < N-1) {
+                       /* up neighbor */
+                       Board c = new Board(tiles);
+                       c.tiles[i][j] = tiles[i][j+1];
+                       c.tiles[i][j+1] = 0;
+                       queue.enqueue(new Board(c.tiles));
+                   }
+                }
         return queue;
     }
-    public String toString() {               // string representation of this board (in the output format specified below)
+    // string representation of this board (in the output format specified below)
+    public String toString() {               
         StringBuilder s = new StringBuilder();
         s.append(N + "\n");
         for (int i = 0; i < N; i++) {
@@ -88,7 +167,8 @@ public class Board {
         }
         return s.toString();
     }
-    public static void main(String[] args) { // unit tests (not graded)
+    // unit tests (not graded)
+    public static void main(String[] args) { 
         // create initial board from file
         In in = new In(args[0]);
         int N = in.readInt();
@@ -105,11 +185,13 @@ public class Board {
         /* Test hamming() */
         initial.hamming();
         /* Test manhattan() */
-        initial.manhattan();
+        System.out.format("Manhattan distance is %d!\n", initial.manhattan());
         /* Test isGoal() */
         if (initial.isGoal())
             System.out.format("Is it the goal!\n");
         else
             System.out.format("It isn't the goal!\n");
+        /* Test twin() */
+        System.out.format("It's twin %s\n", initial.twin());
     }
 }
