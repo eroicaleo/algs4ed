@@ -37,20 +37,17 @@ public class Solver {
      * Main data structure
      * ***************************/
     private MinPQ<Node> minPQ;
-    private MinPQ<Node> minPQTwin;
     private Stack<Board> solution;
     private final boolean isSolvable;
 
     // find a solution to the initial board (using the A* algorithm)
     public Solver(Board initial) {           
         minPQ     = new MinPQ<Node>(BY_MANHATTAN);
-        minPQTwin = new MinPQ<Node>(BY_MANHATTAN);
         solution  = new Stack<Board>();
         
         Node x = new Node(initial, null, 0);
-        Node y = new Node(initial.twin(), null, 0);
         System.out.format("%s", x.b);
-        while (!x.b.isGoal() && !y.b.isGoal()) {
+        while (!x.b.isGoal()) {
             for (Board b : x.b.neighbors()) {
                 Node t = new Node(b, x, x.step+1);
                 /* Critical optimization: check if is searched */
@@ -59,22 +56,9 @@ public class Solver {
                 } 
             }
             x = minPQ.delMin();
-            // System.out.format
-            // ("### min node: %s, manhattan %d\n", x.b, x.manPriority);
-
-            for (Board b : y.b.neighbors()) {
-                Node t = new Node(b, y, y.step+1);
-                /* Critical optimization: check if is searched */
-                if ((y.prev == null) || (!b.equals(y.prev.b))) {
-                    minPQTwin.insert(t);
-                } 
-            }
-            y = minPQTwin.delMin();
-            // System.out.format
-            // ("### min node: %s, manhattan %d\n", y.b, y.manPriority);
         }
 
-        if (x.b.isGoal()) {
+        if (x.b.manhattan() == 0) {
             isSolvable = true;
             while (x.prev != null) {
                 solution.push(x.b);

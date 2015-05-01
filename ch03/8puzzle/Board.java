@@ -20,7 +20,8 @@ public class Board {
         return N;
     }
     private boolean isOnTarget(int k) {
-        assert (k > 0) && (k < N*N);
+        assert (k >= 0) && (k < N*N);
+        if (k == 0) return (tiles[N-1][N-1] == 0);
         int i = (k-1)/N;
         int j = k-i*N-1;
         return (tiles[i][j] == k);
@@ -35,7 +36,7 @@ public class Board {
         // }
         // System.out.format("\n-----------------\n");
         int d = 0;
-        for (int i = 1; i < N*N; i++) {
+        for (int i = 0; i < N*N; i++) {
             if (isOnTarget(i)) {
                 // System.out.format("%d ", 0);
             }
@@ -80,7 +81,11 @@ public class Board {
     }
     // is this board the goal board?
     public boolean isGoal() {                
-        return (hamming() == 0);
+        /*******************************
+         * First condition is for unsolvable case
+         * Second one is for solvable case
+         * ******************************/
+        return ((hamming() == 2) && (manhattan() == 2)) || (manhattan() == 0);
     }
     // a board that is obtained by exchanging two adjacent blocks in the same row
     public Board twin() {                    
