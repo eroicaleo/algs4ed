@@ -35,6 +35,16 @@ public class BST<Key extends Comparable<Key>, Value> {
         return x.count;
     }
 
+    public boolean contains(Key key) {
+        return (get(key) != null);
+    }
+
+    public int size(Key lo, Key hi) {
+        if (lo.compareTo(hi) > 0) return 0;
+        if (contains(hi)) return 1 + rank(hi) - rank(lo);
+        else              return rank(hi) - rank(lo);
+    }
+
     public boolean isEmpty() {
         return (size() == 0);
     }
@@ -126,6 +136,20 @@ public class BST<Key extends Comparable<Key>, Value> {
         inorder(q, x.left);
         q.enqueue(x.key);
         inorder(q, x.right);
+    }
+
+    private Iterable<Key> keys(Key lo, Key hi) {
+        Queue<Key> q = new Queue<Key>();
+        keys(root, q, lo, hi);
+        return q;
+    }
+    private void keys(Node x, Queue<Key> q, Key lo, Key hi) {
+        if (x == null) return;
+        int cmplo = lo.compareTo(x.key); 
+        int cmphi = hi.compareTo(x.key); 
+        if (cmplo < 0) keys(x.left, q, lo, hi);
+        if (cmplo <= 0 && cmphi >= 0) q.enqueue(x.key);
+        if (cmphi > 0) keys(x.right, q, lo, hi);
     }
 
     /***********************************************************************
@@ -249,6 +273,28 @@ public class BST<Key extends Comparable<Key>, Value> {
             System.out.format("%s : %s\n", s, st2.get(s));
         }
         System.out.format("The size of the symbol table is %d.\n", st2.size());
+
+        String lo = "09:15:00";
+        String hi = "09:25:00";
+        System.out.format("################################!\n");
+        System.out.format("Test size(%s, %s), %d\n", lo, hi, st2.size(lo, hi));
+        System.out.format("################################!\n");
+        for (String s : st2.keys(lo, hi)) {
+            System.out.format("%s : %s\n", s, st2.get(s));
+        }
+        System.out.format("The size of the symbol table is %d.\n", st2.size());
+
+        lo = "09:14:25";
+        hi = "09:25:52";
+        System.out.format("################################!\n");
+        System.out.format("Test size(%s, %s), %d\n", lo, hi, st2.size(lo, hi));
+        System.out.format("################################!\n");
+        for (String s : st2.keys(lo, hi)) {
+            System.out.format("%s : %s\n", s, st2.get(s));
+        }
+        System.out.format("The size of the symbol table is %d.\n", st2.size());
+
+
     }
 
 }
