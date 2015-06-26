@@ -31,12 +31,34 @@ public class PointSET {
     }
     // all points that are inside the rectangle
     public Iterable<Point2D> range(RectHV rect) {
-        return rbTree.keys();
+        Point2D bl = new Point2D(rect.xmin(), rect.ymin());
+        Point2D tr = new Point2D(rect.xmax(), rect.ymax());
+        Iterable<Point2D> points = rbTree.keys(bl, tr);
+        Queue<Point2D> pointsInRange = new Queue<Point2D>();
+        for (Point2D p : points) {
+            if (rect.contains(p))
+                pointsInRange.enqueue(p);
+        }
+        return pointsInRange;
     }
 
-    // // a nearest neighbor in the set to point p; null if the set is empty
-    // public           Point2D nearest(Point2D p) {
-    // }
+    // a nearest neighbor in the set to point p; null if the set is empty
+    public Point2D nearest(Point2D p) {
+        if (rbTree.isEmpty())
+            return null;
+
+        double minDistance = 10.0;
+        Point2D nearestPoint = p;
+        Iterable<Point2D> points = rbTree.keys();
+        for (Point2D q : points) {
+            if (p.distanceTo(q) < minDistance) {
+                minDistance = p.distanceTo(q);
+                nearestPoint = q;
+            }
+        }
+
+        return nearestPoint;
+    }
     public static void main(String[] args) {
         return;
     }
