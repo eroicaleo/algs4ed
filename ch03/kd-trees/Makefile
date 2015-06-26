@@ -10,12 +10,16 @@ endif
 
 CFLAGS = -classpath ".:$(CPATH)/algs4ed/algs4.jar:$(CPATH)/algs4ed/stdlib.jar"
 
-all : PointSET
+all : PointSET RangeSearchVisualizer RectHV
 
 PointSET : PointSET.class
 
+RangeSearchVisualizer : RangeSearchVisualizer.class RectHV.class
+
+RectHV : RectHV.class
+
 %.class : %.java
-	export CLASSPATH=".:/home/yang/programming/algs4ed/algs4.jar:/home/yang/programming/algs4ed/stdlib.jar"
+	export CLASSPATH=".:$(CPATH)/algs4ed/algs4.jar:$(CPATH)/algs4ed/stdlib.jar"
 	javac $(CFLAGS) $<
 
 clean:
