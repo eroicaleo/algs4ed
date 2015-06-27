@@ -8,8 +8,9 @@ public class KdTree {
         private Node lb;        // the left/bottom subtree
         private Node rt;        // the right/top subtree
 
-        public Node(Point2D p) {
+        public Node(Point2D p, RectHV rect) {
             this.p = p;
+            this.rect = rect;
             this.lb = null;
             this.rt = null;
         }
@@ -35,19 +36,19 @@ public class KdTree {
     }
 
     // add the point to the set (if it is not already in the set)
-    public Node insert(Node x, boolean isH, Point2D p) {
-        if (x == null) return new Node(p);
+    public Node insert(Node x, boolean isH, RectHV rect, Point2D p) {
+        if (x == null) return new Node(p, rect);
 
         if (p.compareTo(x.p) == 0) return x;
 
         if (isH) {
             // Horizontal split
-            if (p.x() < x.p.x()) x.lb = insert(x.lb, !isH, p);
-            else                 x.rt = insert(x.rt, !isH, p);
+            if (p.x() < x.p.x()) x.lb = insert(x.lb, !isH, new RectHV(x.rect.xmin(), x.rect.ymin(), x.p.x(), x.rect.ymax()), p);
+            else                 x.rt = insert(x.rt, !isH, new RectHV(x.p.x(), x.rect.ymin(), x.rect.xmax(), x.rect.ymax()), p);
         } else {
             // Vertical split
-            if (p.y() < x.p.y()) x.lb = insert(x.lb, !isH, p);
-            else                 x.rt = insert(x.rt, !isH, p);
+            if (p.y() < x.p.y()) x.lb = insert(x.lb, !isH, new RectHV(x.rect.xmin(), x.rect.ymin(), x.rect.xmax(), x.p.y()), p);
+            else                 x.rt = insert(x.rt, !isH, new RectHV(x.rect.xmin(), x.p.y(), x.rect.xmax(), x.rect.ymax()), p);
         }
 
         return x;
@@ -56,7 +57,7 @@ public class KdTree {
     public void insert(Point2D p) {
         if (p == null) throw new java.lang.NullPointerException("Trying to insert a null point in kdtree insert method");
 
-        root = insert(root, true, p);
+        root = insert(root, true, new RectHV(0.0, 0.0, 1.0, 1.0), p);
     }
 
     // does the set contain point p? 
@@ -81,7 +82,32 @@ public class KdTree {
         return contains(root, true, p);
     }
 
-    // public              void draw()                         // draw all points to standard draw 
+    // draw all points to standard draw 
+    public void draw(Node x, boolean isH) {
+        if (x == null) return;
+
+        StdDraw.setPenColor(StdDraw.BLACK);
+        StdDraw.setPenRadius(.01); 
+        StdDraw.point(x.p.x(), x.p.y());
+
+        StdDraw.setPenRadius();
+        if (isH) {
+            // Draw vertical line through x
+            StdDraw.setPenColor(StdDraw.RED);
+            StdDraw.line(x.p.x(), x.rect.ymin(), x.p.x(), x.rect.ymax());
+        } else {
+            // Draw horizontal line through x
+            StdDraw.setPenColor(StdDraw.BLUE);
+            StdDraw.line(x.rect.xmin(), x.p.y(), x.rect.xmax(), x.p.y());
+        }
+        draw(x.lb, !isH);
+        draw(x.rt, !isH);
+        return;
+    }
+    public void draw() {
+        draw(root, true);
+    }
+
     // public Iterable<Point2D> range(RectHV rect)             // all points that are inside the rectangle 
     // public           Point2D nearest(Point2D p)             // a nearest neighbor in the set to point p; null if the set is empty 
 
