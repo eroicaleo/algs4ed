@@ -21,12 +21,12 @@ public class KdTree {
         root = null;
     }
 
-    // is the set empty? 
+    // is the set empty?
     public boolean isEmpty() {
         return (size() == 0);
     }
 
-    // number of points in the set 
+    // number of points in the set
     private int size(Node x) {
         if (x == null) return 0;
         return 1 + size(x.lb) + size(x.rt);
@@ -60,7 +60,7 @@ public class KdTree {
         root = insert(root, true, new RectHV(0.0, 0.0, 1.0, 1.0), p);
     }
 
-    // does the set contain point p? 
+    // does the set contain point p?
     public boolean contains(Node x, boolean isH, Point2D p) {
         if (x == null) return false;
 
@@ -82,12 +82,12 @@ public class KdTree {
         return contains(root, true, p);
     }
 
-    // draw all points to standard draw 
+    // draw all points to standard draw
     public void draw(Node x, boolean isH) {
         if (x == null) return;
 
         StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.setPenRadius(.01); 
+        StdDraw.setPenRadius(.01);
         StdDraw.point(x.p.x(), x.p.y());
 
         StdDraw.setPenRadius();
@@ -108,10 +108,32 @@ public class KdTree {
         draw(root, true);
     }
 
-    // public Iterable<Point2D> range(RectHV rect)             // all points that are inside the rectangle 
-    // public           Point2D nearest(Point2D p)             // a nearest neighbor in the set to point p; null if the set is empty 
+    // all points that are inside the rectangle
+    private void range(Node x, boolean isH, Queue<Point2D> q, RectHV rect) {
+        if (x == null) return;
 
-    // unit testing of the methods (optional) 
+        // Check left subtree if necessary
+        if ((isH && rect.xmin() <= x.p.x()) || (!isH && rect.ymin() <= x.p.y())) {
+            range(x.lb, !isH, q, rect);
+        }
+        // Check if point lies in the rectangle
+        if (rect.contains(x.p)) {
+            q.enqueue(x.p);
+        }
+        // Check right subtree if necessary
+        if ((isH && rect.xmax() >= x.p.x()) || (!isH && rect.ymax() >= x.p.y())) {
+            range(x.rt, !isH, q, rect);
+        }
+    }
+    public Iterable<Point2D> range(RectHV rect) {
+        Queue<Point2D> q = new Queue<Point2D>();
+        range(root, true, q, rect);
+        return q;
+    }
+
+    // public           Point2D nearest(Point2D p)             // a nearest neighbor in the set to point p; null if the set is empty
+
+    // unit testing of the methods (optional)
     public static void main(String[] args) {
         String filename = args[0];
         In in = new In(filename);
@@ -136,6 +158,5 @@ public class KdTree {
         StdOut.println("The kdtree contains (0.5 0.1): " + kdtree.contains(new Point2D(0.5, 0.1)));
         StdOut.println("The kdtree contains (0.5 1.0): " + kdtree.contains(new Point2D(0.5, 1.0)));
     }
-
 
 }

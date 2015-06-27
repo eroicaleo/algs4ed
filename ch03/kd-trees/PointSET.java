@@ -25,6 +25,8 @@ public class PointSET {
     // draw all points to standard draw
     public void draw() {
         Iterable<Point2D> points = rbTree.keys();
+        StdDraw.setPenColor(StdDraw.BLACK);
+        StdDraw.setPenRadius(.01);
         for (Point2D p : points) {
             StdDraw.point(p.x(), p.y());
         }
