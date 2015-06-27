@@ -10,7 +10,7 @@ endif
 
 CFLAGS = -classpath ".:$(CPATH)/algs4ed/algs4.jar:$(CPATH)/algs4ed/stdlib.jar"
 
-all : PointSET RangeSearchVisualizer RectHV NearestNeighborVisualizer
+all : PointSET RangeSearchVisualizer RectHV NearestNeighborVisualizer KdTree
 
 PointSET : PointSET.class
 
@@ -19,6 +19,8 @@ RangeSearchVisualizer : RangeSearchVisualizer.class RectHV.class
 RectHV : RectHV.class
 
 NearestNeighborVisualizer : NearestNeighborVisualizer.class PointSET.class
+
+KdTree : KdTree.class
 
 %.class : %.java
 	export CLASSPATH=".:$(CPATH)/algs4ed/algs4.jar:$(CPATH)/algs4ed/stdlib.jar"
