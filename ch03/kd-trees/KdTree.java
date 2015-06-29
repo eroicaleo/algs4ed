@@ -131,7 +131,52 @@ public class KdTree {
         return q;
     }
 
-    // public           Point2D nearest(Point2D p)             // a nearest neighbor in the set to point p; null if the set is empty
+    // a nearest neighbor in the set to point p; null if the set is empty
+    public Point2D nearest(Node x, boolean isH, Point2D p, double min) {
+        if (x == null) return null;
+
+        // Step 1: check the distance between current point to query point
+        Point2D nearestPoint = null;
+        double dist = p.distanceTo(x.p);
+        if (dist < min) {
+            nearestPoint = x.p;
+            min = dist;
+        }
+
+        // Step 2: Determine we search left or right first?
+        Node firstNode = null;
+        Node secondNode = null;
+        if ((isH  && x.lb != null && p.x() < x.lb.p.x()) ||
+            (!isH && x.lb != null && p.y() < x.lb.p.y())) {
+                firstNode = x.lb;
+                secondNode = x.rt;
+        } else {
+                firstNode = x.rt;
+                secondNode = x.lb;
+        }
+
+        // Step 3: Search first subtree
+        if (firstNode != null && (firstNode.rect.contains(p) || firstNode.rect.distanceTo(p) < min)) {
+            Point2D p1 = nearest(firstNode, !isH, p, min);
+            if (p1 != null) {
+                nearestPoint = p1;
+                min = p.distanceTo(p1);
+            }
+        }
+
+        // Step 4: Search second subtree
+        if (secondNode != null && (secondNode.rect.contains(p) || secondNode.rect.distanceTo(p) < min)) {
+            Point2D p1 = nearest(secondNode, !isH, p, min);
+            if (p1 != null) {
+                nearestPoint = p1;
+                min = p.distanceTo(p1);
+            }
+        }
+        return nearestPoint;
+    }
+    public Point2D nearest(Point2D p) {
+        return nearest(root, true, p, 10);
+    }
 
     // unit testing of the methods (optional)
     public static void main(String[] args) {
