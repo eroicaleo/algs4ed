@@ -5,6 +5,9 @@ Notes on Algorithms
 
 * [Lecture 6 Hash Tables](#lecture-6-hash-tables)
     * [Hash Functions](#hash-functions)
+    * [separable chaining](#separable-chaining)
+    * [linear probing](#linear-probing)
+    * [context](context)
 
 # <a id="lecture-6-hash-tables"></a>Lecture 6 Hash Tables
 
@@ -21,4 +24,23 @@ A: Yes, but with different access to the data (if we don't need ordered ops)
 
 Save items in a key-indexed table (index is a function of the key).
 
-_Hash function_: Method for computing array index from key
+* _Hash function_: Method for computing array index from key
+
+```java
+hash("it") = 3
+```
+
+* _Issues_
+    * Computing the hash function, can get complicated for complicated types of data.
+    * Equality test: Method for checking whether two keys are equal.
+    * Collision resolution: Algorithm and data structure to handle two keys
+    that hash to the same array index
+
+* Classic space-time tradeoff
+    * No space limitation: very huge array for every possible key
+    * No time limitation: hash everything to the same place and sequtial search
+    * space and time limitation: trade-off, real world hash
+
+## <a id="separable-chaining"></a>separable chaining
+## <a id="linear-probing"></a>linear probing
+## <a id="context"></a>context
