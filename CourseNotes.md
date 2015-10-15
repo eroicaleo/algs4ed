@@ -103,7 +103,7 @@ public int hashCode() {
 }
 ```
 
-**Implementing hash code: integers, booleans and doubles** 
+**Implementing hash code: String** 
 
 * String: treats `String` as huge number, Horner's rule:
     * `s[0] * 31^(L-1) + ... + s[L-1] * 31^0`
@@ -136,6 +136,81 @@ public final class String {
 }
 ```
 
+**Implementing hash code: user-defined type** 
+
+* We want to make use of all pieces of data we have
+* We want to make use of the hash code implementations for the types of data
+that we are using.
+* Mimic Horner's method, starts with a small prime number.
+
+```java
+public final class Transaction implements Comparable<Transaction> {
+    private final String who;
+    private final Date   when;
+    private final double amount;
+
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + who.hashCode();
+        hash = 31 * hash + when.hashCode();
+        // primitive type: use hashCode() of wrapper type
+        hash = 31 * hash + (Double amount).hashCode();
+        return hash;
+    }
+}
+```
+
+**Hash code design**
+
+"Standard" recipe for user-defined types
+
+* Combine each significant field using the `31x+y` rule.
+* If field is a primitive type, use wrapper type `hashCode()`.
+* If field is `null`, return 0
+* if field is a reference type, use `hashCode()`.
+* if field is an array, apply to each entry, or use `Arrays.deepHashCode()`
+
+In practice: 
+
+* works reasonably well; used in java libraries
+
+In Theory:
+
+* Keys are bitstring: "universal" hash functions exist.
+
+Basic rule:
+
+* Need to use whole key
+* Consult an expert if see some performance issue.
+
+**Modular hashing**
+
+* Hash code: An `int` between -2^31 and 2^31 - 1
+* Hash function: An `int` between 0 and M-1 (for use as array index)
+    * M is typically a prime or power of 2
+
+```java
+// Bug, because -1 % 23 = -1
+private int hash(Key key) {
+    return key.hashCode() % M;
+}
+// 1-in-a-billion bug, the key.hashCode() can be -2^31
+private int hash(Key key) {
+    return Math.abs(key.hashCode()) % M;
+}
+// OK
+private int hash(Key key) {
+    return (key.hashCode() & 0x7fffffff) % M;
+}
+```
+
+**Uniform hashing assumption**
+
+* Uniform hashing assumption: each key is equally likely to hash to an integer between 0 and M-1
+* Bins and balls: Throw balls uniformly at random into M bins
+* Birthday problem: expect two balls in the same bin after `sqrt(pi*M/2)` tosses.
+* Coupon collector: Expect every bin has >= 1 ball after ~ MlnN tosses.
+* Load balancing: after M tosses, expect most loaded bin has \Theta(logM/loglogM) balls.
 
 ## <a id="separable-chaining"></a>separable chaining
 ## <a id="linear-probing"></a>linear probing
