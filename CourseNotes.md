@@ -5,9 +5,9 @@ Notes on Algorithms
 
 * [Lecture 6 Hash Tables](#lecture-6-hash-tables)
     * [Hash Functions](#hash-functions)
-    * [separable chaining](#separable-chaining)
-    * [linear probing](#linear-probing)
-    * [context](#context)
+    * [Separable Chaining](#separable-chaining)
+    * [Linear Probing](#linear-probing)
+    * [Context](#context)
 
 # <a id="lecture-6-hash-tables"></a>Lecture 6 Hash Tables
 
@@ -212,6 +212,21 @@ private int hash(Key key) {
 * Coupon collector: Expect every bin has >= 1 ball after ~ MlnN tosses.
 * Load balancing: after M tosses, expect most loaded bin has \Theta(logM/loglogM) balls.
 
-## <a id="separable-chaining"></a>separable chaining
-## <a id="linear-probing"></a>linear probing
-## <a id="context"></a>context
+## <a id="separable-chaining"></a>Separable Chaining
+
+**Collisions**
+
+* Collision: Two distinct keys hashing to same index.
+    * Birthday problem: can't avoid collisions unless you have quadratic amount of memory.
+    * Coupon collector + Load balancing: collisions will be evenly distributed.
+* Challenge: Deal with collision efficiently.
+
+**Separable chaining symbol table**
+
+* Use an array of M < N linked list. [H.P. Luhn, IBM 1953]
+    * Hash: map key to integer `i` between `0` to `M-1`.
+    * Insert: put at front of ith chain (if not already there).
+    * Search: need to search only ith chain.
+
+## <a id="linear-probing"></a>Linear Probing
+## <a id="context"></a>Context
