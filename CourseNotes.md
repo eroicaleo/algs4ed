@@ -228,5 +228,68 @@ private int hash(Key key) {
     * Insert: put at front of ith chain (if not already there).
     * Search: need to search only ith chain.
 
+**Separable chaining ST: Java implementation**
+
+```java
+public class SeparateChainingHashST<Key, Value> {
+    private int M = 97;
+    private Node[] st = new Node[M];
+
+    private static class Node {
+        private Object key;
+        private Object val;
+        private Node next;
+    }
+
+    private int hash(Key key) {
+        return (key.hashCode() & 0x7fffffff) % M;
+    }
+
+    public Value get(Key key) {
+        int i = hash(key);
+        for (Node x = st[i]; x != null; x = x.next) {
+            if (key.equals(x.key)) {
+                return (Value) x.val;
+            }
+        }
+        return null;
+    }
+
+    public void put(Key key, Value val) {
+        int i = hash(key);
+        for (Node x = st[i]; x != null; x = x.next) {
+            if (key.equals(x.key)) {
+                x.val = val;
+                return;
+            }
+        }
+        st[i] = new Node(key, val, st[i]);
+        return;
+    }
+
+}
+```
+
+* There is no generic array creation, so we have to define `Node` class. And we have to 
+  declare `key` and `value` of type `Object`, because its `static` nested class.
+* In `put`, we link to the beginning of a chain.
+* Very little code, so it's very popular.
+
+**Analysis of separable chaining**
+
+* Proposition: Under uniform hashing assumption, prob. that the number of keys in a list
+  is within a constant factor of N/M is extremely close to 1.
+* Pf sketch: Distribution of list size obeys a binomial distribution.
+* Consequence: Number of probes for search/insert is proportional to N/M.
+    * M too large => too many empty chains.
+    * M too small => chains too long.
+    * Typical choices: M ~ N/5 => constant-time ops. (Might need array resizing)
+
+
+implemetation | search | insert | delete | search hit | insert | delete | ordered iteration | key interface |
+--------------|:------:|:------:|:------:|:----------:|:------:|:------:|:-----------------:|:-------------:|
+red black BST | 2 lg N | 2 lg N | 2 lg N | 1 lg N     | 1 lg N | 1 lg N | yes | `compareTo()` |
+separable chaining | lg N | lg N | lg N | 3-5 | 3-5 | 3-5 | no | `equals()` |
+
 ## <a id="linear-probing"></a>Linear Probing
 ## <a id="context"></a>Context
