@@ -2,7 +2,7 @@
 
 1. download windows installer algs4.exe [here](http://algs4.cs.princeton.edu/windows/algs4.exe).
 2. Run the installer. It will install everything under "C:\Users\your_user_name\algs4".
-3. Follow the instruction [here](stackoverflow.com/questions/1051640/correct-way-to-add-external-jars-lib-jar-to-an-intellij-idea-project):
+3. Follow the instruction [here](stackoverflow.com/questions/1051640/correct-way-to-add-external-jars-lib-jar-to-an-intellij-idea-project) from stackoverflow or official doc [here](https://www.jetbrains.com/idea/help/configuring-module-dependencies-and-libraries.html):
     * `File` -> `Project Structure` (hotkey is `ctrl`+`alt`+`shift`+`s`)
     * `Project Settings` -> `Modules` -> `Dependencies` -> `Add`
     * Select the `algs4.jar` from the installed directory
