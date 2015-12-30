@@ -1,17 +1,18 @@
 Notes on Algorithms
 ===================
 
-# Table of Contents
+<!-- TOC depth:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
-* [Lecture 6 Hash Tables](#lecture-6-hash-tables)
-    * [Hash Functions](#hash-functions)
-    * [Separable Chaining](#separable-chaining)
-    * [Linear Probing](#linear-probing)
-    * [Context](#context)
+- [Lecture 6 Hash Tables](#lecture-6-hash-tables)
+	- [Hash Functions](#hash-functions)
+	- [Separable Chaining](#separable-chaining)
+	- [Linear Probing](#linear-probing)
+	- [Context](#context)
+<!-- /TOC -->
 
-# <a id="lecture-6-hash-tables"></a>Lecture 6 Hash Tables
+# Lecture 6 Hash Tables
 
-## <a id="hash-functions"></a>Hash Functions
+## Hash Functions
 
 implemetation | search | insert | delete | search hit | insert | delete | ordered iteration | key interface |
 --------------|:------:|:------:|:------:|:----------:|:------:|:------:|:-----------------:|:-------------:|
@@ -64,7 +65,7 @@ Practical challenge: Need different approach for each key type.
 * `int`, `String`, `double` just count on JAVA
 * Implement own type of data, we need to worry about it.
 
-**Java's hash code convetions** 
+**Java's hash code convetions**
 
 All Java classes inherit a method called `hashCode()`, which returns a 32-bit `int`.
 
@@ -88,7 +89,7 @@ then x.hashCode() != y.hashCode
     * sweet spot for hashing, some expert has done the `hashCode()` and
     application doesn't need ordering.
 
-**Implementing hash code: integers, booleans and doubles** 
+**Implementing hash code: integers, booleans and doubles**
 
 Java library implementation
 
@@ -103,7 +104,7 @@ public int hashCode() {
 }
 ```
 
-**Implementing hash code: String** 
+**Implementing hash code: String**
 
 * String: treats `String` as huge number, Horner's rule:
     * `s[0] * 31^(L-1) + ... + s[L-1] * 31^0`
@@ -136,7 +137,7 @@ public final class String {
 }
 ```
 
-**Implementing hash code: user-defined type** 
+**Implementing hash code: user-defined type**
 
 * We want to make use of all pieces of data we have
 * We want to make use of the hash code implementations for the types of data
@@ -170,7 +171,7 @@ public final class Transaction implements Comparable<Transaction> {
 * if field is a reference type, use `hashCode()`.
 * if field is an array, apply to each entry, or use `Arrays.deepHashCode()`
 
-In practice: 
+In practice:
 
 * works reasonably well; used in java libraries
 
@@ -212,7 +213,7 @@ private int hash(Key key) {
 * Coupon collector: Expect every bin has >= 1 ball after ~ MlnN tosses.
 * Load balancing: after M tosses, expect most loaded bin has \Theta(logM/loglogM) balls.
 
-## <a id="separable-chaining"></a>Separable Chaining
+## Separable Chaining
 
 **Collisions**
 
@@ -270,7 +271,7 @@ public class SeparateChainingHashST<Key, Value> {
 }
 ```
 
-* There is no generic array creation, so we have to define `Node` class. And we have to 
+* There is no generic array creation, so we have to define `Node` class. And we have to
   declare `key` and `value` of type `Object`, because its `static` nested class.
 * In `put`, we link to the beginning of a chain.
 * Very little code, so it's very popular.
@@ -285,11 +286,84 @@ public class SeparateChainingHashST<Key, Value> {
     * M too small => chains too long.
     * Typical choices: M ~ N/5 => constant-time ops. (Might need array resizing)
 
-
 implemetation | search | insert | delete | search hit | insert | delete | ordered iteration | key interface |
 --------------|:------:|:------:|:------:|:----------:|:------:|:------:|:-----------------:|:-------------:|
 red black BST | 2 lg N | 2 lg N | 2 lg N | 1 lg N     | 1 lg N | 1 lg N | yes | `compareTo()` |
 separable chaining | lg N | lg N | lg N | 3-5 | 3-5 | 3-5 | no | `equals()` |
 
-## <a id="linear-probing"></a>Linear Probing
-## <a id="context"></a>Context
+## Linear Probing
+
+**Collision Resolution: open addressing**
+
+When a new key collides, find next empty slot, and put it there. The size of the
+array has to be bigger than the number of keys.
+
+* `Hash`: Map key to integer `i` between 0 and `M-1`
+* `Insert`: Put at table index `i` if free; if not try `i+1`, `i+2`, etc.
+* `Search`: Search table index `i`; if occupied but no match, try `i+1`, `i+2`,
+	etc.
+* `Note`: Array size `M` must be greater than the number of key-value pairs `N`.
+	(It's a good idea to keep the at least half empty).
+
+**Linear Probing ST: Java implementation**
+
+```java
+public class LinearProbingHashST<Key, Value> {
+    private int M = 30000;
+    private Key[]   keys = (Key[])   new Object[M];
+    private Value[] vals = (Value[]) new Object[M];
+
+    private int hash(Key key) {
+        return (key.hashCode() & 0x7fffffff) % M;
+    }
+
+    public void put(Key key, Value val) {
+        int i;
+        for (i = hash(key); keys[i] != null; i = (i+1) % M) {
+            if (key.equals(keys[i]))
+                break;
+        }
+        keys[i] = key;
+        vals[i] = val;
+    }
+
+    public Value get(Key key) {
+        int i;
+        for (i = hash(key); keys[i] != null; i = (i+1) % M) {
+            if (key.equals(keys[i]))
+                return vals[i];
+        }
+        return null;
+    }
+
+}
+```
+
+**Clustering**
+
+* `Cluster`: A contiguous block of items.
+* `Observation`: New keys likely to hash into middle of big clusters.
+
+**Knuth's Parking Problem**
+
+* `Question`: What is mean displacement of a car?
+* `Half-full`: With `M/2` cars, mean displacement is ~ 3/2
+* `Full`: With `M` cars, mean displacement is ~ sqrt(pi*M/8)
+
+**Analysis of linear probing**
+
+Parameters:
+
+* M too large => too many empty array entries.
+* M too small => search time blows up.
+* Typical choice: alpha = N / M ~ 1/2
+		* probes for search hit is about 3/2
+		* probes for search miss is about 5/2
+
+implemetation | search | insert | delete | search hit | insert | delete | ordered iteration | key interface |
+--------------|:------:|:------:|:------:|:----------:|:------:|:------:|:-----------------:|:-------------:|
+red black BST | 2 lg N | 2 lg N | 2 lg N | 1 lg N     | 1 lg N | 1 lg N | yes | `compareTo()` |
+separable chaining | lg N | lg N | lg N | 3-5 | 3-5 | 3-5 | no | `equals()` |
+linear probing     | lg N | lg N | lg N | 3-5 | 3-5 | 3-5 | no | `equals()` |
+
+## Context
