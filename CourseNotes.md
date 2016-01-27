@@ -367,3 +367,32 @@ separable chaining | lg N | lg N | lg N | 3-5 | 3-5 | 3-5 | no | `equals()` |
 linear probing     | lg N | lg N | lg N | 3-5 | 3-5 | 3-5 | no | `equals()` |
 
 ## Context
+
+**String Hashing in Java**
+
+String `hashCode()` in Java 1.1
+* only examine 8-9 evenly distributed characters
+* Benefit: save time in performing arithmetic
+* Downside: great potential for bad collision patterns.
+
+```java
+public int hashCode() {
+    int hash = 0;
+    int skip = Math.max(1, s.length()/8);
+    for (int i = 0; i < s.length(); i += skip) {
+        hash +=  s.charAt(i) + (hash * 37);
+    }
+}
+```
+
+**Algorithmic Complexity Attacks**
+
+Q: Is the uniform hashing assumption important in practice?
+
+A: Obvious situations: aircraft control, nuclear weapons and pacemaker.
+
+A: Suprsing situations: denial-of-service attacks.
+* Malicious adversaries learn the hash function and causes a big pile-up.
+
+In this case, we are hoping for randomness. Not like quick sort, we are providing
+randomness. Not like red-black tree, performance is guaranteed.
