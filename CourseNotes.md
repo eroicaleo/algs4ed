@@ -396,3 +396,50 @@ A: Suprsing situations: denial-of-service attacks.
 
 In this case, we are hoping for randomness. Not like quick sort, we are providing
 randomness. Not like red-black tree, performance is guaranteed.
+
+**Separable Chaining v.s. linear probing**
+
+Separable chaining:
+* Easier to implement delete
+* Performance degrades gracefully
+* Clustering less sensitive to poorly designed hash functions
+
+Linear probing:
+* Less wasted spaces.
+* Better cache performance.
+
+Problems to think about:
+* How to delete?
+* How to resize?
+
+**Hashing: Variations**
+
+Two-probe hashing (separable-chaining variant)
+* Hash to two positions, insert key in shorter of the two chains.
+* Reduce the expected length of the longest chain to `log log N`.
+
+Double hashing (linear-probing variant)
+* Use linear probing but skip a variable amount, not just 1 each time.
+* Effectively eliminates clustering.
+* Can allow table to become nearly full.
+* More difficult to implement delete.
+
+Cuckoo hashing (linear-probing variant)
+* Constant worst time search.
+
+**Hash Table v.s. Balanced Search Trees**
+
+Hash table:
+* Simple to code
+* No effective alternative for unordered keys.
+* Faster for simple keys (a few arithmetic ops versus `log N` comparison).
+* Better system support in Java for strings (e.g. cached hash code).
+
+Balanced Search Trees:
+* Strong Performance guarantee.
+* Support for ordered ST operations.
+* Easier to implement `compareTo` correctly than `equals()` and `hashCode()`.
+
+Java system includes:
+* red-black tree: `java.util.TreeMap`, `java.util.TreeSet`.
+* Hash table: `java.util.HashMap`, `java.util.IdentityHashMap`.

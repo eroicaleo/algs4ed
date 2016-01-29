@@ -1,3 +1,6 @@
+/**
+ * Created by yangge on 12/29/2015.
+ */
 public class SeparateChainingHashST<Key, Value> {
     private int M = 97;
     private Node[] st = new Node[M];
@@ -40,3 +43,4 @@ public class SeparateChainingHashST<Key, Value> {
     }
 
 }
+

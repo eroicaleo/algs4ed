@@ -22,5 +22,12 @@ public class JavaStringHash {
         JavaStringHash hash = new JavaStringHash(name);
 
         System.out.println(name + "'s hash code = " + hash.hashCode());
+
+        String s = "Aa";
+        System.out.println("Aa.hashCode() = " + s.hashCode());
+        s = "BB";
+        System.out.println("BB.hashCode() = " + s.hashCode());
+        s = "AaAaAaAa";
+        System.out.println("AaAaAaAa.hashCode() = " + s.hashCode());
     }
 }
