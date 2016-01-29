@@ -3,12 +3,32 @@ Notes on Algorithms
 
 <!-- TOC depth:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
+- [How to setup algs4 environment with IntelliJ](#how-to-setup-algs4-environment-with-intellij)
 - [Lecture 6 Hash Tables](#lecture-6-hash-tables)
 	- [Hash Functions](#hash-functions)
 	- [Separable Chaining](#separable-chaining)
 	- [Linear Probing](#linear-probing)
 	- [Context](#context)
+	- [Symbol Table Application - Sets](#symbol-table-application-sets)
 <!-- /TOC -->
+
+# How to setup algs4 environment with IntelliJ
+
+1. Download and install the binaries and .jar library using official installer.
+	Can be found in official booksite [here](http://algs4.cs.princeton.edu/windows/)
+2. In your IntelliJ project, on the top right corner, click the "Project Structure"
+	icon, or simply use hotkey `Ctrl+Alt+Shift+S`.
+3. In the pop up "Project Structure" menu, select Project Settings | Modules
+4. In right part, click the green "+" sign or use hotkey `Alt+Insert`.
+5. Then select "JARs or directories".
+6. Navigate to `C:\Users\username\algs4`, which is the default install location.
+7. Double click the "algs4.jar".
+8. Verify the `algs4.jar` is in the Project | External Libraries.
+9. Now you can simply test the following snippet.
+	```java
+	import edu.princeton.cs.algs4.StdOut; // IntelliJ automatically adds for you
+	StdOut.println("Hello world!")
+	```
 
 # Lecture 6 Hash Tables
 
@@ -443,3 +463,27 @@ Balanced Search Trees:
 Java system includes:
 * red-black tree: `java.util.TreeMap`, `java.util.TreeSet`.
 * Hash table: `java.util.HashMap`, `java.util.IdentityHashMap`.
+
+## Symbol Table Application - Sets
+
+[book site code](algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/SET.java.html)
+
+[book site doc](http://algs4.cs.princeton.edu/code/javadoc/edu/princeton/cs/algs4/SET.html)
+
+```java
+public SET<Key extends Comparable<Key>>
+```
+
+| Return Type    | Method         | Description |
+| -------------: | :------------- | :---------- |
+|                | `SET()`        | create an empty set |
+| `void` | `add(Key key)` | add the key to the set |
+| `boolean` | `contains(Key key)` | is the key in the set? |
+| `void` | `remove(Key key)` | remove the key from the set |
+| `int` | `size()` | return the number of keys in the set |
+| `Iterator<Key>` | iterator() | iterate keys through the set |
+
+**Exception Filter**
+
+* Read in a list of words from one file
+* Print out all words from standard input that are {in, not in} the list.
