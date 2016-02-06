@@ -30,6 +30,71 @@ Notes on Algorithms
 	StdOut.println("Hello world!")
 	```
 
+# Lecture 6 Merge Sort (Book 2.2)
+
+## 6.1 Merge sort
+Given two sorted sub arrays a[lo] a [mid] and a[mid+1] a[hi].
+We need three indices i, j, k. Core code: `merge()` and `sort()`.
+
+```java
+private static void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
+
+    assert isSorted(a, lo, mid);
+    assert isSorted(a, mid+1, hi);
+
+    for (int k = lo; k <= hi; k++) {
+        aux[k] = a[k];
+    }
+
+    int i = lo, j = mid+1;
+    for (int k = lo; k <= hi; k++) {
+        if (i > mid)                   a[k] = aux[j++];
+        else if (j > hi)               a[k] = aux[i++];
+        else if (less(aux[j], aux[i])) a[k] = aux[j++];
+        else                           a[k] = aux[i++];
+    }
+
+    assert isSorted(a, lo, hi);
+}
+
+private static void sort(Comparable[] a, Comparable[] aux, int lo, int hi) {
+    if (hi <= lo) return;
+
+    int mid = lo + (hi - lo) / 2;
+    sort(a, aux, lo, mid);
+    sort(a, aux, mid+1, hi);
+    merge(a, aux, lo, mid, hi);
+
+    return;
+}
+```
+
+**Easy to make mistakes:**
+* I sometimes assign `aux[k] = a[i++]`;
+* I sometimes do `less(a[j], a[i])`;
+* I sometimes do `aux[k++] = a[i++]`;
+* `int mid = lo + (lo+hi)/2`
+* One gotcha: we need allocate the aux at the top, not in the recursive
+  programming.
+
+### JAVA assertion
+Throw exception if condition is true. We use -ea and -da to enable and disable assertion.
+```java
+java -ea MyProgram
+java -da MyProgram
+```
+
+### Merge Sort Complexity
+`Nlog(N)`, how to prove:
+`D(N) = 2xD(N/2) + N => D(N)/N = D(N/2) / (N/2) + 1 ...`
+
+### Three optimization `MergeX`
+1. when the number in the array is small (N < 7), we could use insertion sort to
+	avoid recursive.
+2. We could check if `a[mid+1] >= a[mid]`, if so, we don’t need to merge.
+3. We could use `a` and `aux` alternatively to avoid the copy inside merge.
+	* Note in this case, the `aux` has to be initialized as `a` using `Comparable[] aux = a.clone()`
+
 # Lecture 6 Hash Tables
 
 ## Hash Functions
