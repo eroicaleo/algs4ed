@@ -70,8 +70,8 @@ private static void sort(Comparable[] a, Comparable[] aux, int lo, int hi) {
 ```
 
 **Easy to make mistakes:**
-* I sometimes assign `aux[k] = a[i++]`;
-* I sometimes do `less(a[j], a[i])`;
+* I sometimes assign `aux[k] = a[i++]`, should be `a[k] = aux[i++]`;
+* I sometimes do `less(a[j], a[i])`, should be `less(aux[j], aux[i])`;
 * I sometimes do `aux[k++] = a[i++]`;
 * `int mid = lo + (lo+hi)/2`
 * One gotcha: we need allocate the aux at the top, not in the recursive
