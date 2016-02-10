@@ -4,12 +4,20 @@ Notes on Algorithms
 <!-- TOC depth:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [How to setup algs4 environment with IntelliJ](#how-to-setup-algs4-environment-with-intellij)
+- [Lecture 6 Merge Sort (Book 2.2)](#lecture-6-merge-sort-book-22)
+	- [6.1 Merge sort](#61-merge-sort)
+		- [JAVA assertion](#java-assertion)
+		- [Merge Sort Complexity](#merge-sort-complexity)
+		- [Three optimization `MergeX`](#three-optimization-mergex)
+- [Lecture 7 Quick Sort](#lecture-7-quick-sort)
+	- [Implementation Details](#implementation-details)
 - [Lecture 6 Hash Tables](#lecture-6-hash-tables)
 	- [Hash Functions](#hash-functions)
 	- [Separable Chaining](#separable-chaining)
 	- [Linear Probing](#linear-probing)
 	- [Context](#context)
 	- [Symbol Table Application - Sets](#symbol-table-application-sets)
+	- [Symbol Table Application - Dictionary Clients](#symbol-table-application-dictionary-clients)
 <!-- /TOC -->
 
 # How to setup algs4 environment with IntelliJ
@@ -94,6 +102,17 @@ java -da MyProgram
 2. We could check if `a[mid+1] >= a[mid]`, if so, we don’t need to merge.
 3. We could use `a` and `aux` alternatively to avoid the copy inside merge.
 	* Note in this case, the `aux` has to be initialized as `a` using `Comparable[] aux = a.clone()`
+
+# Lecture 7 Quick Sort
+
+## Implementation Details
+* Partition in place
+* Terminate the loop: `if (i >= j)`
+* Staying in bounds: `i == hi` is necessary and `j == lo` is redundant.
+* Preserving randomness is necessary.
+* Equal keys: It is better to stop when keys equal to the partition element and
+	do swap. Consider an array which every elements are the same, then if we don't
+	stop one equal keys, we will end up with O(n^2) complexity.
 
 # Lecture 6 Hash Tables
 

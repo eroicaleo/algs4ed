@@ -1,11 +1,42 @@
 
 # Merge Sort
 
-## Regular Merge Sort
+## Regular Merge Sort, practiced: 2
 * `merge`, `sort`, `sort`
 
 ```java
+private static void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
+    isSorted(a, lo, mid);
+    isSorted(a, mid+1, hi);
 
+    for (int k = lo; k <= hi; k++)
+        aux[k] = a[k];
+
+    int i = lo, j = mid + 1;
+    for (int k = lo; k <= hi; k++) {
+        if      (i > mid)              a[k] = aux[j++];
+        else if (j > hi)               a[k] = aux[i++];
+        else if (less(aux[j], aux[i])) a[k] = aux[j++];
+        else                           a[k] = aux[i++];
+    }
+
+    isSorted(a, lo, hi);
+}
+
+private static void sort(Comparable[] a, Comparable[] aux, int lo, int hi) {
+    if (hi <= lo)
+        return;
+
+    int mid = lo + (hi - lo) / 2;
+    sort(a, aux, lo, mid);
+    sort(a, aux, mid+1, hi);
+    merge(a, aux, lo, mid, hi);
+}
+
+private static void sort(Comparable[] a) {
+    Comparable[] aux = new Comparable[a.length];
+    sort(a, aux, 0, a.length-1);
+}
 ```
 
 **Easy to make mistakes:**
@@ -16,15 +47,32 @@
 * One gotcha: we need allocate the aux at the top, not in the recursive
   programming.
 
-## Bottom Up Merge Sort
-* `merge`, `sort`, `insertionSort`
+## Bottom Up Merge Sort, practiced: 2
+* `merge` (same as regular merge sort), `sort`
 
 ```java
+public static void sort(Comparable[] a) {
+    int N = a.length;
+    Comparable[] aux = new Comparable[N];
+    for (int n = 1; n < N; n = n + n) {
+        for (int i = 0; i < N - n; i += n + n) {
+            int lo = i;
+            int mid = i + n - 1;
+            int hi = Math.min(i + n + n - 1, N - 1);
+            merge(a, aux, lo, mid, hi);
+        }
+    }
 
+    assert isSorted(a);
+}
 ```
 
-## Merge Sort X
-* `merge`, `sort`, `insertionSort`
+## Merge Sort X, practiced: 2
+* `merge`, `insertionSort`, `sort`
+
+**Easy to make mistakes:**
+* In the `insertionSort`, I do `less(a[j], a[i])`, while it should be
+  `less(a[j], a[j-1])`. I do `exch(a, i, j)`, while it should be `exch(a, j, j-1)`
 
 ```java
 public static void merge(Comparable[] src, Comparable[] dst, int lo, int mid, int hi) {
@@ -72,7 +120,67 @@ public static void sort(Comparable[] a) {
 }
 ```
 
-**Easy to make mistakes:**
 
-* In the `insertionSort`, I do `less(a[j], a[i])`, while it should be
-  `less(a[j], a[j-1])`. I do `exch(a, i, j)`, while it should be `exch(a, j, j-1)`
+# Quick Sort
+
+## Regular Quick Sort + Quick Select
+
+* `partition`, `sort`, `select`
+
+**Easy to make mistakes:**
+* In quick select, I do `if (i < k) lo = i`, should be `if (i < k) lo = i + 1`.
+  Otherwise, it can be infinite loop. For example, `lo = 0, hi = 2, a = {4, 8, 11}, k = 1`.
+  Then `i = 0` all the time.
+
+```java
+private static int partition(Comparable[] a, int lo, int hi) {
+    int i = lo, j = hi + 1;
+    Comparable v = a[lo];
+
+    while (true) {
+        while (less(a[++i], v))
+            if (i == hi) break;
+
+        while (less(v, a[--j]))
+            if (j == lo) break;
+
+        if (i >= j) break;
+
+        exch(a, i, j);
+    }
+
+    exch(a, lo, j);
+    return j;
+}
+
+private static void sort(Comparable[] a, int lo, int hi) {
+    if (hi <= lo) return;
+    int j = partition(a, lo, hi);
+    sort(a, lo, j);
+    sort(a, j+1, hi);
+    assert isSorted(a, lo, hi);
+}
+
+private static void sort(Comparable[] a) {
+    StdRandom.shuffle(a);
+    sort(a, 0, a.length-1);
+    assert isSorted(a);
+}
+
+private static Comparable select(Comparable[] a, int k) {
+    if (k < 0 || k >= a.length) {
+        throw new IndexOutOfBoundsException("Selected elements out of bounds");
+    }
+
+    StdRandom.shuffle(a);
+    int lo = 0, hi = a.length - 1;
+    while (hi > lo) {
+        int i = partition(a, lo, hi);
+        if      (i > k) hi = i;
+        else if (i < k) lo = i;
+        else return a[i];
+    }
+    return a[lo];
+}
+
+```
