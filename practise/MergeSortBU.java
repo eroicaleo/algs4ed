@@ -10,12 +10,11 @@ public class MergeSortBU {
 
         int i = lo, j = mid + 1;
         for (int k = lo; k <= hi; k++) {
-            if (i > mid)                   a[k] = aux[j++];
+            if      (i > mid)              a[k] = aux[j++];
             else if (j > hi)               a[k] = aux[i++];
             else if (less(aux[j], aux[i])) a[k] = aux[j++];
             else                           a[k] = aux[i++];
         }
-
     }
 
     public static void sort(Comparable[] a) {
@@ -25,7 +24,7 @@ public class MergeSortBU {
             for (int i = 0; i < N - n; i += n + n) {
                 int lo = i;
                 int mid = i + n - 1;
-                int hi = Math.min(i+n+n-1, N-1);
+                int hi = Math.min(i + n + n - 1, N - 1);
                 merge(a, aux, lo, mid, hi);
             }
         }
