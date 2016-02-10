@@ -13,7 +13,7 @@ public class MergeSortX {
 
         int i = lo, j = mid + 1;
         for (int k = lo; k <= hi; k++) {
-            if (i > mid)                   dst[k] = src[j++];
+            if      (i > mid)              dst[k] = src[j++];
             else if (j > hi)               dst[k] = src[i++];
             else if (less(src[j], src[i])) dst[k] = src[j++];
             else                           dst[k] = src[i++];
@@ -39,7 +39,7 @@ public class MergeSortX {
         sort(dst, src, mid+1, hi);
 
         if (!less(src[mid+1], src[mid])) {
-            System.arraycopy(src, lo, dst, lo, hi-lo+1);
+            System.arraycopy(src, lo, dst, lo, hi - lo + 1);
             return;
         }
         merge(src, dst, lo, mid, hi);
@@ -47,7 +47,7 @@ public class MergeSortX {
 
     public static void sort(Comparable[] a) {
         Comparable[] aux = a.clone();
-        sort(aux, a, 0, a.length-1);
+        sort(aux, a, 0, a.length - 1);
         assert isSorted(a);
     }
 
