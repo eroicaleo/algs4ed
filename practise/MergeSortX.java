@@ -7,7 +7,7 @@ public class MergeSortX {
 
     public static final int CUT_OFF = 7;
 
-    public static void merge(Comparable[] src, Comparable[] dst, int lo, int mid, int hi) {
+    private static void merge(Comparable[] src, Comparable[] dst, int lo, int mid, int hi) {
         assert isSorted(src, lo, mid);
         assert isSorted(src, mid+1, hi);
 
@@ -22,13 +22,13 @@ public class MergeSortX {
         assert isSorted(dst, lo, hi);
     }
 
-    private static void insertionSort(Comparable[] a, int lo, int hi){
+    private static void insertionSort(Comparable[] a, int lo, int hi) {
         for (int i = lo; i <= hi; i++)
             for (int j = i; j > lo && less(a[j], a[j-1]); j--)
                 exch(a, j, j-1);
     }
 
-    public static void sort(Comparable[] src, Comparable[] dst, int lo, int hi) {
+    private static void sort(Comparable[] src, Comparable[] dst, int lo, int hi) {
         if (hi <= lo + CUT_OFF) {
             insertionSort(dst, lo, hi);
             return;

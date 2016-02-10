@@ -11,8 +11,8 @@
 **Easy to make mistakes:**
 * I sometimes assign `aux[k] = a[i++]`, should be `a[k] = aux[i++]`;
 * I sometimes do `less(a[j], a[i])`, should be `less(aux[j], aux[i])`;
-* I sometimes do `aux[k++] = a[i++]`;
-* `int mid = lo + (lo+hi)/2`
+* I sometimes do `aux[k++] = a[i++]`, should be `a[k] = aux[i++]`;
+* `int mid = lo + (lo+hi)/2`, should be `int mid = lo + (hi - lo) / 2`
 * One gotcha: we need allocate the aux at the top, not in the recursive
   programming.
 
@@ -71,3 +71,8 @@ public static void sort(Comparable[] a) {
     assert isSorted(a);
 }
 ```
+
+**Easy to make mistakes:**
+
+* In the `insertionSort`, I do `less(a[j], a[i])`, while it should be
+  `less(a[j], a[j-1])`. I do `exch(a, i, j)`, while it should be `exch(a, j, j-1)`
