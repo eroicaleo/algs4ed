@@ -11,6 +11,8 @@ Notes on Algorithms
 		- [Three optimization `MergeX`](#three-optimization-mergex)
 - [Lecture 7 Quick Sort](#lecture-7-quick-sort)
 	- [Implementation Details](#implementation-details)
+	- [Selection](#selection)
+	- [Quick Sort 3 Way](#quick-sort-3-way)
 - [Lecture 6 Hash Tables](#lecture-6-hash-tables)
 	- [Hash Functions](#hash-functions)
 	- [Separable Chaining](#separable-chaining)
@@ -107,12 +109,23 @@ java -da MyProgram
 
 ## Implementation Details
 * Partition in place
-* Terminate the loop: `if (i >= j)`
+* Terminate the loop: `if (i >= j)`, the equal sign happens when `a[i] = a[j] = v`.
 * Staying in bounds: `i == hi` is necessary and `j == lo` is redundant.
 * Preserving randomness is necessary.
 * Equal keys: It is better to stop when keys equal to the partition element and
 	do swap. Consider an array which every elements are the same, then if we don't
 	stop one equal keys, we will end up with O(n^2) complexity.
+
+## Selection
+The invariant is during each loop iteration, k is always greater or equal than
+lo, and is always less or equal than hi.
+
+## Quick Sort 3 Way
+
+The invariant is during each loop iteration, the elements left to `lt` is strictly
+less than `a[lt]`, which is the partition element. The elements from `lt` to left of
+`i` is same as the partition element. Finally, the elements right to `gt` is always
+strictly greater than the partition element.
 
 # Lecture 6 Hash Tables
 

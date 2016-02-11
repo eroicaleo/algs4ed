@@ -184,3 +184,9 @@ private static Comparable select(Comparable[] a, int k) {
 }
 
 ```
+
+## Quick Sort 3 Way
+
+```java
+
+```
