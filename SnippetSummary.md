@@ -189,9 +189,10 @@ public static Comparable select(Comparable[] a, int k) {
 
 ```
 
-## Quick Sort 3 Way
+## Quick Sort 3 Way, practiced: 1
 
 **Easy to make mistakes:**
+* I will forget the `if (hi <= lo) return;` in `sort`.
 
 ```java
 private static void sort(Comparable[] a, int lo, int hi) {
