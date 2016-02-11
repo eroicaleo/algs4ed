@@ -1,3 +1,8 @@
+# Guidelines
+* Always do `if (hi >= lo) return;` in recursive `sort`.
+* No space in function argument like: `sort(a, lo, i-1);`, has space in other case,
+  like `int mid = lo + (hi - lo) / 2;`
+* Prefer `>` and `<` over `>=` and `<=`;
 
 # Merge Sort
 
