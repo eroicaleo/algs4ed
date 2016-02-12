@@ -6,7 +6,7 @@
 
 # Merge Sort
 
-## Regular Merge Sort, practiced: 2
+## Regular Merge Sort, practiced: 3
 * `merge`, `sort`, `sort`
 
 ```java
@@ -52,7 +52,7 @@ private static void sort(Comparable[] a) {
 * One gotcha: we need allocate the aux at the top, not in the recursive
   programming.
 
-## Bottom Up Merge Sort, practiced: 2
+## Bottom Up Merge Sort, practiced: 3
 * `merge` (same as regular merge sort), `sort`
 
 ```java
@@ -72,7 +72,7 @@ public static void sort(Comparable[] a) {
 }
 ```
 
-## Merge Sort X, practiced: 2
+## Merge Sort X, practiced: 3
 * `merge`, `insertionSort`, `sort`
 
 **Easy to make mistakes:**
@@ -136,7 +136,7 @@ public static void sort(Comparable[] a) {
 * In quick select, I do `if (i < k) lo = i`, should be `if (i < k) lo = i + 1`.
   Otherwise, it can be infinite loop. For example, `lo = 0, hi = 2, a = {4, 8, 11}, k = 1`.
   Then `i = 0` all the time.
-* In `partition`, I do `exch(a, 0, j);`, should be `exch(a, 0, j);`
+* In `partition`, I do `exch(a, 0, j);`, should be `exch(a, lo, j);`
 * In `select`, I do `while (lo <= hi)`, should be `while (hi > lo)`, otherwise,
   when `k = lo = hi = 9`, there will be `ArrayIndexOutOfBoundsException` throwed
   by `partition`, because of `while (less(a[++i], v))`.

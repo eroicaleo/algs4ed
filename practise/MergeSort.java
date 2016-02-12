@@ -8,8 +8,8 @@ public class MergeSort {
     private MergeSort() {}
 
     private static void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
-        isSorted(a, lo, mid);
-        isSorted(a, mid+1, hi);
+        assert isSorted(a, lo, mid);
+        assert isSorted(a, mid+1, hi);
 
         for (int k = lo; k <= hi; k++)
             aux[k] = a[k];
@@ -22,12 +22,11 @@ public class MergeSort {
             else                           a[k] = aux[i++];
         }
 
-        isSorted(a, lo, hi);
+        assert isSorted(a, lo, hi);
     }
 
     private static void sort(Comparable[] a, Comparable[] aux, int lo, int hi) {
-        if (hi <= lo)
-            return;
+        if (hi <= lo) return;
 
         int mid = lo + (hi - lo) / 2;
         sort(a, aux, lo, mid);
@@ -35,7 +34,7 @@ public class MergeSort {
         merge(a, aux, lo, mid, hi);
     }
 
-    private static void sort(Comparable[] a) {
+    public static void sort(Comparable[] a) {
         Comparable[] aux = new Comparable[a.length];
         sort(a, aux, 0, a.length-1);
     }
