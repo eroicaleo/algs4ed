@@ -10,12 +10,12 @@ public class QuickSort3way {
     private static void sort(Comparable[] a, int lo, int hi) {
         if (hi <= lo) return;
         int lt = lo, gt = hi;
-        int i = lo;
         Comparable v = a[lo];
+        int i = lo;
         while (i <= gt) {
-            int cmp = v.compareTo(a[i]);
-            if      (cmp > 0) exch(a, lt++, i++);
-            else if (cmp < 0) exch(a, i, gt--);
+            int cmp = a[i].compareTo(v);
+            if      (cmp < 0) exch(a, lt++, i++);
+            else if (cmp > 0) exch(a, i, gt--);
             else              i++;
         }
         sort(a, lo, lt-1);
@@ -52,8 +52,9 @@ public class QuickSort3way {
 
     private static void show(Object[] a) {
         for (int i = 0; i < a.length; i++) {
-            System.out.println(a[i]);
+            System.out.print(a[i] + " ");
         }
+        System.out.println();
     }
 
     public static void main(String[] args) {
