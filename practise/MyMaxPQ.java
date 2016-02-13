@@ -31,6 +31,16 @@ public class MyMaxPQ<Key> implements Iterable<Key> {
         this(1, comparator);
     }
 
+    MyMaxPQ(Key[] keys) {
+        pq = (Key[]) new Object[keys.length+1];
+        N = keys.length;
+        for (int i = 0; i < N; i++)
+            pq[i+1] = keys[i];
+        for (int k = N / 2; k >= 1; k--)
+            sink(k);
+        assert isMaxHeap();
+    }
+
     public Key delMax() {
         if (isEmpty()) throw new NoSuchElementException("Priority Queue underflow");
         Key max = pq[1];
@@ -178,5 +188,13 @@ public class MyMaxPQ<Key> implements Iterable<Key> {
         while (!pq.isEmpty())
             System.out.print(pq.delMax() + " ");
         System.out.println();
+
+        pq = new MyMaxPQ<Integer>(a);
+        System.out.println("##### Loop with iterator for new pq #####");
+        for (Integer k: pq) {
+            System.out.print(k + " ");
+        }
+        System.out.println();
+
     }
 }
