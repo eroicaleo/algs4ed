@@ -1,5 +1,7 @@
 # Guidelines
 * Always do `if (hi >= lo) return;` in recursive `sort`.
+* Always do `while (hi > lo) {}` in quick select.
+* In `exch`, the smaller index comes first: `exch(a, lo, j)`, `exch(a, lt++, i++)`.
 * No space in function argument like: `sort(a, lo, i-1);`, has space in other case,
   like `int mid = lo + (hi - lo) / 2;`
 * Prefer `>` and `<` over `>=` and `<=`;
@@ -128,7 +130,7 @@ public static void sort(Comparable[] a) {
 
 # Quick Sort
 
-## Regular Quick Sort + Quick Select, practiced: 1
+## Regular Quick Sort + Quick Select, practiced: 2
 
 * `partition`, `sort`, `select`
 
@@ -194,10 +196,11 @@ public static Comparable select(Comparable[] a, int k) {
 
 ```
 
-## Quick Sort 3 Way, practiced: 1
+## Quick Sort 3 Way, practiced: 2
 
 **Easy to make mistakes:**
 * I will forget the `if (hi <= lo) return;` in `sort`.
+* The `Exception` name is `IndexOutOfBoundsException`.
 
 ```java
 private static void sort(Comparable[] a, int lo, int hi) {
@@ -212,7 +215,7 @@ private static void sort(Comparable[] a, int lo, int hi) {
         else              i++;
     }
 
-    sort(a, 0, lt-1);
+    sort(a, lo, lt-1);
     sort(a, gt+1, hi);
     assert isSorted(a, lo, hi);
 }
@@ -224,3 +227,17 @@ public static void sort(Comparable[] a) {
 }
 
 ```
+
+# Priority Queues
+
+## `MaxPQ`, practiced: 0
+
+* members: `pq`, `N`, `comparator`.
+* Constructors: `MaxPQ()`, `MaxPQ(int)`, `MaxPQ(Comparator<key>)`,
+  `MaxPQ(int, Comparator<key>)`, `MaxPQ(Key[])`
+* `delMax`, `insert`, `isEmpty`, `isMaxHeap`, `max`, `size`, `resize`, `sink`
+  `swim`, `iterator`, `HeapIterator`
+
+**Easy to make mistakes:**
+* `resize`, `for (int i = 0; i < pq.length; i++)`, should be `i <= N`. Otherwise,
+  throws `ArrayIndexOutOfBoundsException`.
