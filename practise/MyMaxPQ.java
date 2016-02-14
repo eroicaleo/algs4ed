@@ -94,13 +94,6 @@ public class MyMaxPQ<Key> implements Iterable<Key> {
         pq = temp;
     }
 
-    private void swim(int k) {
-        while (k > 1 && less(k/2, k)) {
-            exch(k/2, k);
-            k = k / 2;
-        }
-    }
-
     private void sink(int k) {
         while (2*k <= N) {
             int j = 2 * k;
@@ -108,6 +101,13 @@ public class MyMaxPQ<Key> implements Iterable<Key> {
             if (!less(k, j)) break;
             exch(k, j);
             k = j;
+        }
+    }
+
+    private void swim(int k) {
+        while (k > 1 && less(k/2, k)) {
+            exch(k/2, k);
+            k = k / 2;
         }
     }
 
