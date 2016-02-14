@@ -53,7 +53,7 @@ public class MyMaxPQ<Key> implements Iterable<Key> {
     }
 
     public void insert(Key k) {
-        if (N == pq.length-1) resize(2*pq.length);
+        if (N >= pq.length-1) resize(2*pq.length);
 
         pq[++N] = k;
         swim(N);
