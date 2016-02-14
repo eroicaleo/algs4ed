@@ -1,10 +1,12 @@
 # Guidelines
-* Always do `if (hi >= lo) return;` in recursive `sort`.
+* Always do `if (hi <= lo) return;` in recursive `sort`.
 * Always do `while (hi > lo) {}` in quick select.
 * In `exch`, the smaller index comes first: `exch(a, lo, j)`, `exch(a, lt++, i++)`.
 * No space in function argument like: `sort(a, lo, i-1);`, has space in other case,
   like `int mid = lo + (hi - lo) / 2;`
 * Prefer `>` and `<` over `>=` and `<=`;
+* In `resize`, when increase size, do `N >=`; when decreases size, do `N ==`.
+* For `for` and `while` loop, if there is one statement, just remove `{}`.
 
 # Merge Sort
 
@@ -237,21 +239,32 @@ public static void sort(Comparable[] a) {
 
 | `MaxPQ()` | `MaxPQ(int)` | `MaxPQ(Comparator<key>)` | `MaxPQ(int, Comparator<key>)` | `MaxPQ(Key[])` |
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 1 | 1 | 1 | 1 | 0 |
+| 1 | 1 | 1 | 1 | 1 |
 
 
 * public method: `delMax`, `insert`, `isEmpty`, `isMaxHeap`, `max`, `size`
 
 | `delMax` | `insert` | `isEmpty` | `isMaxHeap` | `max` | `size`
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 1 | 1 | 0 | 0 | 0 | 0 |
+| 1 | 1 | 1 | 1 | 1 | 1 |
 
 * private helper functions: `resize`, `sink`, `swim`
 
+| `resize` | `sink` | `swim` |
+| :-------------: | :-------------: | :-------------: |
+| 1 | 1 | 1 |
+
 * Iterators: `iterator`, `HeapIterator`
 
+| `iterator` | `HeapIterator` |
+| :------------- | :------------- |
+| 1 | 1 |
 
 **Easy to make mistakes:**
 * `resize`, `for (int i = 0; i < pq.length; i++)`, should be `i <= N`. Otherwise,
   throws `ArrayIndexOutOfBoundsException`.
 * class declaration: `MyMaxPQ implements`, should be `MyMaxPQ<Key> implements`
+* In constructor, allocate size should be `initCapacity+1`, not `initCapacity`.
+* In constructor, the argument should be `Comparator<Key>` not just `Comparator`.
+* In `HeapIterator`, `next` method, need to `throw` when `!hasNext()`.
+* In `HeapIterator` constructor, should be `for (int i = 1; i <= N; i++)`.
