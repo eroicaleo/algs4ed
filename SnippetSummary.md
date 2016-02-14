@@ -232,12 +232,26 @@ public static void sort(Comparable[] a) {
 
 ## `MaxPQ`, practiced: 0
 
-* members: `pq`, `N`, `comparator`.
-* Constructors: `MaxPQ()`, `MaxPQ(int)`, `MaxPQ(Comparator<key>)`,
-  `MaxPQ(int, Comparator<key>)`, `MaxPQ(Key[])`
-* `delMax`, `insert`, `isEmpty`, `isMaxHeap`, `max`, `size`, `resize`, `sink`
-  `swim`, `iterator`, `HeapIterator`
+* class declaration and members: `pq`, `N`, `comparator`.
+* Constructors:
+
+| `MaxPQ()` | `MaxPQ(int)` | `MaxPQ(Comparator<key>)` | `MaxPQ(int, Comparator<key>)` | `MaxPQ(Key[])` |
+| :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
+| 1 | 1 | 1 | 1 | 0 |
+
+
+* public method: `delMax`, `insert`, `isEmpty`, `isMaxHeap`, `max`, `size`
+
+| `delMax` | `insert` | `isEmpty` | `isMaxHeap` | `max` | `size`
+| :-------------: | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
+| 1 | 1 | 0 | 0 | 0 | 0 |
+
+* private helper functions: `resize`, `sink`, `swim`
+
+* Iterators: `iterator`, `HeapIterator`
+
 
 **Easy to make mistakes:**
 * `resize`, `for (int i = 0; i < pq.length; i++)`, should be `i <= N`. Otherwise,
   throws `ArrayIndexOutOfBoundsException`.
+* class declaration: `MyMaxPQ implements`, should be `MyMaxPQ<Key> implements`
