@@ -266,5 +266,6 @@ public static void sort(Comparable[] a) {
 * class declaration: `MyMaxPQ implements`, should be `MyMaxPQ<Key> implements`
 * In constructor, allocate size should be `initCapacity+1`, not `initCapacity`.
 * In constructor, the argument should be `Comparator<Key>` not just `Comparator`.
-* In `HeapIterator`, `next` method, need to `throw` when `!hasNext()`.
+* In `HeapIterator`, `next` method, need to `throw NoSuchElementException`,
+  when `!hasNext()`.
 * In `HeapIterator` constructor, should be `for (int i = 1; i <= N; i++)`.
