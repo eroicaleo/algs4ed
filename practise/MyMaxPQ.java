@@ -12,26 +12,26 @@ public class MyMaxPQ<Key> implements Iterable<Key> {
     private int N;
     private Comparator<Key> comparator;
 
-    MyMaxPQ(int initCapacity) {
+    public MyMaxPQ(int initCapacity) {
         pq = (Key[]) new Object[initCapacity+1];
         N = 0;
     }
 
-    MyMaxPQ() {
+    public MyMaxPQ() {
         this(1);
     }
 
-    MyMaxPQ(int initCapacity, Comparator<Key> comparator) {
+    public MyMaxPQ(int initCapacity, Comparator<Key> comparator) {
         pq = (Key[]) new Object[initCapacity+1];
         N = 0;
         this.comparator = comparator;
     }
 
-    MyMaxPQ(Comparator<Key> comparator) {
+    public MyMaxPQ(Comparator<Key> comparator) {
         this(1, comparator);
     }
 
-    MyMaxPQ(Key[] keys) {
+    public MyMaxPQ(Key[] keys) {
         pq = (Key[]) new Object[keys.length+1];
         N = keys.length;
         for (int i = 0; i < N; i++)
