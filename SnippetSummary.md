@@ -7,10 +7,13 @@
 * Prefer `>` and `<` over `>=` and `<=`;
 * In `resize`, when increase size, do `N >=`; when decreases size, do `N ==`.
 * For `for` and `while` loop, if there is one statement, just remove `{}`.
+* Do precondition and post condition check on:
+    * `merge`, `sort` non recursive one,
+    * `delMax`, `insert` and `MaxPQ(Key[])`
 
 # Merge Sort
 
-## Regular Merge Sort, practiced: 3
+## Regular Merge Sort, practiced: 4
 * `merge`, `sort`, `sort`
 
 ```java
@@ -45,6 +48,7 @@ private static void sort(Comparable[] a, Comparable[] aux, int lo, int hi) {
 private static void sort(Comparable[] a) {
     Comparable[] aux = new Comparable[a.length];
     sort(a, aux, 0, a.length-1);
+    assert isSorted(a);
 }
 ```
 
@@ -56,7 +60,7 @@ private static void sort(Comparable[] a) {
 * One gotcha: we need allocate the aux at the top, not in the recursive
   programming.
 
-## Bottom Up Merge Sort, practiced: 3
+## Bottom Up Merge Sort, practiced: 4
 * `merge` (same as regular merge sort), `sort`
 
 ```java
