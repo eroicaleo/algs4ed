@@ -8,7 +8,7 @@
 * In `resize`, when increase size, do `N >=`; when decreases size, do `N ==`.
 * For `for` and `while` loop, if there is one statement, just remove `{}`.
 * Do precondition and post condition check on:
-    * `merge`, `sort` non recursive one,
+    * `merge`, `sort`
     * `delMax`, `insert` and `MaxPQ(Key[])`
 
 # Merge Sort
@@ -136,18 +136,22 @@ public static void sort(Comparable[] a) {
 
 # Quick Sort
 
-## Regular Quick Sort + Quick Select, practiced: 2
+## Regular Quick Sort + Quick Select, practiced: 3
 
 * `partition`, `sort`, `select`
 
 **Easy to make mistakes:**
-* In quick select, I do `if (i < k) lo = i`, should be `if (i < k) lo = i + 1`.
+
+* In `partition`, I do `if (i == j) break;`, should be `if (i >= j) break;`
+* In `partition`, I do `exch(a, 0, j);`, should be `exch(a, lo, j);`
+* In `select`, I do `if (i < k) lo = i`, should be `if (i < k) lo = i + 1`.
   Otherwise, it can be infinite loop. For example, `lo = 0, hi = 2, a = {4, 8, 11}, k = 1`.
   Then `i = 0` all the time.
-* In `partition`, I do `exch(a, 0, j);`, should be `exch(a, lo, j);`
 * In `select`, I do `while (lo <= hi)`, should be `while (hi > lo)`, otherwise,
   when `k = lo = hi = 9`, there will be `ArrayIndexOutOfBoundsException` throwed
   by `partition`, because of `while (less(a[++i], v))`.
+* In `select`, don't forget to do `StdRandom.shuffle(a);`
+
 
 ```java
 private static int partition(Comparable[] a, int lo, int hi) {
@@ -202,7 +206,7 @@ public static Comparable select(Comparable[] a, int k) {
 
 ```
 
-## Quick Sort 3 Way, practiced: 2
+## Quick Sort 3 Way, practiced: 3
 
 **Easy to make mistakes:**
 * I will forget the `if (hi <= lo) return;` in `sort`.
