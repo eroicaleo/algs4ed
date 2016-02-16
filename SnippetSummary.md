@@ -247,33 +247,42 @@ public static void sort(Comparable[] a) {
 
 | `MaxPQ()` | `MaxPQ(int)` | `MaxPQ(Comparator<key>)` | `MaxPQ(int, Comparator<key>)` | `MaxPQ(Key[])` |
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 1 | 1 | 1 | 1 | 1 |
+| 2 | 2 | 2 | 2 | 2 |
 
 
 * public method: `delMax`, `insert`, `isEmpty`, `isMaxHeap`, `max`, `size`
 
 | `delMax` | `insert` | `isEmpty` | `isMaxHeap` | `max` | `size`
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 1 | 1 | 1 | 1 | 1 | 1 |
+| 2 | 2 | 2 | 2 | 2 | 2 |
 
 * private helper functions: `resize`, `sink`, `swim`
 
 | `resize` | `sink` | `swim` |
 | :-------------: | :-------------: | :-------------: |
-| 1 | 1 | 1 |
+| 2 | 2 | 2 |
 
 * Iterators: `iterator`, `HeapIterator`
 
 | `iterator` | `HeapIterator` |
 | :------------- | :------------- |
-| 1 | 1 |
+| 2 | 2 |
 
 **Easy to make mistakes:**
-* `resize`, `for (int i = 0; i < pq.length; i++)`, should be `i <= N`. Otherwise,
-  throws `ArrayIndexOutOfBoundsException`.
-* class declaration: `MyMaxPQ implements`, should be `MyMaxPQ<Key> implements`
-* In constructor, allocate size should be `initCapacity+1`, not `initCapacity`.
-* In constructor, the argument should be `Comparator<Key>` not just `Comparator`.
-* In `HeapIterator`, `next` method, need to `throw NoSuchElementException`,
-  when `!hasNext()`.
-* In `HeapIterator` constructor, should be `for (int i = 1; i <= N; i++)`.
+* Class declaration and members:
+    * class declaration: `MyMaxPQ implements`, should be `MyMaxPQ<Key> implements`
+      and it implements `Iterable<Key>`, not `Iterator<Key>`.
+* Constructors:
+    * In constructor, allocate size should be `initCapacity+1`, not `initCapacity`.
+    * In constructor, the argument should be `Comparator<Key>` not just `Comparator`.
+* Private helper functions:
+    * `resize`, `for (int i = 0; i < pq.length; i++)`, should be `i <= N`. Otherwise,
+      throws `ArrayIndexOutOfBoundsException`.
+* Iterators:
+    * In `HeapIterator`, `next` method, need to `throw NoSuchElementException`,
+      when `!hasNext()`.
+    * In `HeapIterator` constructor, should be `for (int i = 1; i <= N; i++)`.
+    * The declaration is `private class HeapIterator implements Iterator<Key>`,
+      not `private class HeapIterator<Key> implements Iterator<Key>`, if I do like
+      this, this `Key` is not the same as the `Key` in the outside.
+    * The private member is `private MyMaxPQ<Key> copy;` not `private Key[] copy;`.
