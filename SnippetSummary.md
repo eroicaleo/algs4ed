@@ -279,13 +279,13 @@ public static void sort(Comparable[] a) {
 
 | `resize` | `sink` | `swim` |
 | :-------------: | :-------------: | :-------------: |
-| 2 | 2 | 2 |
+| 3 | 3 | 3 |
 
 * Iterators: `iterator`, `HeapIterator`
 
 | `iterator` | `HeapIterator` |
 | :------------- | :------------- |
-| 2 | 2 |
+| 3 | 3 |
 
 **Easy to make mistakes:**
 * Class declaration and members:
@@ -316,13 +316,13 @@ public static void sort(Comparable[] a) {
 
 ## Binary Search Tree
 
-* Class definition and members:
+* Class definition and members: 1
 
 * public methods:
 
 | `contains` | `get` | `isEmpty` | `put` | `size` |
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 0 | 0 | 0 | 0 | 0 |
+| 1 | 1 | 1 | 1 | 1 |
 
 * public ordered operation methods:
 
@@ -344,5 +344,8 @@ public static void sort(Comparable[] a) {
 
 **Easy to make mistakes:**
 
+* public methods:
+		* I sometime forget to do `root = put(root, key, val);` and just do
+			`put(root, key, val);`
 * `delete` operations:
 		* I sometime forget to do `root = delete(root, key);` and just do `delete(root, key);`
