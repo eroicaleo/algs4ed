@@ -1,3 +1,19 @@
+<!-- TOC depth:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Guidelines](#guidelines)
+- [Merge Sort](#merge-sort)
+	- [Regular Merge Sort, practiced: 4](#regular-merge-sort-practiced-4)
+	- [Bottom Up Merge Sort, practiced: 4](#bottom-up-merge-sort-practiced-4)
+	- [Merge Sort X, practiced: 3](#merge-sort-x-practiced-3)
+- [Quick Sort](#quick-sort)
+	- [Regular Quick Sort + Quick Select, practiced: 3](#regular-quick-sort-quick-select-practiced-3)
+	- [Quick Sort 3 Way, practiced: 3](#quick-sort-3-way-practiced-3)
+- [Priority Queues](#priority-queues)
+	- [`MaxPQ`, practiced: 0](#maxpq-practiced-0)
+- [Symbol Table](#symbol-table)
+	- [Binary Search Tree](#binary-search-tree)
+<!-- /TOC -->
+
 # Guidelines
 * Always do `if (hi <= lo) return;` in recursive `sort`.
 * Always do `while (hi > lo) {}` in quick select.
@@ -8,8 +24,9 @@
 * In `resize`, when increase size, do `N >=`; when decreases size, do `N ==`.
 * For `for` and `while` loop, if there is one statement, just remove `{}`.
 * Do precondition and post condition check on:
-    * `merge`, `sort`
-    * `delMax`, `insert` and `MaxPQ(Key[])`
+    * `isSorted` after `merge`, `sort`.
+    * `MaxPQ`: `isMaxHeap` after `delMax`, `insert` and `MaxPQ(Key[])`.
+    * `BST`: `check` after `put`, `deleteMin`, `deleteMax`, `delete`.
 
 # Merge Sort
 
@@ -286,3 +303,38 @@ public static void sort(Comparable[] a) {
       not `private class HeapIterator<Key> implements Iterator<Key>`, if I do like
       this, this `Key` is not the same as the `Key` in the outside.
     * The private member is `private MyMaxPQ<Key> copy;` not `private Key[] copy;`.
+
+# Symbol Table
+
+## Binary Search Tree
+
+* Class definition and members:
+
+* public methods:
+
+| `contains` | `get` | `isEmpty` | `put` | `size` |
+| :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
+| 0 | 0 | 0 | 0 | 0 |
+
+* public ordered operation methods:
+
+| `min` | `max` | `floor` | `ceiling` | `select` | `rank` | `keys` | `size` | `height` | `levelOrder` |
+| :---: | :---: | :-----: | :-------: | :------: | :----: | :----: | :----: | :------: | :----------: |
+| 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+
+* public delete operation methods:
+
+| `deleteMin` | `deleteMax` | `delete` |
+| :---------: | :---------: | :------: |
+| 0 | 0 | 0 |
+
+* private sanity check helper functions
+
+| `check` | `isBST` | `isRankConsistent` | `isSizeConsistent` |
+| :-----: | :-----: | :----------------: | :----------------: |
+| 0 | 0 | 0 | 0 |
+
+**Easy to make mistakes:**
+
+* `delete` operations:
+		* I sometime forget to do `root = delete(root, key);` and just do `delete(root, key);`

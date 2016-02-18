@@ -127,6 +127,10 @@ less than `a[lt]`, which is the partition element. The elements from `lt` to lef
 `i` is same as the partition element. Finally, the elements right to `gt` is always
 strictly greater than the partition element.
 
+# Lecture 9 Elementary Symbol Table
+
+## Binary Search Tree
+
 # Lecture 6 Hash Tables
 
 ## Hash Functions
