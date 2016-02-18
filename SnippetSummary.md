@@ -30,7 +30,7 @@
 
 # Merge Sort
 
-## Regular Merge Sort, practiced: 4
+## Regular Merge Sort, practiced: 5
 * `merge`, `sort`, `sort`
 
 ```java

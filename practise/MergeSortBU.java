@@ -4,6 +4,7 @@ import edu.princeton.cs.algs4.StdRandom;
  * Created by yangge on 2/6/2016.
  */
 public class MergeSortBU {
+
     private static void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
         for (int k = lo; k <= hi; k++)
             aux[k] = a[k];
@@ -22,13 +23,12 @@ public class MergeSortBU {
         Comparable[] aux = new Comparable[N];
         for (int n = 1; n < N; n = n + n) {
             for (int i = 0; i < N - n; i += n + n) {
-                int lo = i;
+                int lo  = i;
                 int mid = i + n - 1;
-                int hi = Math.min(i + n + n - 1, N - 1);
+                int hi  = Math.min(i+n+n-1, N-1);
                 merge(a, aux, lo, mid, hi);
             }
         }
-
         assert isSorted(a);
     }
 
@@ -44,8 +44,9 @@ public class MergeSortBU {
 
     private static void show(Object[] a) {
         for (int i = 0; i < a.length; i++) {
-            System.out.println(a[i]);
+            System.out.print(a[i] + " ");
         }
+        System.out.println();
     }
 
     public static void main(String[] args) {
