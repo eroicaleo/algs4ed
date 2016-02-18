@@ -77,7 +77,7 @@ private static void sort(Comparable[] a) {
 * One gotcha: we need allocate the aux at the top, not in the recursive
   programming.
 
-## Bottom Up Merge Sort, practiced: 4
+## Bottom Up Merge Sort, practiced: 5
 * `merge` (same as regular merge sort), `sort`
 
 ```java
@@ -266,14 +266,14 @@ public static void sort(Comparable[] a) {
 
 | `MaxPQ()` | `MaxPQ(int)` | `MaxPQ(Comparator<key>)` | `MaxPQ(int, Comparator<key>)` | `MaxPQ(Key[])` |
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 2 | 2 | 2 | 2 | 2 |
+| 3 | 3 | 3 | 3 | 3 |
 
 
 * public method: `delMax`, `insert`, `isEmpty`, `isMaxHeap`, `max`, `size`
 
 | `delMax` | `insert` | `isEmpty` | `isMaxHeap` | `max` | `size`
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 2 | 2 | 2 | 2 | 2 | 2 |
+| 3 | 3 | 3 | 3 | 3 | 3 |
 
 * private helper functions: `resize`, `sink`, `swim`
 
@@ -294,9 +294,12 @@ public static void sort(Comparable[] a) {
 * Constructors:
     * In constructor, allocate size should be `initCapacity+1`, not `initCapacity`.
     * In constructor, the argument should be `Comparator<Key>` not just `Comparator`.
+* Public methods:
+		* `delMax`: I forget to do `sink` once.
 * Private helper functions:
     * `resize`, `for (int i = 0; i < pq.length; i++)`, should be `i <= N`. Otherwise,
       throws `ArrayIndexOutOfBoundsException`.
+		* `sink`, I do `j = 2 * N;`, throws `ArrayIndexOutOfBoundsException`.
 * Iterators:
     * In `HeapIterator`, `next` method, need to `throw NoSuchElementException`,
       when `!hasNext()`.
@@ -305,6 +308,9 @@ public static void sort(Comparable[] a) {
       not `private class HeapIterator<Key> implements Iterator<Key>`, if I do like
       this, this `Key` is not the same as the `Key` in the outside.
     * The private member is `private MyMaxPQ<Key> copy;` not `private Key[] copy;`.
+		* In `HeapIterator` constructor, I do `copy = new MyMaxPQ(size());` better be
+			`copy = new MyMaxPQ<Key>(size());`
+		* `next` method, better to use `hasNext`, instead of `isEmpty()`.
 
 # Symbol Table
 

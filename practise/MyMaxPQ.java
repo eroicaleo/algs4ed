@@ -53,7 +53,7 @@ public class MyMaxPQ<Key> implements Iterable<Key> {
     }
 
     public void insert(Key k) {
-        if (N >= pq.length-1) resize(2*pq.length);
+        if (N >= pq.length - 1) resize(2*pq.length);
 
         pq[++N] = k;
         swim(N);
@@ -86,16 +86,15 @@ public class MyMaxPQ<Key> implements Iterable<Key> {
     }
 
     private void resize(int capacity) {
-        assert (capacity > N);
+        assert capacity > N;
         Key[] temp = (Key[]) new Object[capacity];
-        for (int i = 1; i <= N; i++) {
+        for (int i = 1; i <= N; i++)
             temp[i] = pq[i];
-        }
         pq = temp;
     }
 
     private void sink(int k) {
-        while (2*k <= N) {
+        while (2 * k <= N) {
             int j = 2 * k;
             if (j < N && less(j, j+1)) j++;
             if (!less(k, j)) break;
@@ -143,9 +142,8 @@ public class MyMaxPQ<Key> implements Iterable<Key> {
         public HeapIterator() {
             if (comparator == null) copy = new MyMaxPQ<Key>(size());
             else                    copy = new MyMaxPQ<Key>(size(), comparator);
-            for (int i = 1; i <= N; i++) {
+            for (int i = 1; i <= N; i++)
                 copy.insert(pq[i]);
-            }
         }
 
         @Override
