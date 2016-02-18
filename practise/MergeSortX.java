@@ -25,7 +25,7 @@ public class MergeSortX {
     private static void insertionSort(Comparable[] a, int lo, int hi) {
         for (int i = lo; i <= hi; i++)
             for (int j = i; j > lo && less(a[j], a[j-1]); j--)
-                exch(a, j, j-1);
+                exch(a, j-1, j);
     }
 
     private static void sort(Comparable[] src, Comparable[] dst, int lo, int hi) {
@@ -73,8 +73,9 @@ public class MergeSortX {
 
     private static void show(Object[] a) {
         for (int i = 0; i < a.length; i++) {
-            System.out.println(a[i]);
+            System.out.print(a[i] + " ");
         }
+        System.out.println();
     }
 
     public static void main(String[] args) {
