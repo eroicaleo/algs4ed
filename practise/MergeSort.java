@@ -37,10 +37,15 @@ public class MergeSort {
     public static void sort(Comparable[] a) {
         Comparable[] aux = new Comparable[a.length];
         sort(a, aux, 0, a.length-1);
+        assert isSorted(a);
     }
 
     private static boolean less(Comparable v, Comparable w) {
         return v.compareTo(w) < 0;
+    }
+
+    private static boolean isSorted(Comparable[] a) {
+        return isSorted(a, 0, a.length-1);
     }
 
     private static boolean isSorted(Comparable[] a, int lo, int hi) {

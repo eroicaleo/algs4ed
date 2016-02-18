@@ -97,12 +97,14 @@ public static void sort(Comparable[] a) {
 }
 ```
 
-## Merge Sort X, practiced: 3
+## Merge Sort X, practiced: 5
 * `merge`, `insertionSort`, `sort`
 
 **Easy to make mistakes:**
 * In the `insertionSort`, I do `less(a[j], a[i])`, while it should be
   `less(a[j], a[j-1])`. I do `exch(a, i, j)`, while it should be `exch(a, j, j-1)`
+* In the `sort`, I do `a.copy()` while it should be `a.clone()`.
+* In the `sort`, I do `if (!less(a[mid+1], a[mid]))` should be `if (!less(src[mid+1], src[mid]))`.
 
 ```java
 public static void merge(Comparable[] src, Comparable[] dst, int lo, int mid, int hi) {
