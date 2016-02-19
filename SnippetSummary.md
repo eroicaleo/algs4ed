@@ -328,24 +328,34 @@ public static void sort(Comparable[] a) {
 
 | `min` | `max` | `floor` | `ceiling` | `select` | `rank` | `keys` | `size` | `height` | `levelOrder` |
 | :---: | :---: | :-----: | :-------: | :------: | :----: | :----: | :----: | :------: | :----------: |
-| 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
 
 * public delete operation methods:
 
 | `deleteMin` | `deleteMax` | `delete` |
 | :---------: | :---------: | :------: |
-| 0 | 0 | 0 |
+| 1 | 1 | 1 |
 
 * private sanity check helper functions
 
 | `check` | `isBST` | `isRankConsistent` | `isSizeConsistent` |
 | :-----: | :-----: | :----------------: | :----------------: |
-| 0 | 0 | 0 | 0 |
+| 1 | 1 | 1 | 1 |
 
 **Easy to make mistakes:**
 
 * public methods:
 		* I sometime forget to do `root = put(root, key, val);` and just do
 			`put(root, key, val);`
+		* `size` needs to use `size(Node x)` helper function, which is used by other
+			method.
+* public ordered operation methods:
+		* In `min` or `max`, I do `if (x.left == null) return null;` should be
+			`if (x.left == null) return x;`
+		* In `size(Key lo, Key hi)`, I need to do sanity check `if (lo.compareTo(hi) > 0)`
 * `delete` operations:
 		* I sometime forget to do `root = delete(root, key);` and just do `delete(root, key);`
+		* `deleteMin(Node x)` I do `x = deleteMin(x.left)` should be `x.left = deleteMin(x.left)`
+		* `deleteMin(Node x)` I do `if (x.left == null) return x;` should be `if (x.left == null) return x.right;`
+		* Forget to `assert check();` in `deleteMin` and `deleteMax`;
+		* Forget to update `x.N` in the 3 delete functions.
