@@ -163,6 +163,7 @@ public static void sort(Comparable[] a) {
 
 * In `partition`, I do `if (i == j) break;`, should be `if (i >= j) break;`
 * In `partition`, I do `exch(a, 0, j);`, should be `exch(a, lo, j);`
+* In `sort`, I do `if (hi >= lo) return;`, should be `if (hi <= lo) return;`
 * In `select`, I do `if (i < k) lo = i`, should be `if (i < k) lo = i + 1`.
   Otherwise, it can be infinite loop. For example, `lo = 0, hi = 2, a = {4, 8, 11}, k = 1`.
   Then `i = 0` all the time.
@@ -311,6 +312,17 @@ public static void sort(Comparable[] a) {
 		* In `HeapIterator` constructor, I do `copy = new MyMaxPQ(size());` better be
 			`copy = new MyMaxPQ<Key>(size());`
 		* `next` method, better to use `hasNext`, instead of `isEmpty()`.
+
+## Heap Sort
+
+| `sort` | `sink` | `exch` | `less` |
+| :----: | :----: | :----: | :----: |
+| 0 | 0 | 0 | 0 |
+
+**Easy to make mistakes:**
+
+* `sort`, should be `while (N > 1)`. I do `for (int k = 0; k < N; k++)`. `N` will
+	be modified during the loop.
 
 # Symbol Table
 
