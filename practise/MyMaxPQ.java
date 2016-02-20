@@ -52,10 +52,9 @@ public class MyMaxPQ<Key> implements Iterable<Key> {
         return max;
     }
 
-    public void insert(Key k) {
-        if (N >= pq.length - 1) resize(2*pq.length);
-
-        pq[++N] = k;
+    public void insert(Key key) {
+        if (N >= pq.length - 1) resize(pq.length*2);
+        pq[++N] = key;
         swim(N);
         assert isMaxHeap();
     }
@@ -129,6 +128,11 @@ public class MyMaxPQ<Key> implements Iterable<Key> {
             if (a[i] != null)
                 System.out.print(a[i] + " ");
         System.out.println();
+    }
+
+    public Key get(int k) {
+        if (k < 1 || k > size()) throw new IndexOutOfBoundsException("Selected element out of bounds");
+        return pq[k];
     }
 
     @Override
