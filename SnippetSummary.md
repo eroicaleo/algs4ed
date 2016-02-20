@@ -155,7 +155,7 @@ public static void sort(Comparable[] a) {
 
 # Quick Sort
 
-## Regular Quick Sort + Quick Select, practiced: 3
+## Regular Quick Sort + Quick Select, practiced: 4
 
 * `partition`, `sort`, `select`
 
@@ -226,7 +226,7 @@ public static Comparable select(Comparable[] a, int k) {
 
 ```
 
-## Quick Sort 3 Way, practiced: 3
+## Quick Sort 3 Way, practiced: 4
 
 **Easy to make mistakes:**
 * I will forget the `if (hi <= lo) return;` in `sort`.
@@ -267,40 +267,43 @@ public static void sort(Comparable[] a) {
 
 | `MaxPQ()` | `MaxPQ(int)` | `MaxPQ(Comparator<key>)` | `MaxPQ(int, Comparator<key>)` | `MaxPQ(Key[])` |
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 3 | 3 | 3 | 3 | 3 |
+| 4 | 4 | 4 | 4 | 4 |
 
 
 * public method: `delMax`, `insert`, `isEmpty`, `isMaxHeap`, `max`, `size`
 
 | `delMax` | `insert` | `isEmpty` | `isMaxHeap` | `max` | `size`
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 3 | 3 | 3 | 3 | 3 | 3 |
+| 4 | 4 | 4 | 4 | 4 | 4 |
 
 * private helper functions: `resize`, `sink`, `swim`
 
 | `resize` | `sink` | `swim` |
 | :-------------: | :-------------: | :-------------: |
-| 3 | 3 | 3 |
+| 4 | 4 | 4 |
 
 * Iterators: `iterator`, `HeapIterator`
 
 | `iterator` | `HeapIterator` |
 | :------------- | :------------- |
-| 3 | 3 |
+| 4 | 4 |
 
 **Easy to make mistakes:**
 * Class declaration and members:
     * class declaration: `MyMaxPQ implements`, should be `MyMaxPQ<Key> implements`
-      and it implements `Iterable<Key>`, not `Iterator<Key>`.
+      and it implements `Iterable<Key>`, not `Iterator<Key>`. And don't forget it.
 * Constructors:
     * In constructor, allocate size should be `initCapacity+1`, not `initCapacity`.
     * In constructor, the argument should be `Comparator<Key>` not just `Comparator`.
 * Public methods:
 		* `delMax`: I forget to do `sink` once.
+		* `delMax`: I do `max = pq[N];` should be `max = pq[1];`.
+		* `insert`: I do `pq[N++] = key;` should be `pq[++N] = key;`.
 * Private helper functions:
     * `resize`, `for (int i = 0; i < pq.length; i++)`, should be `i <= N`. Otherwise,
       throws `ArrayIndexOutOfBoundsException`.
 		* `sink`, I do `j = 2 * N;`, throws `ArrayIndexOutOfBoundsException`.
+		* `swim`, I do `while (k > 1 && less(k, k/2))` should be `while (k > 1 && less(k/2, k))`
 * Iterators:
     * In `HeapIterator`, `next` method, need to `throw NoSuchElementException`,
       when `!hasNext()`.
@@ -312,17 +315,20 @@ public static void sort(Comparable[] a) {
 		* In `HeapIterator` constructor, I do `copy = new MyMaxPQ(size());` better be
 			`copy = new MyMaxPQ<Key>(size());`
 		* `next` method, better to use `hasNext`, instead of `isEmpty()`.
+		* `next` method, I do `return delMax();` should be `return copy.delMax();`.
+			Otherwise, `delMax()` will throw `NoSuchElementException`.
 
 ## Heap Sort
 
 | `sort` | `sink` | `exch` | `less` |
 | :----: | :----: | :----: | :----: |
-| 0 | 0 | 0 | 0 |
+| 1 | 1 | 1 | 1 |
 
 **Easy to make mistakes:**
 
 * `sort`, should be `while (N > 1)`. I do `for (int k = 0; k < N; k++)`. `N` will
 	be modified during the loop.
+* All methods: Should use `Comparable[] q;` as argument, not `Comparable[] a;`.
 
 # Symbol Table
 
@@ -334,25 +340,25 @@ public static void sort(Comparable[] a) {
 
 | `contains` | `get` | `isEmpty` | `put` | `size` |
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 1 | 1 | 1 | 1 | 1 |
+| 2 | 2 | 2 | 2 | 2 |
 
 * public ordered operation methods:
 
 | `min` | `max` | `floor` | `ceiling` | `select` | `rank` | `keys` | `size` | `height` | `levelOrder` |
 | :---: | :---: | :-----: | :-------: | :------: | :----: | :----: | :----: | :------: | :----------: |
-| 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
+| 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 |
 
 * public delete operation methods:
 
 | `deleteMin` | `deleteMax` | `delete` |
 | :---------: | :---------: | :------: |
-| 1 | 1 | 1 |
+| 2 | 2 | 2 |
 
 * private sanity check helper functions
 
 | `check` | `isBST` | `isRankConsistent` | `isSizeConsistent` |
 | :-----: | :-----: | :----------------: | :----------------: |
-| 1 | 1 | 1 | 1 |
+| 2 | 2 | 2 | 2 |
 
 **Easy to make mistakes:**
 
@@ -364,6 +370,9 @@ public static void sort(Comparable[] a) {
 * public ordered operation methods:
 		* In `min` or `max`, I do `if (x.left == null) return null;` should be
 			`if (x.left == null) return x;`
+		* In `min` and `max`, just return `min(root).key;` No need to do `Node x = min(root);`.
+		* In `ceiling` and `floor`, just do `if`. No need to do `if...else...`;
+		* In `rank`, go to left when `cmp < 0`, Not when `cmp > 0`.
 		* In `size(Key lo, Key hi)`, I need to do sanity check `if (lo.compareTo(hi) > 0)`
 * `delete` operations:
 		* I sometime forget to do `root = delete(root, key);` and just do `delete(root, key);`
@@ -371,3 +380,5 @@ public static void sort(Comparable[] a) {
 		* `deleteMin(Node x)` I do `if (x.left == null) return x;` should be `if (x.left == null) return x.right;`
 		* Forget to `assert check();` in `deleteMin` and `deleteMax`;
 		* Forget to update `x.N` in the 3 delete functions.
+		* In the recursive `delete` call, it takes two arguments: `delete(x.left, key);`.
+		* `delete()` don't throw.
