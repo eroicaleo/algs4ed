@@ -30,7 +30,7 @@
 
 # Merge Sort
 
-## Regular Merge Sort, practiced: 5
+## Regular Merge Sort, practiced: 6
 * `merge`, `sort`, `sort`
 
 ```java
@@ -77,7 +77,7 @@ private static void sort(Comparable[] a) {
 * One gotcha: we need allocate the aux at the top, not in the recursive
   programming.
 
-## Bottom Up Merge Sort, practiced: 5
+## Bottom Up Merge Sort, practiced: 6
 * `merge` (same as regular merge sort), `sort`
 
 ```java
@@ -97,7 +97,7 @@ public static void sort(Comparable[] a) {
 }
 ```
 
-## Merge Sort X, practiced: 5
+## Merge Sort X, practiced: 6
 * `merge`, `insertionSort`, `sort`
 
 **Easy to make mistakes:**
@@ -105,6 +105,8 @@ public static void sort(Comparable[] a) {
   `less(a[j], a[j-1])`. I do `exch(a, i, j)`, while it should be `exch(a, j, j-1)`
 * In the `sort`, I do `a.copy()` while it should be `a.clone()`.
 * In the `sort`, I do `if (!less(a[mid+1], a[mid]))` should be `if (!less(src[mid+1], src[mid]))`.
+* Again, in the recursive `sort`, the signature is `sort(Comparable[] src, Comparable[] dst, int lo, int hi);`
+ 	not `sort(Comparable[] a, int lo, int hi);`
 
 ```java
 public static void merge(Comparable[] src, Comparable[] dst, int lo, int mid, int hi) {
