@@ -157,7 +157,7 @@ public static void sort(Comparable[] a) {
 
 # Quick Sort
 
-## Regular Quick Sort + Quick Select, practiced: 4
+## Regular Quick Sort + Quick Select, practiced: 5
 
 * `partition`, `sort`, `select`
 
@@ -165,6 +165,7 @@ public static void sort(Comparable[] a) {
 
 * In `partition`, I do `if (i == j) break;`, should be `if (i >= j) break;`
 * In `partition`, I do `exch(a, 0, j);`, should be `exch(a, lo, j);`
+* In `partition`, I forget `return j`, and it should return `int`.
 * In `sort`, I do `if (hi >= lo) return;`, should be `if (hi <= lo) return;`
 * In `select`, I do `if (i < k) lo = i`, should be `if (i < k) lo = i + 1`.
   Otherwise, it can be infinite loop. For example, `lo = 0, hi = 2, a = {4, 8, 11}, k = 1`.
@@ -173,7 +174,7 @@ public static void sort(Comparable[] a) {
   when `k = lo = hi = 9`, there will be `ArrayIndexOutOfBoundsException` throwed
   by `partition`, because of `while (less(a[++i], v))`.
 * In `select`, don't forget to do `StdRandom.shuffle(a);`
-
+* In `select`, the `Exception` name is `IndexOutOfBoundsException`.
 
 ```java
 private static int partition(Comparable[] a, int lo, int hi) {
@@ -228,11 +229,10 @@ public static Comparable select(Comparable[] a, int k) {
 
 ```
 
-## Quick Sort 3 Way, practiced: 4
+## Quick Sort 3 Way, practiced: 5
 
 **Easy to make mistakes:**
 * I will forget the `if (hi <= lo) return;` in `sort`.
-* The `Exception` name is `IndexOutOfBoundsException`.
 
 ```java
 private static void sort(Comparable[] a, int lo, int hi) {
