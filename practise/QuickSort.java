@@ -10,9 +10,7 @@ public class QuickSort {
     private static int partition(Comparable[] a, int lo, int hi) {
         int i = lo, j = hi + 1;
         Comparable v = a[lo];
-
         while (true) {
-
             while (less(a[++i], v))
                 if (i == hi) break;
 
@@ -43,16 +41,14 @@ public class QuickSort {
     }
 
     public static Comparable select(Comparable[] a, int k) {
-        if (k < 0 || k >= a.length) {
-            throw new IndexOutOfBoundsException("Selected element out of bounds");
-        }
+        if (k < 0 || k >= a.length) throw new IndexOutOfBoundsException("Selected element out of bounds");
         StdRandom.shuffle(a);
         int lo = 0, hi = a.length - 1;
         while (hi > lo) {
             int i = partition(a, lo, hi);
             if      (i > k) hi = i - 1;
             else if (i < k) lo = i + 1;
-            else return a[i];
+            else            return a[i];
         }
         return a[lo];
     }
