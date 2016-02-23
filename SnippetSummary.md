@@ -269,26 +269,26 @@ public static void sort(Comparable[] a) {
 
 | `MaxPQ()` | `MaxPQ(int)` | `MaxPQ(Comparator<key>)` | `MaxPQ(int, Comparator<key>)` | `MaxPQ(Key[])` |
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 4 | 4 | 4 | 4 | 4 |
+| 5 | 5 | 5 | 5 | 5 |
 
 
 * public method: `delMax`, `insert`, `isEmpty`, `isMaxHeap`, `max`, `size`
 
 | `delMax` | `insert` | `isEmpty` | `isMaxHeap` | `max` | `size`
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 4 | 4 | 4 | 4 | 4 | 4 |
+| 5 | 5 | 5 | 5 | 5 | 5 |
 
 * private helper functions: `resize`, `sink`, `swim`
 
 | `resize` | `sink` | `swim` |
 | :-------------: | :-------------: | :-------------: |
-| 4 | 4 | 4 |
+| 5 | 5 | 5 |
 
 * Iterators: `iterator`, `HeapIterator`
 
 | `iterator` | `HeapIterator` |
 | :------------- | :------------- |
-| 4 | 4 |
+| 5 | 5 |
 
 **Easy to make mistakes:**
 * Class declaration and members:
@@ -336,7 +336,7 @@ public static void sort(Comparable[] a) {
 
 ## Binary Search Tree
 
-* Class definition and members: 1
+* Class definition and members: 2
 
 * public methods:
 
@@ -384,3 +384,27 @@ public static void sort(Comparable[] a) {
 		* Forget to update `x.N` in the 3 delete functions.
 		* In the recursive `delete` call, it takes two arguments: `delete(x.left, key);`.
 		* `delete()` don't throw.
+
+## Red-Black Tree
+
+* members
+
+* public methods:
+
+| `get` (non recursive) | `put` | `isEmpty()` |
+| :-------------------: | :---: | :---------: |
+| 0 | 0 | 0 |
+
+* Elementary red-black BST operations:
+
+| `rotateLeft` | `rotateRight` | `flipColors` |
+| :----------: | :-----------: | :----------: |
+| 0 | 0 | 0 |
+
+* public delete operation methods:
+
+* private sanity check helper functions:
+
+| `isRed` |
+| :-----: |
+| 0 |

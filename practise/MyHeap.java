@@ -28,14 +28,14 @@ public class MyHeap {
         }
     }
 
-    private static boolean less(Comparable[] pq, int i, int j) {
-        return pq[i-1].compareTo(pq[j-1]) < 0;
-    }
-
-    private static void exch(Comparable[] pq, int i, int j) {
-        Comparable swap = pq[i-1];
+    private static void exch(Object[] pq, int i, int j) {
+        Object swap = pq[i-1];
         pq[i-1] = pq[j-1];
         pq[j-1] = swap;
+    }
+
+    private static boolean less(Comparable[] pq, int i, int j) {
+        return pq[i-1].compareTo(pq[j-1]) < 0;
     }
 
     private static boolean isSorted(Comparable[] a) {

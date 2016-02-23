@@ -129,7 +129,88 @@ strictly greater than the partition element.
 
 # Lecture 9 Elementary Symbol Table
 
-## Binary Search Tree
+# Lecture 10 Balanced Search Tree
+
+## 10.1 2-3 Search trees
+
+* 2-3 trees
+		* It allows 1 or 2 keys per node.
+		* 2-node one key, two children
+		* 3-node two keys, three children.
+		* It’s perfect balanced.
+		* In the split operation, the symmetric order and perfect balance is maintained.
+* Invariants: Maintains symmetric order and perfect balance.
+		* proof: each transformation maintains symmetric order and perfect balance.
+
+## 10.2 Red-Black Tree
+
+**Left-leaning red-black BSTs**
+1. Represent 2-3 tree as a BST.
+2. Use "internal" left-leaning links as "glue" for 3-nodes.
+		* The larger of the two nodes of the 3-node will always be the root of the
+			binary search tree.
+		* The link is called red link.
+		* Black links connect 2-nodes and 3-nodes.
+
+**Equivalent definition**
+
+A BST such that:
+* No node has two red links connected to it.
+* Every path from root to null link has the same no. of black links.
+* Red links lean left.
+
+**Search implementation for red-black BSTs**
+
+Observation: search is the same as for elementary BST (ignore color).
+
+Remark: Most other ops (e.g. `ceiling` and `select`) are also identical.
+
+**Elementary red-black BST operations**
+
+*Invariants: Maintains symmetric order and perfect black balance.*
+
+* *left rotation:* Orient a temporarily right-leaning red link to lean left.
+		* Note the color of `h` can be either black or red.
+		* Note that since `x = h.right` is red, we have `x != null` is true;
+* *right rotation:* Orient a temporarily right-leaning red link to lean right.
+* *Color flip:* Recolor to split a (temporary) 4-node.
+
+**Insertion in a LLRB**
+
+*Basic strategy:* Maintain 1-1 correspondence with 2-3 trees by applying elementary
+red-black BST operations.
+
+*Case 1:* insert into a 2-node at the bottom.
+		* Do standard BST insert; color new link red.
+		* If new red link is a right link, rotate left.
+
+*Warmup 2:* insert into a tree with exactly 2 nodes:
+		* larger: `flipColors`.
+		* smaller: `rotateRight` of top red link + `flipColors`.
+		* between: `rotateLeft` of bottom red link + `rotateRight` of top red link +
+			`flipColors`.
+
+*Case 2:* Insert into a 3-node at the bottom:
+		* Do standard BST insert: color new link red.
+		* Rotate to balance the 4-node (if needed).
+		* Flip colors to pass red link up one level.
+		* Rotate to make lean left (if needed).
+		* Repeat case 1 or case 2 up the tree (if needed).
+
+*Same code handles all cases:*
+		* Right child red, left child black: `rotateLeft`.
+		* Left child, left-left grandchild red: `rotateRight`.
+		* Both children red: `flipColors`.
+
+**Balance in LLRB trees**
+
+*Proposition:* Height of tree is `<= 2 lgN` in the worst case.
+
+*Proof*:
+* Every path from root to null link has same number of black links.
+* Never two red links in-a-row.
+
+*Property:* Height of tree is `~ 1.00 lg N` in typical applications.
 
 # Lecture 6 Hash Tables
 
