@@ -25,3 +25,19 @@ a little bit tricky. Our goal is to make node `j` to the position of node `h`,
 we still use the 3 operations we have. It’s just 3 more operations compare to case 2.
 The better thing is, not only `deleteMin` invariant is maintained, the red black
 tree invariant is also maintained.
+
+![moveRedLeft Case2](https://github.com/eroicaleo/algs4ed/blob/master/ch03/moveRedLeftCase2.png)
+
+* A comment about `moveRedLeft(Node h)`, why we can assert `isRed(h)` in this method?
+  This is because we only call `moveRedLeft` when we have `!isRed(h.left) && !isRed(h.left.left)`.
+  Now because `h` is already a 3-node or a 4-node, only when `h` is the left key
+  of the 3-node or 4-node, `h` can have `!isRed(h.left) && !isRed(h.left.left)`.
+  So `h` must be red node.
+
+```java
+private Node moveRedLeft(Node h) {
+    assert (h != null);
+    assert isRed(h) && !isRed(h.left) && !isRed(h.left.left);
+    ...
+}
+```
