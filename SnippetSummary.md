@@ -2,16 +2,18 @@
 
 - [Guidelines](#guidelines)
 - [Merge Sort](#merge-sort)
-	- [Regular Merge Sort, practiced: 4](#regular-merge-sort-practiced-4)
-	- [Bottom Up Merge Sort, practiced: 4](#bottom-up-merge-sort-practiced-4)
-	- [Merge Sort X, practiced: 3](#merge-sort-x-practiced-3)
+	- [Regular Merge Sort, practiced: 6](#regular-merge-sort-practiced-6)
+	- [Bottom Up Merge Sort, practiced: 6](#bottom-up-merge-sort-practiced-6)
+	- [Merge Sort X, practiced: 6](#merge-sort-x-practiced-6)
 - [Quick Sort](#quick-sort)
-	- [Regular Quick Sort + Quick Select, practiced: 3](#regular-quick-sort-quick-select-practiced-3)
-	- [Quick Sort 3 Way, practiced: 3](#quick-sort-3-way-practiced-3)
+	- [Regular Quick Sort + Quick Select, practiced: 5](#regular-quick-sort-quick-select-practiced-5)
+	- [Quick Sort 3 Way, practiced: 5](#quick-sort-3-way-practiced-5)
 - [Priority Queues](#priority-queues)
 	- [`MaxPQ`, practiced: 0](#maxpq-practiced-0)
+	- [Heap Sort](#heap-sort)
 - [Symbol Table](#symbol-table)
 	- [Binary Search Tree](#binary-search-tree)
+	- [Red-Black Tree](#red-black-tree)
 <!-- /TOC -->
 
 # Guidelines
@@ -324,13 +326,15 @@ public static void sort(Comparable[] a) {
 
 | `sort` | `sink` | `exch` | `less` |
 | :----: | :----: | :----: | :----: |
-| 1 | 1 | 1 | 1 |
+| 2 | 2 | 2 | 2 |
 
 **Easy to make mistakes:**
 
 * `sort`, should be `while (N > 1)`. I do `for (int k = 0; k < N; k++)`. `N` will
 	be modified during the loop.
-* All methods: Should use `Comparable[] q;` as argument, not `Comparable[] a;`.
+* All methods: Should use `Comparable[] pq;` as argument, not `Comparable[] a;`.
+* `less` returns a `boolean` not `void`.
+* `less` is called with 3 arguments: `less(pq, i, j);`, not just `less(i, j);`.
 
 # Symbol Table
 
@@ -342,25 +346,25 @@ public static void sort(Comparable[] a) {
 
 | `contains` | `get` | `isEmpty` | `put` | `size` |
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 2 | 2 | 2 | 2 | 2 |
+| 3 | 3 | 3 | 3 | 3 |
 
 * public ordered operation methods:
 
 | `min` | `max` | `floor` | `ceiling` | `select` | `rank` | `keys` | `size` | `height` | `levelOrder` |
 | :---: | :---: | :-----: | :-------: | :------: | :----: | :----: | :----: | :------: | :----------: |
-| 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 |
+| 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 |
 
 * public delete operation methods:
 
 | `deleteMin` | `deleteMax` | `delete` |
 | :---------: | :---------: | :------: |
-| 2 | 2 | 2 |
+| 3 | 3 | 3 |
 
 * private sanity check helper functions
 
 | `check` | `isBST` | `isRankConsistent` | `isSizeConsistent` |
 | :-----: | :-----: | :----------------: | :----------------: |
-| 2 | 2 | 2 | 2 |
+| 3 | 3 | 3 | 3 |
 
 **Easy to make mistakes:**
 
@@ -369,11 +373,14 @@ public static void sort(Comparable[] a) {
 			`put(root, key, val);`
 		* `size` needs to use `size(Node x)` helper function, which is used by other
 			method.
+		* `size` needs to do `return x.N;` not `return size() + size() + 1;`. It's
+			not necessary to redo the computation.
 * public ordered operation methods:
 		* In `min` or `max`, I do `if (x.left == null) return null;` should be
 			`if (x.left == null) return x;`
 		* In `min` and `max`, just return `min(root).key;` No need to do `Node x = min(root);`.
-		* In `ceiling` and `floor`, just do `if`. No need to do `if...else...`;
+		* In `ceiling` and `floor`, just do `if`. No need to do `if...else...`.
+		* In `ceiling` and `floor`, do `cmp == 0` first.
 		* In `rank`, go to left when `cmp < 0`, Not when `cmp > 0`.
 		* In `size(Key lo, Key hi)`, I need to do sanity check `if (lo.compareTo(hi) > 0)`
 * `delete` operations:
