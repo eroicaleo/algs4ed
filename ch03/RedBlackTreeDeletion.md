@@ -10,7 +10,7 @@ Because if we delete a node in a 3-node, the tree 2-3 tree is still perfectly ba
 So we want to transform the tree, such that if we are seeing the min node,
 we know it is in a 3-node or a 4-node and we could safely delete it.
 
-## Way down analysis
+## Way down analysis: `moveRedLeft` method.
 
 On the way down the tree, We need to distinguish three cases:
 * the left child is already a 3-node, then we need to do nothing.
@@ -44,7 +44,7 @@ private Node moveRedLeft(Node h) {
 }
 ```
 
-## Way up analysis
+## Way up analysis: `balance` method.
 
 On the way up, before deleteMin recursive call, I am either a 3-node, or a 4-node.
 
@@ -77,3 +77,30 @@ On the way up, before deleteMin recursive call, I am either a 3-node, or a 4-nod
       node of a 5-node, the perform the third operation.
   3. I am right node of 4-node, it is impossible on the way down path. So way up
     won't go to it.
+
+Following figure shows the worst case 2.2.3, which needs all three transformations
+in `balance`. Two comments about this `balance` method.
+* Why in the case 2.2.3, we don't just use the third transformation?
+    * We want to make the code concise and consistent for all cases, from one
+      state to another, so even the first two `rotateRight` and `rotateLeft` are
+      redundant and make the tree back to where we start off, we still keep them.
+* Why is it a little bit different from the `put` method three transformations?
+    * In `put` method, we do first transformation like this:
+      `if (isRed(h.right) && !isRed(h.left)) h = rotateRight(h);`. Case 2.2.3
+      shows the case. If we do it like `put`, we will skip the `rotateRight`
+      transformation. Then we will do `rotateLeft`, this can make we have two
+      right leaning red links in a row. And we will not be able to recover the
+      right red links back.
+    * So why we don't use `balance` in the `put` method. I think maybe because
+      we have a lot `put` operations, so we might better save as much as we could.
+      *We can check in the forum.*
+
+![balance Case 2.2.3](https://github.com/eroicaleo/algs4ed/blob/master/ch03/balanceCase2_2_3.png)
+
+## Other comments about `deleteMin`.
+* During the `deleteMin` of normal BST, we need to return `h.right`. But now,
+  since we are RBBST, if `h.left` is null, then `h.right` must be null,
+  so we could return null. Otherwise it’s a violation of perfect black balance.
+  During the moveRedLeft transformation, the black balance is maintained.
+* Why we need the second condition of `if (!isRed(root.left) && !isRed(root.right)) root.color = RED;`?
+    * *We can check with forum.*
