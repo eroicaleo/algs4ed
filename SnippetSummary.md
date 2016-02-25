@@ -32,7 +32,7 @@
 
 # Merge Sort
 
-## Regular Merge Sort, practiced: 6
+## Regular Merge Sort, practiced: 7
 * `merge`, `sort`, `sort`
 
 ```java
@@ -79,7 +79,7 @@ private static void sort(Comparable[] a) {
 * One gotcha: we need allocate the aux at the top, not in the recursive
   programming.
 
-## Bottom Up Merge Sort, practiced: 6
+## Bottom Up Merge Sort, practiced: 7
 * `merge` (same as regular merge sort), `sort`
 
 ```java
@@ -398,15 +398,15 @@ public static void sort(Comparable[] a) {
 
 * public methods:
 
-| `get` (non recursive) | `put` | `isEmpty()` |
-| :-------------------: | :---: | :---------: |
+| `get` (non recursive) | `put` | `isEmpty()` (root version) |
+| :-------------------: | :---: | :------------------------: |
 | 0 | 0 | 0 |
 
 * Elementary red-black BST operations:
 
-| `rotateLeft` | `rotateRight` | `flipColors` |
-| :----------: | :-----------: | :----------: |
-| 0 | 0 | 0 |
+| `rotateLeft` | `rotateRight` | `flipColors` | `moveRedLeft` | `moveRedRight` |
+| :----------: | :-----------: | :----------: | :-----------: | :------------: |
+| 0 | 0 | 0 | 0 | 0 |
 
 * public delete operation methods:
 
