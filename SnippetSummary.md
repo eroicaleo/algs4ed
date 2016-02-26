@@ -99,7 +99,7 @@ public static void sort(Comparable[] a) {
 }
 ```
 
-## Merge Sort X, practiced: 6
+## Merge Sort X, practiced: 7
 * `merge`, `insertionSort`, `sort`
 
 **Easy to make mistakes:**
@@ -159,7 +159,7 @@ public static void sort(Comparable[] a) {
 
 # Quick Sort
 
-## Regular Quick Sort + Quick Select, practiced: 5
+## Regular Quick Sort + Quick Select, practiced: 6
 
 * `partition`, `sort`, `select`
 
@@ -177,6 +177,7 @@ public static void sort(Comparable[] a) {
   by `partition`, because of `while (less(a[++i], v))`.
 * In `select`, don't forget to do `StdRandom.shuffle(a);`
 * In `select`, the `Exception` name is `IndexOutOfBoundsException`.
+* In `select`, I do `lo = lo + 1;`, should be `lo = i + 1;`
 
 ```java
 private static int partition(Comparable[] a, int lo, int hi) {
@@ -231,7 +232,7 @@ public static Comparable select(Comparable[] a, int k) {
 
 ```
 
-## Quick Sort 3 Way, practiced: 5
+## Quick Sort 3 Way, practiced: 6
 
 **Easy to make mistakes:**
 * I will forget the `if (hi <= lo) return;` in `sort`.
