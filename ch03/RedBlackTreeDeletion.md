@@ -1,5 +1,5 @@
 
-# deleteMin()
+# `deleteMin()`
 
 The invariant of the recursive call is that the current node is not a 2-node.
 And the tree is perfectly balanced.
@@ -104,3 +104,41 @@ in `balance`. Two comments about this `balance` method.
   During the moveRedLeft transformation, the black balance is maintained.
 * Why we need the second condition of `if (!isRed(root.left) && !isRed(root.right)) root.color = RED;`?
     * *We can check with forum.*
+
+# `deleteMax()`
+
+The invariant of the recursive call is again that the current node is not a 2-node.
+And the tree is perfectly balanced.
+And we will make our right child a 3-node or 4-node if it is not already a 3-node,
+(of course it can not be a 4-node, otherwise it's not a legal LLRB).
+
+## way down analysis: `moveRedRight(Node h)`.
+
+* A comment about `moveRedRight(Node h)`, why we can assume the `h` is RED?
+    * If `h` is root, then we force it to be RED.
+    * If `h` is not root, Just after entering `deleteMax()`, we know `h` is a
+      3- or 4-node by the invariant. If it's red, then we are fine. If it's not,
+      then either it's left or right child is red. In the latter case, we won't
+      do `moveRedRight()`. In the former case, we will first do `rotateRight`.
+      Then we are OK, because we will go one recursive level down.
+
+## way up analysis: `balance(Node h)`
+
+* Note that the left subtree has always been a legal LLRBT when we travel down.
+  Then when we go up, assume we are at node `h`, we have both `h.left` and `h.right`
+  are legal LLRBT, no matter what color they are, with the `balance`, we can always make
+  `h` to be a legal LLRBT.
+
+# `delete()`
+
+# Open questions
+
+**tips: It might be easier to think with 2-3 tree instead of LLRBT.**
+
+* For any node `h` in the path, just before recursive call, is it possible that
+  `isRed(h.left) && isRed(h.left.left)`?
+* For any node `h` in the path, is it possible that before recursive call `h` is
+  a 4-node and after recursive call, we have `isRed(h.right)`?
+* On the way up for `deleteMax()` and `deleteMin()`, is it possible to have 5-node.
+    * It's the same as the last question.
+* How many different kinds 4-node can we have in the way down and way up.
