@@ -119,3 +119,117 @@ Which of the following statements about quicksort are true? Check all that apply
 substantially less (e.g., a constant factor) than ~ 2 N ln N if there are a
 large number of items with equal keys.
   * For example, the expected number of compares is ~ N lg N if all keys are equal.
+
+# Priority Queue
+
+See the ch02/Quiz/PQQuiz.java
+
+# Binary Search Tree
+
+See the ch03/Quiz/BSTQuiz.java
+
+# Balanced Search Tree
+
+## Question 1
+
+(seed = 240407)
+Consider the left-leaning red-black BST whose level-order traversal is:
+
+    54 45 89 21 50 62 90 16 39 58 77 55 75
+
+List (in ascending order) the keys in the red nodes. A node is red if the link
+from its parent is red. Your answer should be a sequence of integers, separated
+by whitespace.
+
+## Question 2
+
+(seed = 772103)
+Consider the left-leaning red-black BST whose level-order traversal is
+
+    58 40 85 20 56 71 96 16 62 77          ( red links = 16 71 )
+
+What is the level-order traversal of the red-black BST that results after
+inserting the following sequence of keys:
+
+    52 66 18
+
+Your answer should be a sequence of 13 integers, separated by whitespace.
+
+## Question 3
+
+(seed = 870744)
+Which of the following statements about balanced search trees are true? Check all that apply. Unless otherwise specified, assume that the 2-3 tree and red-black BSTs are as described in lecture (e.g., 2-3 trees are perfectly balanced and red-black BST are left-leaning red-black BSTs with internal links colored either red or black).
+
+* The height of a red-black BST on N nodes is less than or equal to 2 log_3 N.
+* In a red-black BST of height h, the number of nodes is less than or equal to 2^h.
+* The number of structurally different 2-3 trees (with respect to tree shape
+  and node types) 2-3 trees containing 4 keys is 2.
+* The maximum number of color flips triggered by inserting a key into a
+  red-black BST on N nodes is ~ 2 lg N.
+* The height of a 2-3 tree on N keys is solely determined by N.
+
+# Geometric Searching Applications of BSTs
+
+## Question 1
+
+(seed = 315821)
+Suppose that you run the orthogonal line segment intersection algorithm from lecture
+on the following set of segments:
+
+A (13,  4)  ->  (13, 18)  [ vertical   ]
+B ( 8,  0)  ->  (19,  0)  [ horizontal ]
+C ( 5,  5)  ->  ( 5, 11)  [ vertical   ]
+D (17,  2)  ->  (17,  9)  [ vertical   ]
+E (11, 14)  ->  (15, 14)  [ horizontal ]
+F ( 7, 15)  ->  (18, 15)  [ horizontal ]
+G (10,  3)  ->  (14,  3)  [ horizontal ]
+H (12, 10)  ->  (16, 10)  [ horizontal ]
+
+
+Give the horizontal line segments in the BST (sorted in increasing order of y-coordinate) just before
+the sweep-line algorithm processes the vertical line segment A.
+
+Your answer should be a sequence of uppercase letters, separated by whitespace.
+
+## Question 2
+
+(seed = 869198)
+What is the level-order traversal of the kd-tree that results after inserting
+the following sequence of points into an initially empty tree?
+
+A (0.22, 0.44)
+B (0.59, 0.08)
+C (0.94, 0.93)
+D (0.88, 0.22)
+E (0.73, 0.34)
+F (0.53, 0.61)
+G (0.62, 0.97)
+H (0.04, 0.95)
+
+Your answer should be a sequence of uppercase letters, starting with A and separated by whitespace.
+
+Recall that our convention is to subdivide the region using the x-coordinate at even levels
+(including the root) and using the y-coordinate at odd levels. Also, we use the left subtree
+for points with smaller x- or y-coordinates.
+
+## Question 3
+
+(seed = 821215)
+Consider an interval search tree containing the set of 8 intervals
+
+A [ 6, 25]
+B [ 0,  7]
+C [10, 13]
+D [23, 34]
+E [ 2, 24]
+F [ 4, 37]
+G [38, 40]
+H [ 1, 16]
+
+and whose level-order traversal is:  A B C E D H F G.
+
+Suppose that you use the search algorithm described in lecture to search for
+any *one* interval that intersects [30, 36]. What is the sequence of
+intervals in the tree that are checked for intersection with the query interval?
+
+Your answer should be a sequence of uppercase letters, starting with A, separated by whitespace.
