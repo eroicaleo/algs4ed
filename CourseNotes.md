@@ -13,6 +13,10 @@ Notes on Algorithms
 	- [Implementation Details](#implementation-details)
 	- [Selection](#selection)
 	- [Quick Sort 3 Way](#quick-sort-3-way)
+- [Lecture 9 Elementary Symbol Table](#lecture-9-elementary-symbol-table)
+- [Lecture 10 Balanced Search Tree](#lecture-10-balanced-search-tree)
+	- [10.1 2-3 Search trees](#101-2-3-search-trees)
+	- [10.2 Red-Black Tree](#102-red-black-tree)
 - [Lecture 6 Hash Tables](#lecture-6-hash-tables)
 	- [Hash Functions](#hash-functions)
 	- [Separable Chaining](#separable-chaining)
@@ -20,6 +24,10 @@ Notes on Algorithms
 	- [Context](#context)
 	- [Symbol Table Application - Sets](#symbol-table-application-sets)
 	- [Symbol Table Application - Dictionary Clients](#symbol-table-application-dictionary-clients)
+- [Lecture Undirected Graphs](#lecture-undirected-graphs)
+	- [Introduction to Graphs](#introduction-to-graphs)
+	- [Graph API](#graph-api)
+	- [Depth First Search](#depth-first-search)
 <!-- /TOC -->
 
 # How to setup algs4 environment with IntelliJ
@@ -705,3 +713,99 @@ public class LookupCSV {
     }
 }
 ```
+
+# Lecture Undirected Graphs
+
+## Introduction to Graphs
+
+**Undirected Graphs**
+
+* *Graph*: set of vertices connected pairwise by edges.
+* Why study graph algorithm?
+		* Thousands of applications
+		* Hundreds of algorithms
+		* Interesting
+
+* *Paths*: Sequence of vertices connected by edges.
+* *Cycle*: Path whose first and last vertices are the same.
+
+Two vertices are connected if there is a path between them.
+
+**Some graph-processing problems**
+
+* *Path* is there a path between *s* and *t*?
+* *Shortest path*: What is the shortest path between s and t?
+
+* *Cycle:* is there a cycle in the graph?
+* *Euler tour* is there a cycle that uses each edge exactly once?
+* *Hamilton tour*: is there a cycle that uses each vertex exactly once?
+
+* *Connectivity:* is there a way to connect all of the vertices?
+* *MST*: what is the best way to connect all of the vertices?
+* *Biconnectivity:* is there a vertex whose removal disconnects the graph?
+
+* *Planarity:* Can you draw the graph in the plane with no crossing edges?
+* *Graph isomorphism:* Do two adjacency lists represent the same graph?
+
+* Challenge: Which of these problems are easy? difficult? intractable?
+
+## Graph API
+
+**Graph representation**
+
+*Graph drawing:* Provides intuition about the structure of the graph.
+*Caveat:* Intuition can be misleading.
+
+*Vertex representation:*
+		* This lecture: use integers between 0 and V-1
+		* Applications: convert between names and integers with symbol table.
+
+**Graph API**
+
+```java
+public class Graph {
+	Graph(int V);
+	Graph(In in);
+	void addEdge(int v, int w);
+	Iterable<Integer> adj(int v);
+	int V();
+	int E();
+	String toString();
+}
+
+In in = new In(args[0]);
+Graph G = new Graph(in);
+
+for (int v = 0; v < G.V(); v++)
+	for (w : G.adj(v))
+		StdOut.println(v + '-' + w)
+```
+
+**Typical graph-processing code**
+
+`degree`, `maxDegree`, `averageDegree`, `numberofSelfLoop`.
+
+**Adjacency-list graph representation**
+
+Maintain vertex-indexed array of list.
+
+In the second level, use bag.
+
+*In practice:* Use adjacency-list representation.
+		* Algorithms based on iterating over vertices adjacent to v.
+		* Real-world graphs tend to be sparse (huge no. of vertices but small vertex degree).
+
+| representation | space | add edge | edge between v and w? | iterate over vertices adjacent to v |
+| :------------- | :------------- | :------------- | :------------- | :------------- |
+| list of edges | E | 1 | E | E |
+| adjacent matrix | V^2 | 1 | 1 | V |
+| adjacent lists | E+V | 1 | degree(v) | degree(v) |
+
+## Depth First Search
+
+**Maze Exploration**
+
+* *Maze graph:*
+		* Vertex = intersection
+		* Edge = passage
+* Goal: explore every intersection in the maze.
