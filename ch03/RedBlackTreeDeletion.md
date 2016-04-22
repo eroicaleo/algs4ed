@@ -142,3 +142,5 @@ And we will make our right child a 3-node or 4-node if it is not already a 3-nod
 * On the way up for `deleteMax()` and `deleteMin()`, is it possible to have 5-node.
     * It's the same as the last question.
 * How many different kinds 4-node can we have in the way down and way up.
+* Is this statement true: after all the way down transformation, before delete max element or
+  min element, between two adjacent 4 nodes, there must be a one node.
