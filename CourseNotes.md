@@ -809,3 +809,59 @@ In the second level, use bag.
 		* Vertex = intersection
 		* Edge = passage
 * Goal: explore every intersection in the maze.
+
+**Tremaux maze exploration**
+
+* Unroll a ball of string behind you
+* Mark each visited intersection and each visited passage.
+* Retrace steps when no unvisited options.
+
+**Depth-first search**
+
+* Goal: Systematically search through a graph
+* Idea: Mimic maze exploration.
+
+| DFS (to visit a vertex v) |
+| :------------- |
+| Mark v as visited |
+| Recursive visit all unmarked vertices w adjacent to v. |
+
+* Typical applications
+		* Find all vertices connected to a given source vertex.
+		* Find a path between two vertices.
+
+* Algorithm
+		* Use recursion (ball of string).
+		* Mark each visited vertex (and keep track of edge taken to visit it).
+		* Return (retrace steps) when no unvisited options.
+
+* Data structures
+		* `boolean[] marked;` to mark visited vertices.
+		* `int[] edgeTo;` to keep tree of paths.
+		* `edgeTo[w] = v` means that edge v-w taken to visit w for first time.
+
+**Design pattern for graph processing**
+
+* Design pattern: Decouple graph data type from graph processing.
+		* Create a graph Object.
+		* Pass the graph to a graph-processing routine.
+		* Query the graph-processing routine for information.
+
+| `public class` | `Paths` | Comments |
+| -------------: | :------------- | :-------------: |
+| | `Paths(Graph G, int s)`       | *find paths in G from source s* |
+| `boolean` | `hasPathTo(int v)` | *is there a path from s to v* |
+| `Iterable<Integer>` | pathTo(int v) | *path from s to v; null if no such path* |
+
+We are decoupling the graph representation and processing it. Because there are
+hundreds of algorithm to process graph. Everybody take advantage of the efficient
+graph Implementation.
+
+**Depth-first search properties**
+
+* DFS marks all vertices connected to *s* in time proportional to the sum of their
+degrees.
+		* if *w* marked, the *w* connected to *s*.
+		* if *w* connected to *s*, then *w* marked.
+* After DFS, can find vertices connected to *s* in constant time and can find a
+	path to *s* in time proportional to its length.

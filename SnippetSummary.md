@@ -2,18 +2,21 @@
 
 - [Guidelines](#guidelines)
 - [Merge Sort](#merge-sort)
-	- [Regular Merge Sort, practiced: 6](#regular-merge-sort-practiced-6)
-	- [Bottom Up Merge Sort, practiced: 6](#bottom-up-merge-sort-practiced-6)
-	- [Merge Sort X, practiced: 6](#merge-sort-x-practiced-6)
+	- [Regular Merge Sort, practiced: 8](#regular-merge-sort-practiced-8)
+	- [Bottom Up Merge Sort, practiced: 8](#bottom-up-merge-sort-practiced-8)
+	- [Merge Sort X, practiced: 8](#merge-sort-x-practiced-8)
 - [Quick Sort](#quick-sort)
-	- [Regular Quick Sort + Quick Select, practiced: 5](#regular-quick-sort-quick-select-practiced-5)
-	- [Quick Sort 3 Way, practiced: 5](#quick-sort-3-way-practiced-5)
+	- [Regular Quick Sort + Quick Select, practiced: 6](#regular-quick-sort-quick-select-practiced-6)
+	- [Quick Sort 3 Way, practiced: 6](#quick-sort-3-way-practiced-6)
 - [Priority Queues](#priority-queues)
 	- [`MaxPQ`, practiced: 0](#maxpq-practiced-0)
 	- [Heap Sort](#heap-sort)
 - [Symbol Table](#symbol-table)
 	- [Binary Search Tree](#binary-search-tree)
 	- [Red-Black Tree](#red-black-tree)
+- [Undirected Graph](#undirected-graph)
+	- [Graph representation](#graph-representation)
+	- [Bread First Search](#bread-first-search)
 <!-- /TOC -->
 
 # Guidelines
@@ -32,7 +35,7 @@
 
 # Merge Sort
 
-## Regular Merge Sort, practiced: 7
+## Regular Merge Sort, practiced: 8
 * `merge`, `sort`, `sort`
 
 ```java
@@ -79,7 +82,7 @@ private static void sort(Comparable[] a) {
 * One gotcha: we need allocate the aux at the top, not in the recursive
   programming.
 
-## Bottom Up Merge Sort, practiced: 7
+## Bottom Up Merge Sort, practiced: 8
 * `merge` (same as regular merge sort), `sort`
 
 ```java
@@ -99,7 +102,7 @@ public static void sort(Comparable[] a) {
 }
 ```
 
-## Merge Sort X, practiced: 7
+## Merge Sort X, practiced: 8
 * `merge`, `insertionSort`, `sort`
 
 **Easy to make mistakes:**
@@ -107,6 +110,7 @@ public static void sort(Comparable[] a) {
   `less(a[j], a[j-1])`. I do `exch(a, i, j)`, while it should be `exch(a, j, j-1)`
 * In the `sort`, I do `a.copy()` while it should be `a.clone()`.
 * In the `sort`, I do `if (!less(a[mid+1], a[mid]))` should be `if (!less(src[mid+1], src[mid]))`.
+* In the `sort`, I do `if (!less(src[mid], src[mid+1]))` should be `if (!less(src[mid+1], src[mid]))`.
 * Again, in the recursive `sort`, the signature is `sort(Comparable[] src, Comparable[] dst, int lo, int hi);`
  	not `sort(Comparable[] a, int lo, int hi);`
 
@@ -416,3 +420,30 @@ public static void sort(Comparable[] a) {
 | `isRed` |
 | :-----: |
 | 0 |
+
+# Undirected Graph
+
+## Graph representation
+
+* members and constructors
+
+| `Graph(int V)`  | `Graph(In in)`  | `Graph(Graph G)` |
+| :-------------: | :-------------: | :--------------: |
+| 0               | 0               | 0                |
+
+* methods
+
+| `V()` | `E()` | `validVertex()` | `addEdge()` | `adj(int v)` | `degree(int v)` | `toString()` |
+| :---: | :---: | :-------------: | :---------: | :---------: | :---------: | :---------: |
+| 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+
+## Bread First Search
+
+* members and constructors
+		* `marked`, `edgeTo`, `s`.
+
+* methods
+
+| `dfs()` | `hasPathTo()` | `pathTo()` |
+| :---: | :---: | :-------------: |
+| 0 | 0 | 0 |
