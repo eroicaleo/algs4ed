@@ -429,13 +429,13 @@ public static void sort(Comparable[] a) {
 
 | `Graph(int V)`  | `Graph(In in)`  | `Graph(Graph G)` |
 | :-------------: | :-------------: | :--------------: |
-| 0               | 0               | 0                |
+| 1               | 1               | 1                |
 
 * methods
 
 | `V()` | `E()` | `validVertex()` | `addEdge()` | `adj(int v)` | `degree(int v)` | `toString()` |
 | :---: | :---: | :-------------: | :---------: | :---------: | :---------: | :---------: |
-| 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 1 | 1 | 1 | 1 | 1 | 1 | 1 |
 
 ## Bread First Search
 
@@ -446,4 +446,4 @@ public static void sort(Comparable[] a) {
 
 | `dfs()` | `hasPathTo()` | `pathTo()` |
 | :---: | :---: | :-------------: |
-| 0 | 0 | 0 |
+| 1 | 1 | 1 |
