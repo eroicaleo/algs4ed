@@ -163,7 +163,7 @@ public static void sort(Comparable[] a) {
 
 # Quick Sort
 
-## Regular Quick Sort + Quick Select, practiced: 6
+## Regular Quick Sort + Quick Select, practiced: 7
 
 * `partition`, `sort`, `select`
 
@@ -236,7 +236,7 @@ public static Comparable select(Comparable[] a, int k) {
 
 ```
 
-## Quick Sort 3 Way, practiced: 6
+## Quick Sort 3 Way, practiced: 7
 
 **Easy to make mistakes:**
 * I will forget the `if (hi <= lo) return;` in `sort`.
@@ -276,14 +276,14 @@ public static void sort(Comparable[] a) {
 
 | `MaxPQ()` | `MaxPQ(int)` | `MaxPQ(Comparator<key>)` | `MaxPQ(int, Comparator<key>)` | `MaxPQ(Key[])` |
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 5 | 5 | 5 | 5 | 5 |
+| 6 | 6 | 6 | 6 | 6 |
 
 
 * public method: `delMax`, `insert`, `isEmpty`, `isMaxHeap`, `max`, `size`
 
 | `delMax` | `insert` | `isEmpty` | `isMaxHeap` | `max` | `size`
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 5 | 5 | 5 | 5 | 5 | 5 |
+| 6 | 6 | 6 | 6 | 6 | 6 |
 
 * private helper functions: `resize`, `sink`, `swim`
 
@@ -312,10 +312,12 @@ public static void sort(Comparable[] a) {
     * `resize`, `for (int i = 0; i < pq.length; i++)`, should be `i <= N`. Otherwise,
       throws `ArrayIndexOutOfBoundsException`.
 		* `sink`, I do `j = 2 * N;`, throws `ArrayIndexOutOfBoundsException`.
+		* `sink`, I do `if (less(k, j)) exch(k, j);`, should be `if (!less(k, j)) break; exch(k, j);`
+		* `sink`, I do `if (j + 1 <= N && less(j, j+1))`, better be `if (j < N && less(j, j+1))`
 		* `swim`, I do `while (k > 1 && less(k, k/2))` should be `while (k > 1 && less(k/2, k))`
 * Iterators:
     * In `HeapIterator`, `next` method, need to `throw NoSuchElementException`,
-      when `!hasNext()`.
+      when `!hasNext()`. Sometimes, I throw when `hasNext()`.
     * In `HeapIterator` constructor, should be `for (int i = 1; i <= N; i++)`.
     * The declaration is `private class HeapIterator implements Iterator<Key>`,
       not `private class HeapIterator<Key> implements Iterator<Key>`, if I do like
@@ -325,7 +327,8 @@ public static void sort(Comparable[] a) {
 			`copy = new MyMaxPQ<Key>(size());`
 		* `next` method, better to use `hasNext`, instead of `isEmpty()`.
 		* `next` method, I do `return delMax();` should be `return copy.delMax();`.
-			Otherwise, `delMax()` will throw `NoSuchElementException`.
+			Otherwise, the instance will be modified and further `delMax()` will throw
+			`NoSuchElementException`.
 
 ## Heap Sort
 
