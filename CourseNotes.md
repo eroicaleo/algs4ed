@@ -865,3 +865,27 @@ degrees.
 		* if *w* connected to *s*, then *w* marked.
 * After DFS, can find vertices connected to *s* in constant time and can find a
 	path to *s* in time proportional to its length.
+
+## Breadth-First Search
+
+* Repeat until queue is empty:
+		* Remove vertex *v* from queue.
+		* Add to queue all unmarked vertices adjacent to *v* and mark them.
+
+*Depth-first search:* put unvisited vertices on a stack.
+
+*Breadth-first search:* put unvisited vertices on a queue.
+
+*Shortest path:* Find path from *s* to *t* that uses fewest number of edges.
+
+*intuition:* BFS examines vertices in increasing distance from *s*.
+
+**Breadth-first search properties**
+
+*proposition:* BFS computes shortest paths (fewest number of edges) from *s* to
+all other vertices in a graph in time proportional to *E+V*.
+
+*Proof:* Queue always consists of zero or more vertices of distance *k* from *s*,
+followed by zero or more vertices of distance *k+1*.
+
+*Proof:* Each vertex connected to *s* is visited once.
