@@ -348,37 +348,40 @@ public static void sort(Comparable[] a) {
 
 ## Binary Search Tree
 
-* Class definition and members: 2
+* Class definition and members: 4
 
 * public methods:
 
 | `contains` | `get` | `isEmpty` | `put` | `size` |
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 3 | 3 | 3 | 3 | 3 |
+| 4 | 4 | 4 | 4 | 4 |
 
 * public ordered operation methods:
 
 | `min` | `max` | `floor` | `ceiling` | `select` | `rank` | `keys` | `size` | `height` | `levelOrder` |
 | :---: | :---: | :-----: | :-------: | :------: | :----: | :----: | :----: | :------: | :----------: |
-| 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 |
+| 4 | 4 | 4 | 4 | 4 | 4 | 4 | 4 | 4 | 4 |
 
 * public delete operation methods:
 
 | `deleteMin` | `deleteMax` | `delete` |
 | :---------: | :---------: | :------: |
-| 3 | 3 | 3 |
+| 4 | 4 | 4 |
 
 * private sanity check helper functions
 
 | `check` | `isBST` | `isRankConsistent` | `isSizeConsistent` |
 | :-----: | :-----: | :----------------: | :----------------: |
-| 3 | 3 | 3 | 3 |
+| 4 | 4 | 4 | 4 |
 
 **Easy to make mistakes:**
 
 * public methods:
 		* I sometime forget to do `root = put(root, key, val);` and just do
 			`put(root, key, val);`
+		* `put()`: don't forget put can `delete` a key, if `val == null`.
+		* `put()`: don't forget to update the `x.N` at the end. Other methods will
+			use this inf
 		* `size` needs to use `size(Node x)` helper function, which is used by other
 			method.
 		* `size` needs to do `return x.N;` not `return size() + size() + 1;`. It's
@@ -391,6 +394,7 @@ public static void sort(Comparable[] a) {
 		* In `ceiling` and `floor`, do `cmp == 0` first.
 		* In `rank`, go to left when `cmp < 0`, Not when `cmp > 0`.
 		* In `size(Key lo, Key hi)`, I need to do sanity check `if (lo.compareTo(hi) > 0)`
+		* In `levelOrder`, in the `while` loop, I need to test `if (x == null)`.
 * `delete` operations:
 		* I sometime forget to do `root = delete(root, key);` and just do `delete(root, key);`
 		* `deleteMin(Node x)` I do `x = deleteMin(x.left)` should be `x.left = deleteMin(x.left)`
@@ -440,7 +444,7 @@ public static void sort(Comparable[] a) {
 | :---: | :---: | :-------------: | :---------: | :---------: | :---------: | :---------: |
 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
 
-## Bread First Search
+## Depth First Search
 
 * members and constructors
 		* `marked`, `edgeTo`, `s`.
@@ -450,3 +454,14 @@ public static void sort(Comparable[] a) {
 | `dfs()` | `hasPathTo()` | `pathTo()` |
 | :---: | :---: | :-------------: |
 | 1 | 1 | 1 |
+
+## Breadth First Search
+
+* members and constructors
+		* `INFINITY`, `marked`, `edgeTo`, `distTo`.
+
+* methods
+
+| `dfs()` | `hasPathTo()` | `distTo()` | `pathTo()` | `check` |
+| :---: | :---: | :-------------: | :---: | :---: |
+| 0 | 0 | 0 | 0 | 0 |
