@@ -889,3 +889,34 @@ all other vertices in a graph in time proportional to *E+V*.
 followed by zero or more vertices of distance *k+1*.
 
 *Proof:* Each vertex connected to *s* is visited once.
+
+## Connected Components
+
+**Connectivity queries**
+
+*DEF:* Vertices *v* and *w* are connected if there is a path between them.
+
+Goal: preprocess graph to answer queries of the form is v connected to w?
+in constant time.
+
+| `public class` | `CC` | Comments |
+| -------------: | :------------- | :-------------: |
+| | `CC(Graph G)`       | *find connected components in G* |
+| `boolean` | `connected(int v, int w)` | *are v and w connected* |
+| `int` | `count` | *number of connected components* |
+| `int` | `id(int v)` | *component identifier for v* |
+
+Union-Find? Not quite
+Depth-first search. Yes.
+
+**Connected components**
+
+The relation "is connected to" is an equivalence relation:
+* Reflexive
+* symmetric
+* Transitive
+
+Def. A connected component is a maximal set of connected vertices. We can answer
+queries in constant time.
+
+Goal: partition vertices into connected components.
