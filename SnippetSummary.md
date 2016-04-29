@@ -334,7 +334,7 @@ public static void sort(Comparable[] a) {
 
 | `sort` | `sink` | `exch` | `less` |
 | :----: | :----: | :----: | :----: |
-| 2 | 2 | 2 | 2 |
+| 3 | 3 | 3 | 3 |
 
 **Easy to make mistakes:**
 
@@ -436,13 +436,13 @@ public static void sort(Comparable[] a) {
 
 | `Graph(int V)`  | `Graph(In in)`  | `Graph(Graph G)` |
 | :-------------: | :-------------: | :--------------: |
-| 1               | 1               | 1                |
+| 2               | 2               | 2                |
 
 * methods
 
 | `V()` | `E()` | `validVertex()` | `addEdge()` | `adj(int v)` | `degree(int v)` | `toString()` |
 | :---: | :---: | :-------------: | :---------: | :---------: | :---------: | :---------: |
-| 1 | 1 | 1 | 1 | 1 | 1 | 1 |
+| 2 | 2 | 2 | 2 | 2 | 2 | 2 |
 
 ## Depth First Search
 
