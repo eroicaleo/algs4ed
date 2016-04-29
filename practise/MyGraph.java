@@ -6,6 +6,7 @@ import java.util.Iterator;
  * Created by yangge on 4/20/2016.
  */
 public class MyGraph {
+
     private final String NEWLINE = System.getProperty("line.separator");
     private final int V;
     private int E;
@@ -25,7 +26,6 @@ public class MyGraph {
         this(in.readInt());
         int E = in.readInt();
         if (E < 0) throw new IllegalArgumentException("Number of edges must be nonnegative");
-        this.E = E;
         for (int i = 0; i < E; i++) {
             int v = in.readInt();
             int w = in.readInt();
@@ -56,8 +56,7 @@ public class MyGraph {
     }
 
     private void validateVertex(int v) {
-        if (v < 0 || v >= V)
-            throw new IndexOutOfBoundsException("vertex " + v + " is not between 0 and " + (V-1));
+        if (v < 0 || v >= V) throw new IndexOutOfBoundsException("vertex " + v + " is not between 0 and " + (V-1));
     }
 
     public void addEdge(int v, int w) {
@@ -80,7 +79,7 @@ public class MyGraph {
 
     public String toString() {
         StringBuilder s = new StringBuilder();
-        s.append(V + " vertices, " + E + " edges " + NEWLINE);
+        s.append(V + " vertices, " + E + " edges" + NEWLINE);
         for (int v = 0; v < V; v++) {
             s.append(v + ": ");
             for (int w : adj[v]) {
