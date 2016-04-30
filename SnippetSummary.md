@@ -464,4 +464,22 @@ public static void sort(Comparable[] a) {
 
 | `dfs()` | `hasPathTo()` | `distTo()` | `pathTo()` | `check` |
 | :---: | :---: | :-------------: | :---: | :---: |
+| 1 | 1 | 1 | 1 | 1 |
+
+**Easy to make mistakes:**
+
+* constructor: there is no need to keep `int s;`
+* `bfs`: put `INFINITY` here.
+* `bfs`: Don't forget to check `if (marked[v])`.
+* `pathTo`: `for` loop, use `distTo(x) != 0` to terminate.
+
+## Connected components
+
+* members and constructors
+		* `marked[]`, `id[]`, `size[]`, `count`
+
+* methods
+
+| `dfs()` | `id()` | `size()` | `count()` | `connected` |
+| :-----: | :----: | :------: | :-------: | :---------: |
 | 0 | 0 | 0 | 0 | 0 |
