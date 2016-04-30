@@ -35,7 +35,7 @@
 
 # Merge Sort
 
-## Regular Merge Sort, practiced: 8
+## Regular Merge Sort, practiced: 9
 * `merge`, `sort`, `sort`
 
 ```java
@@ -82,7 +82,7 @@ private static void sort(Comparable[] a) {
 * One gotcha: we need allocate the aux at the top, not in the recursive
   programming.
 
-## Bottom Up Merge Sort, practiced: 8
+## Bottom Up Merge Sort, practiced: 9
 * `merge` (same as regular merge sort), `sort`
 
 ```java
@@ -102,7 +102,7 @@ public static void sort(Comparable[] a) {
 }
 ```
 
-## Merge Sort X, practiced: 8
+## Merge Sort X, practiced: 9
 * `merge`, `insertionSort`, `sort`
 
 **Easy to make mistakes:**
@@ -469,7 +469,7 @@ public static void sort(Comparable[] a) {
 **Easy to make mistakes:**
 
 * constructor: there is no need to keep `int s;`
-* `bfs`: put `INFINITY` here.
+* `bfs`: initilize the distance to source to `INFINITY` in this function.
 * `bfs`: Don't forget to check `if (marked[v])`.
 * `pathTo`: `for` loop, use `distTo(x) != 0` to terminate.
 
@@ -482,4 +482,4 @@ public static void sort(Comparable[] a) {
 
 | `dfs()` | `id()` | `size()` | `count()` | `connected` |
 | :-----: | :----: | :------: | :-------: | :---------: |
-| 0 | 0 | 0 | 0 | 0 |
+| 1 | 1 | 1 | 1 | 1 |
