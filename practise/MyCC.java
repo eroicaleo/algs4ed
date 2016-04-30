@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.StdOut;
  * Created by yangge on 4/29/2016.
  */
 public class MyCC {
-    private boolean marked[];
+    private boolean[] marked;
     private int[] id;
     private int[] size;
     private int count;
@@ -77,5 +77,10 @@ public class MyCC {
             StdOut.println();
         }
 
+        System.out.println("0 and 1 connected? " + cc.connected(0, 1));
+        System.out.println("0 and 2 connected? " + cc.connected(0, 2));
+        for (int v = 0; v < G.V(); v++) {
+            System.out.println("The size of the component which " + v + " is in: " + cc.size(v));
+        }
     }
 }
