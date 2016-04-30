@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.*;
  * Created by yangge on 4/26/2016.
  */
 public class MyBreadthFirstPaths {
-    public static final int INFINITY = Integer.MAX_VALUE;
+    private static final int INFINITY = Integer.MAX_VALUE;
     private boolean[] marked;
     private int[] edgeTo;
     private int[] distTo;
@@ -18,12 +18,12 @@ public class MyBreadthFirstPaths {
         assert check(G, s);
     }
 
-    public void bfs(Graph G, int s) {
+    private void bfs(Graph G, int s) {
         Queue<Integer> queue = new Queue<Integer>();
         for (int v = 0; v < G.V(); v++)
             distTo[v] = INFINITY;
-        distTo[s] = 0;
         marked[s] = true;
+        distTo[s] = 0;
         queue.enqueue(s);
         while (!queue.isEmpty()) {
             int v = queue.dequeue();
@@ -48,16 +48,15 @@ public class MyBreadthFirstPaths {
 
     public Iterable<Integer> pathTo(int v) {
         if (!hasPathTo(v)) return null;
-        Stack<Integer> path = new Stack<>();
+        Stack<Integer> path = new Stack<Integer>();
         int x;
-        for (x = v; distTo(x) != 0; x = edgeTo[x]) {
+        for (x = v; distTo(x) != 0; x = edgeTo[x])
             path.push(x);
-        }
         path.push(x);
         return path;
     }
 
-    public boolean check(Graph G, int s) {
+    private boolean check(Graph G, int s) {
         if (distTo[s] != 0) {
             System.out.println("distance of source " + s + " to itself = " + distTo[s]);
             return false;
@@ -71,7 +70,6 @@ public class MyBreadthFirstPaths {
                     System.out.println("hasPathTo(" + w + ") = " + hasPathTo(w));
                     return false;
                 }
-
                 if (hasPathTo(v) && (distTo(w) > distTo(v) + 1)) {
                     System.out.println("edge " + v + "-" + w);
                     System.out.println("distTo(" + v + ") = " + distTo(v));
