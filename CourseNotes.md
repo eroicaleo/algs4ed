@@ -920,3 +920,20 @@ Def. A connected component is a maximal set of connected vertices. We can answer
 queries in constant time.
 
 Goal: partition vertices into connected components.
+
+## Graph challenges
+
+* Is a graph bipartite?
+		* vertices to 2 subsets, every edge connects to 2 subsets.
+			(DFS can do it.)
+		* Find a cycle. (DFS)
+		* Bridges of Konigsberg.
+		* Is there a (general) cycle that uses each edge exactly once.
+		* Find a (general) cycle that uses each edge exactly once.
+			(diligent student).
+		* Find a cycle that visits every vertex exactly once.
+			(intractable)
+		* Are two graphs identical except for vertex names?
+			(No one knows)
+		* Layout a graph in the plane without crossing edges?
+			(Expert, DFS based).
