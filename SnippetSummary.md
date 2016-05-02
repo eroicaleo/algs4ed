@@ -445,6 +445,16 @@ public static void sort(Comparable[] a) {
 | :---: | :---: | :-------------: | :---------: | :---------: | :---------: | :---------: |
 | 2 | 2 | 2 | 2 | 2 | 2 | 2 |
 
+**Easy to make mistakes:**
+
+* constructors:
+		* `adj = (Bag<Integer>[]) new Bag[V];` not `adj = (Bag<Integer>[]) new Object[V];`
+			because `Bag` is a type not a generic type like `Key`.
+		* Don't forget to initialize `this.E = 0;`
+		* `this.V` is `final`.
+		* `this(in.readInt())` must be the first line in `MyGraph(In in)` because
+			`V` is `final`.
+
 ## Depth First Search
 
 * members and constructors
