@@ -937,3 +937,27 @@ Goal: partition vertices into connected components.
 			(No one knows)
 		* Layout a graph in the plane without crossing edges?
 			(Expert, DFS based).
+
+# Directed Graphs
+
+## Introduction
+
+Digraph: Set of vertices connected pairwise by directed edges.
+
+*Road network:* vertex = intersection; edge = one way street.
+*Overnight interbank loan graph:* Vertex = bank; edge = Overnight loan.
+*Combinational circuit:* Vertex = synset; edge = hypernym relationship.
+
+## Digraph problems
+
+*Path:* is there a directed path from s to t?
+
+*Shortest path:* What is the Shortest directed path from s to t?
+
+*Topological sort:* Can you draw a digraph so that all edges point upwards?
+
+*Strong Connectivity:* Is there a directed path between all pairs of vertices?
+
+*Transitive closure:* For which vertices v and w is there a path from v to w?
+
+*PageRank:* What is the importance of a web page?
