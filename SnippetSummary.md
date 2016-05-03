@@ -437,13 +437,13 @@ public static void sort(Comparable[] a) {
 
 | `Graph(int V)`  | `Graph(In in)`  | `Graph(Graph G)` |
 | :-------------: | :-------------: | :--------------: |
-| 2               | 2               | 2                |
+| 3               | 3               | 3                |
 
 * methods
 
 | `V()` | `E()` | `validVertex()` | `addEdge()` | `adj(int v)` | `degree(int v)` | `toString()` |
 | :---: | :---: | :-------------: | :---------: | :---------: | :---------: | :---------: |
-| 2 | 2 | 2 | 2 | 2 | 2 | 2 |
+| 3 | 3 | 3 | 3 | 3 | 3 | 3 |
 
 **Easy to make mistakes:**
 
@@ -473,16 +473,19 @@ public static void sort(Comparable[] a) {
 
 * methods
 
-| `dfs()` | `hasPathTo()` | `distTo()` | `pathTo()` | `check` |
+| `bfs()` | `hasPathTo()` | `distTo()` | `pathTo()` | `check` |
 | :---: | :---: | :-------------: | :---: | :---: |
-| 1 | 1 | 1 | 1 | 1 |
+| 2 | 2 | 2 | 2 | 2 |
 
 **Easy to make mistakes:**
 
 * constructor: there is no need to keep `int s;`
 * `bfs`: initilize the distance to source to `INFINITY` in this function.
 * `bfs`: Don't forget to check `if (marked[v])`.
+* `bfs`: Don't forget to do `queue.enqueue(w)`.
 * `pathTo`: `for` loop, use `distTo(x) != 0` to terminate.
+* `pathTo`: Don't forget to `return null;` when `!hasPathTo(v)`.
+* `check`: use `continue` to filter out vertices not connected.
 
 ## Connected components
 
