@@ -961,3 +961,63 @@ Digraph: Set of vertices connected pairwise by directed edges.
 *Transitive closure:* For which vertices v and w is there a path from v to w?
 
 *PageRank:* What is the importance of a web page?
+
+## Digraph API
+
+| `public class` | `Digraph` | Comments |
+| -------------: | :------------- | :-------------: |
+| | `Digraph(int V)` | *create an empty digraph with V vertices* |
+| | `Digraph(In in)` | *create an digraph from input stream* |
+| `void` | `addEdge(int v, int w)` | *add a directed edge v -> w* |
+| `Iterable<Integer>` | `adj(int v)` | *vertices pointing from v* |
+| `int` | `V()` | *number of vertices* |
+| `int` | `E()` | *number of edges* |
+| `Digraph` | `reverse()` | *reverse of this digraph* |
+
+**Adjacency-list digraph representation**
+
+Maintain vertex-indexed array of lists.
+
+## Digraph Search
+
+**Reachability**
+
+Problem: Find all vertices reachable from s along a directed path.
+Same method as for undirected graphs.
+
+* Every undirected graph is a digraph (with edges in both direction)
+* DFS is a digraph algorithm.
+
+**Reachability application: program control-flow analysis**
+
+Every program is a digraph.
+* vertex = basic block of instruction
+* edge = jump
+
+**mark-sweep garbage collector**
+
+Every data structure is a digraph.
+* Vertex = object.
+* edge = reference.
+
+Roots: Objects known to be directly accessible by program (e.g., stack).
+
+Reachable objects: Objects indirectly accessible by program (starting at a root
+and following a chain of pointers)
+
+**Breadth-first search in digraphs**
+
+Same method as for undirected graphs.
+
+* Every undirected graph is a digraph (with edges in both direction)
+* BFS is a digraph algorithm.
+
+**Breadth-first in digraph application: web crawler**
+
+Goal: Crawl web, starting from some root web page.
+
+Solution:
+* Choose root web page as source s.
+* Maintain a `Queue` of websites to explore.
+* Maintain a `SET` of discovered websites.
+* Dequeue the next website and enqueue websites to which it links.
