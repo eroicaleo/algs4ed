@@ -1021,3 +1021,30 @@ Solution:
 * Maintain a `Queue` of websites to explore.
 * Maintain a `SET` of discovered websites.
 * Dequeue the next website and enqueue websites to which it links.
+
+## Topological sorting
+
+**Precedence scheduling**
+
+* Goal: Given a set of tasks to be completed with precedence constraints, in
+	which order should we schedule the tasks?
+
+* Digraph model: vertex = task; edge = precedence constraints.
+
+**Topological sort**
+
+* DAG. Directed acyclic graph.
+* Topological sort. Redraw DAG so all edges point upwards.
+* Solution. DFS. What else?
+* Run depth-first search.
+* Return vertices in reverse postorder.
+
+**correctness proof**
+
+* Reverse DFS post order of a DAG is a topological order.
+
+**Detected cycle detection**
+
+* application:
+		* JAVA cycle inheritance
+		* spreadsheet recalculation.

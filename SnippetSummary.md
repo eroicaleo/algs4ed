@@ -349,13 +349,13 @@ public static void sort(Comparable[] a) {
 
 ## Binary Search Tree
 
-* Class definition and members: 4
+* Class definition and members: 5
 
 * public methods:
 
-| `contains` | `get` | `isEmpty` | `put` | `size` |
+| `contains` | `get` | `put` | `isEmpty` | `size` |
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 4 | 4 | 4 | 4 | 4 |
+| 5 | 5 | 5 | 4 | 4 |
 
 * public ordered operation methods:
 
@@ -497,3 +497,14 @@ public static void sort(Comparable[] a) {
 | `dfs()` | `id()` | `size()` | `count()` | `connected` |
 | :-----: | :----: | :------: | :-------: | :---------: |
 | 1 | 1 | 1 | 1 | 1 |
+
+## Topological sort simple version
+
+* members and constructors
+		* `marked`, `reversePost`
+
+* methods
+
+| `dfs()` | `reversePost()` |
+| :-----: | :----: |
+| 0 | 0 |
