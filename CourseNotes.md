@@ -1048,3 +1048,44 @@ Solution:
 * application:
 		* JAVA cycle inheritance
 		* spreadsheet recalculation.
+
+## Strong Components
+
+*Definition:* Vertices v and w are strongly connected if there is a directed path
+from v to w and a directed path form w to v.
+
+*Key property:* equivalence relation:
+
+* Reflexive
+* Transitive
+* Symmetric
+
+**Connected components vs. strongly-connected components**
+
+connected component: linear time processing and constant-time query
+strong connected component: how to compute? constant-time query.
+
+**Application**
+
+* food web in ecology
+* Software module dependency graph.
+		* Vertex: software module
+		* Edge: from module to dependency
+		* Strong component: Subset of mutually interacting modules
+		* Approach1: package strong components together
+		* Approach2: Use to improve design
+
+**Kosaraju-Sharir algorithm: intuition**
+
+* Reverse graph: strong components in G are same as in G^R
+* Kernel DAG: Contract each strong component into a single vertex
+* Run DFS, considering vertices in reverse topological order.
+
+**Kosaraju-Sharir algorithm**
+
+* Proposition: Kosaraju-Sharir algorithm computes the strong components of a
+	digraph in time proportional to E+V.
+* Proof:
+		* Running time: bottleneck is running DFS twice (and computing G^R)
+		* correctness: tricky.
+		* Implementation: easy.
