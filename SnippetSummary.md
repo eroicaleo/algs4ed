@@ -355,25 +355,25 @@ public static void sort(Comparable[] a) {
 
 | `contains` | `get` | `put` | `isEmpty` | `size` |
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 5 | 5 | 5 | 4 | 4 |
+| 5 | 5 | 5 | 5 | 5 |
 
 * public ordered operation methods:
 
 | `min` | `max` | `floor` | `ceiling` | `select` | `rank` | `keys` | `size` | `height` | `levelOrder` |
 | :---: | :---: | :-----: | :-------: | :------: | :----: | :----: | :----: | :------: | :----------: |
-| 4 | 4 | 4 | 4 | 4 | 4 | 4 | 4 | 4 | 4 |
+| 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 |
 
 * public delete operation methods:
 
 | `deleteMin` | `deleteMax` | `delete` |
 | :---------: | :---------: | :------: |
-| 4 | 4 | 4 |
+| 5 | 5 | 5 |
 
 * private sanity check helper functions
 
 | `check` | `isBST` | `isRankConsistent` | `isSizeConsistent` |
 | :-----: | :-----: | :----------------: | :----------------: |
-| 4 | 4 | 4 | 4 |
+| 5 | 5 | 5 | 5 |
 
 **Easy to make mistakes:**
 
@@ -393,7 +393,10 @@ public static void sort(Comparable[] a) {
 		* In `min` and `max`, just return `min(root).key;` No need to do `Node x = min(root);`.
 		* In `ceiling` and `floor`, just do `if`. No need to do `if...else...`.
 		* In `ceiling` and `floor`, do `cmp == 0` first.
+		* In `select`, when not clear about the math, use a tree with one node and 3
+			nodes as examples.
 		* In `rank`, go to left when `cmp < 0`, Not when `cmp > 0`.
+		* In `keys`, don't forget to initialize the `Queue<Key> queue = new Queue<Key>();`
 		* In `size(Key lo, Key hi)`, I need to do sanity check `if (lo.compareTo(hi) > 0)`
 		* In `levelOrder`, in the `while` loop, I need to test `if (x == null)`.
 * `delete` operations:
