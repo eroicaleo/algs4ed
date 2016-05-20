@@ -467,7 +467,12 @@ public static void sort(Comparable[] a) {
 
 | `dfs()` | `hasPathTo()` | `pathTo()` |
 | :---: | :---: | :-------------: |
-| 1 | 1 | 1 |
+| 2 | 2 | 2 |
+
+**Easy to make mistakes:**
+
+* `hasPathTo`: no need to return `marked[v] == true;`, just return `marked[v];`
+* `pathTo`: use `x` in the `for` loop.
 
 ## Breadth First Search
 
