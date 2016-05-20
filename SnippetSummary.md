@@ -335,7 +335,7 @@ public static void sort(Comparable[] a) {
 
 | `sort` | `sink` | `exch` | `less` |
 | :----: | :----: | :----: | :----: |
-| 3 | 3 | 3 | 3 |
+| 4 | 4 | 4 | 4 |
 
 **Easy to make mistakes:**
 
