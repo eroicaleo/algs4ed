@@ -440,23 +440,29 @@ public static void sort(Comparable[] a) {
 
 | `Graph(int V)`  | `Graph(In in)`  | `Graph(Graph G)` |
 | :-------------: | :-------------: | :--------------: |
-| 3               | 3               | 3                |
+| 4               | 4               | 4                |
 
 * methods
 
 | `V()` | `E()` | `validVertex()` | `addEdge()` | `adj(int v)` | `degree(int v)` | `toString()` |
 | :---: | :---: | :-------------: | :---------: | :---------: | :---------: | :---------: |
-| 3 | 3 | 3 | 3 | 3 | 3 | 3 |
+| 4 | 4 | 4 | 4 | 4 | 4 | 4 |
 
 **Easy to make mistakes:**
 
 * constructors:
+    * Don't forget the `private final String NEWLINE = System.getProperty("line.separator");`
+			member.
 		* `adj = (Bag<Integer>[]) new Bag[V];` not `adj = (Bag<Integer>[]) new Object[V];`
 			because `Bag` is a type not a generic type like `Key`.
+		* After initialize the `adj`, we must initialize each of the element in the
+			array.
 		* Don't forget to initialize `this.E = 0;`
 		* `this.V` is `final`.
 		* `this(in.readInt())` must be the first line in `MyGraph(In in)` because
 			`V` is `final`.
+		* In other two constructors, when we call the first constructor, we need to
+			use `this(G.V());`, not `MyGraph(G.V());`
 
 ## Depth First Search
 
@@ -516,3 +522,17 @@ public static void sort(Comparable[] a) {
 | `dfs()` | `reversePost()` |
 | :-----: | :----: |
 | 0 | 0 |
+
+# Minimum spanning tree
+
+## Weighted Edge API
+
+* members and constructors
+
+* methods
+
+| `either()` | `other()` | `compareTo()` | `weight()` | `toString()` |
+| :-----: | :----: | :------: | :-------: | :---------: |
+| 0 | 0 | 0 | 0 | 0 |
+
+## Edge-weighted graph API
