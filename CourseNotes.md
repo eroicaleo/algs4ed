@@ -1089,3 +1089,83 @@ strong connected component: how to compute? constant-time query.
 		* Running time: bottleneck is running DFS twice (and computing G^R)
 		* correctness: tricky.
 		* Implementation: easy.
+
+# Lecture Minimum Spanning Trees
+
+## Introduction
+
+*Given:* Undirected graph G with positive edge weights.
+*Def:* A spanning tree is both a tree and spanning.
+*Goal:* Find min weight spanning tree.
+
+## Greedy algorithm
+
+**Simplifying assumptions**
+
+* Edge weights are distinct.
+* Graph is connected.
+
+*Consequence:* MST is unique and exists.
+
+**Cut property**
+
+Def: A cut in a graph is a partition of its vertices into two (non-empty) sets.
+Def: A crossing edge connects a vertex in one set with a vertex in the other.
+
+Cut property: Given any cut, the crossing edge of min weight is in the MST.
+Pf: Contradiction.
+
+**Greedy MST algorithm**
+
+* Start with all edges colored grey.
+* Find cut with no black crossing edges; color its min-weight edge black.
+* Repeat until V - 1 edges are colored black.
+
+**Greedy MST algorithm: correctness proof**
+
+Proposition: The greedy algorithm computes the MST.
+
+Pf:
+
+* Any edge colored black is in the MST
+* Fewer than V-1 black edges => cut with no black crossing edges.
+
+**Greedy MST algorithm: efficient implementations**
+
+## Edge weighted graph API
+
+**Weighted Edge API**
+
+| `public class` | `Edge implements Comparable<Edge>` | Comments |
+| -------------: | :------------- | :-------------: |
+| | `Edge(int v, int w, double weight)` | create a weighted edge v-w |
+| `int` | `either()` | either end point |
+| `int` | `other(v)` | the endpoint that's not v |
+| `int` | `compareTo(Edge that)` | compare this edge to that edge |
+| `double` | `weight()` | the weight |
+| `String` | `toString()` | string representation |
+
+* We have the idiom for processing an edge e: `int v = e.either(), w = e.other(v);`
+
+**Edge-weighted Graph API**
+
+| `public class` | `EdgeWeightedGraph` | Comments |
+| -------------: | :------------- | :-------------: |
+| | `EdgeWeightedGraph(int V)` | create an empty graph with V vertices |
+| | `EdgeWeightedGraph(In in)` | create a graph from input stream |
+| `void` | `addEdge(Edge e)` | add weighted edge e to this graph |
+| `Iterable<Edge>` | `adj(int v)` | edges incident to v |
+| `Iterable<Edge>` | `edges()` | all edges in this graph |
+| `int` | `V()` | number of vertices |
+| `int` | `E()` | number of edges |
+| `String` | `toString()` | string representation |
+
+* With this representation, we can allow self-loops and parallel edges easily.
+
+**Minimum spanning tree API**
+
+| `public class` | `MST` | Comments |
+| -------------: | :------------- | :-------------: |
+| | `MST(EdgeWeightedGraph G)` | constructor |
+| `Iterable<Edge>` | `edges()` | edges in MST |
+| `double` | `weight()` | weight in MST |
