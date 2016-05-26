@@ -508,9 +508,15 @@ public static void sort(Comparable[] a) {
 
 * methods
 
-| `dfs()` | `id()` | `size()` | `count()` | `connected` |
+| `dfs()` | `id()` | `size()` | `count()` | `connected()` |
 | :-----: | :----: | :------: | :-------: | :---------: |
-| 1 | 1 | 1 | 1 | 1 |
+| 2 | 2 | 2 | 2 | 2 |
+
+**Easy to make mistakes:**
+
+* count increasing needs to be done in constructor `for` loop, not in the
+ recursive call of `dfs()`. Otherwise after visiting each vertex, the `count`
+ will be increased.
 
 ## Topological sort simple version
 
@@ -521,7 +527,12 @@ public static void sort(Comparable[] a) {
 
 | `dfs()` | `reversePost()` |
 | :-----: | :----: |
-| 0 | 0 |
+| 1 | 1 |
+
+**Easy to make mistakes:**
+
+* Forget to check circle before we do `dfs`.
+* Need to return `return reversePost;` not `return reversePost();`
 
 # Minimum spanning tree
 
@@ -535,4 +546,8 @@ public static void sort(Comparable[] a) {
 | :-----: | :----: | :------: | :-------: | :---------: |
 | 1 | 1 | 1 | 1 | 1 |
 
-## Edge-weighted graph API
+## Edge-weighted graph API (skip, similar to `Graph` API)
+
+# Optional algorithm:
+
+* `DirectedCycle`
