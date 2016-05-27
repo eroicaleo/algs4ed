@@ -489,16 +489,17 @@ public static void sort(Comparable[] a) {
 
 | `bfs()` | `hasPathTo()` | `distTo()` | `pathTo()` | `check` |
 | :---: | :---: | :-------------: | :---: | :---: |
-| 2 | 2 | 2 | 2 | 2 |
+| 3 | 3 | 3 | 3 | 3 |
 
 **Easy to make mistakes:**
 
+* `pathTo`: Don't forget to `return null;` when `!hasPathTo(v)`. wrong X2.
+* Don't forget `private static final int INFINITY = Integer.MAX_VALUE;`
 * constructor: there is no need to keep `int s;`
 * `bfs`: initilize the distance to source to `INFINITY` in this function.
 * `bfs`: Don't forget to check `if (marked[v])`.
 * `bfs`: Don't forget to do `queue.enqueue(w)`.
 * `pathTo`: `for` loop, use `distTo(x) != 0` to terminate.
-* `pathTo`: Don't forget to `return null;` when `!hasPathTo(v)`.
 * `check`: use `continue` to filter out vertices not connected.
 
 ## Connected components
