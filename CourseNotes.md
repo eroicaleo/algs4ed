@@ -1169,3 +1169,24 @@ Pf:
 | | `MST(EdgeWeightedGraph G)` | constructor |
 | `Iterable<Edge>` | `edges()` | edges in MST |
 | `double` | `weight()` | weight in MST |
+
+## Kruskal's algorithm
+
+Consider edges in ascending order of weight,
+add next edge to tree T unless doing so would create a cycle.
+
+**correctness proof:**
+
+* It's a special case of the greedy MST algorithm.
+
+**Implementation challenge:**
+
+Challenge: Would adding edge v -> w to tree T create a cycle? If not, add it.
+
+How difficult? log V.
+
+Efficient solution: Use the Union-Find data structure:
+
+* Maintain a set for each connected component in T.
+* If v and w are in the same set, then adding the edge would create a cycle.
+* To add v-w to T, merge sets containing v and w.
