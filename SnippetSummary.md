@@ -164,7 +164,7 @@ public static void sort(Comparable[] a) {
 
 # Quick Sort
 
-## Regular Quick Sort + Quick Select, practiced: 8
+## Regular Quick Sort + Quick Select, practiced: 9
 
 * `partition`, `sort`, `select`
 
@@ -173,6 +173,7 @@ public static void sort(Comparable[] a) {
 * In `partition`, I do `if (i == j) break;`, should be `if (i >= j) break;`
 * In `partition`, I do `exch(a, 0, j);`, should be `exch(a, lo, j);`
 * In `partition`, I forget `return j`, and it should return `int`.
+* In `partition`, give `a[lo]` a name `v`, like `Comparable v = a[lo];`.
 * In `sort`, I do `if (hi >= lo) return;`, should be `if (hi <= lo) return;`
 * In `select`, I do `if (i < k) lo = i`, should be `if (i < k) lo = i + 1`.
   Otherwise, it can be infinite loop. For example, `lo = 0, hi = 2, a = {4, 8, 11}, k = 1`.
@@ -238,7 +239,7 @@ public static Comparable select(Comparable[] a, int k) {
 
 ```
 
-## Quick Sort 3 Way, practiced: 8
+## Quick Sort 3 Way, practiced: 9
 
 **Easy to make mistakes:**
 * I will forget the `if (hi <= lo) return;` in `sort`.
