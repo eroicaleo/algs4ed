@@ -272,33 +272,33 @@ public static void sort(Comparable[] a) {
 
 # Priority Queues
 
-## `MaxPQ`, practiced: 0
+## `MaxPQ`, practiced: 7
 
 * class declaration and members: `pq`, `N`, `comparator`.
 * Constructors:
 
 | `MaxPQ()` | `MaxPQ(int)` | `MaxPQ(Comparator<key>)` | `MaxPQ(int, Comparator<key>)` | `MaxPQ(Key[])` |
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 7 | 7 | 7 | 7 | 7 |
+| 8 | 8 | 8 | 8 | 8 |
 
 
 * public method: `delMax`, `insert`, `isEmpty`, `isMaxHeap`, `max`, `size`
 
 | `delMax` | `insert` | `isEmpty` | `isMaxHeap` | `max` | `size`
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 7 | 7 | 7 | 7 | 7 | 7 |
+| 8 | 8 | 8 | 8 | 8 | 8 |
 
 * private helper functions: `resize`, `sink`, `swim`
 
 | `resize` | `sink` | `swim` |
 | :-------------: | :-------------: | :-------------: |
-| 7 | 7 | 7 |
+| 8 | 8 | 8 |
 
 * Iterators: `iterator`, `HeapIterator`
 
 | `iterator` | `HeapIterator` |
 | :------------- | :------------- |
-| 7 | 7 |
+| 8 | 8 |
 
 **Easy to make mistakes:**
 * Class declaration and members:
@@ -309,8 +309,9 @@ public static void sort(Comparable[] a) {
     * In constructor, the argument should be `Comparator<Key>` not just `Comparator`.
 * Public methods:
 		* `delMax`: I forget to do `sink` once.
-		* `delMax`: I do `max = pq[N];` should be `max = pq[1];`.
+		* `delMax`: I do `max = pq[N];` should be `max = pq[1];`. 2 times
 		* `insert`: I do `pq[N++] = key;` should be `pq[++N] = key;`.
+		* `isMaxHeap`: forget to check `if (k > N) return true;`. Infinite loop.
 * Private helper functions:
     * `resize`, `for (int i = 0; i < pq.length; i++)`, should be `i <= N`. Otherwise,
       throws `ArrayIndexOutOfBoundsException`.
@@ -324,7 +325,7 @@ public static void sort(Comparable[] a) {
     * In `HeapIterator` constructor, should be `for (int i = 1; i <= N; i++)`.
     * The declaration is `private class HeapIterator implements Iterator<Key>`,
       not `private class HeapIterator<Key> implements Iterator<Key>`, if I do like
-      this, this `Key` is not the same as the `Key` in the outside.
+      this, this `Key` is not the same as the `Key` in the outside. 2 times.
     * The private member is `private MyMaxPQ<Key> copy;` not `private Key[] copy;`.
 		* In `HeapIterator` constructor, I do `copy = new MyMaxPQ(size());` better be
 			`copy = new MyMaxPQ<Key>(size());`
@@ -550,6 +551,10 @@ public static void sort(Comparable[] a) {
 | 1 | 1 | 1 | 1 | 1 |
 
 ## Edge-weighted graph API (skip, similar to `Graph` API)
+
+* `edges` method
+
+## KruskalMST
 
 # Optional algorithm:
 
