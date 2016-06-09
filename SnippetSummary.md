@@ -338,15 +338,17 @@ public static void sort(Comparable[] a) {
 
 | `sort` | `sink` | `exch` | `less` |
 | :----: | :----: | :----: | :----: |
-| 4 | 4 | 4 | 4 |
+| 5 | 5 | 5 | 5 |
 
 **Easy to make mistakes:**
 
 * `sort`, should be `while (N > 1)`. I do `for (int k = 0; k < N; k++)`. `N` will
 	be modified during the loop.
+* `sort`, just do `while (N > 1)`, there is no need to do `while (N > 0)`.
 * All methods: Should use `Comparable[] pq;` as argument, not `Comparable[] a;`.
 * `less` returns a `boolean` not `void`.
 * `less` is called with 3 arguments: `less(pq, i, j);`, not just `less(i, j);`.
+* `less` and `exch`, don't forget to use `i-1` and `j-1`.
 
 # Symbol Table
 
