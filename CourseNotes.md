@@ -1190,3 +1190,7 @@ Efficient solution: Use the Union-Find data structure:
 * Maintain a set for each connected component in T.
 * If v and w are in the same set, then adding the edge would create a cycle.
 * To add v-w to T, merge sets containing v and w.
+
+**Kruskal's algorithm: running time**
+
+Proposition: computes MST in time proportional to ElogE. `delMin` operation.

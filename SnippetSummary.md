@@ -354,19 +354,19 @@ public static void sort(Comparable[] a) {
 
 ## Binary Search Tree
 
-* Class definition and members: 5
+* Class definition and members: 6
 
 * public methods:
 
 | `contains` | `get` | `put` | `isEmpty` | `size` |
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 5 | 5 | 5 | 5 | 5 |
+| 6 | 6 | 6 | 6 | 6 |
 
 * public ordered operation methods:
 
 | `min` | `max` | `floor` | `ceiling` | `select` | `rank` | `keys` | `size` | `height` | `levelOrder` |
 | :---: | :---: | :-----: | :-------: | :------: | :----: | :----: | :----: | :------: | :----------: |
-| 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 |
+| 6 | 6 | 6 | 6 | 5 | 5 | 5 | 5 | 5 | 5 |
 
 * public delete operation methods:
 
