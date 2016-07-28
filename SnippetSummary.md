@@ -366,7 +366,7 @@ public static void sort(Comparable[] a) {
 
 | `min` | `max` | `floor` | `ceiling` | `select` | `rank` | `keys` | `size` | `height` | `levelOrder` |
 | :---: | :---: | :-----: | :-------: | :------: | :----: | :----: | :----: | :------: | :----------: |
-| 6 | 6 | 6 | 6 | 5 | 5 | 5 | 5 | 5 | 5 |
+| 6 | 6 | 6 | 6 | 6 | 6 | 6 | 6 | 6 | 6 |
 
 * public delete operation methods:
 
@@ -400,8 +400,10 @@ public static void sort(Comparable[] a) {
 		* In `ceiling` and `floor`, do `cmp == 0` first.
 		* In `select`, when not clear about the math, use a tree with one node and 3
 			nodes as examples.
+		* In `select` private function, returns `Node`, not `Key`.
 		* In `rank`, go to left when `cmp < 0`, Not when `cmp > 0`.
 		* In `keys`, don't forget to initialize the `Queue<Key> queue = new Queue<Key>();`
+		* In `keys`, the argument is called `lo` and `hi`, not `min` and `max`.
 		* In `size(Key lo, Key hi)`, I need to do sanity check `if (lo.compareTo(hi) > 0)`
 		* In `levelOrder`, in the `while` loop, I need to test `if (x == null)`.
 * `delete` operations:
