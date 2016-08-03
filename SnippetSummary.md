@@ -372,7 +372,7 @@ public static void sort(Comparable[] a) {
 
 | `deleteMin` | `deleteMax` | `delete` |
 | :---------: | :---------: | :------: |
-| 5 | 5 | 5 |
+| 6 | 6 | 6 |
 
 * private sanity check helper functions
 
@@ -410,10 +410,13 @@ public static void sort(Comparable[] a) {
 		* I sometime forget to do `root = delete(root, key);` and just do `delete(root, key);`
 		* `deleteMin(Node x)` I do `x = deleteMin(x.left)` should be `x.left = deleteMin(x.left)`
 		* `deleteMin(Node x)` I do `if (x.left == null) return x;` should be `if (x.left == null) return x.right;`
+		* `deleteMin(Node x)` only has `if` no `else`.
 		* Forget to `assert check();` in `deleteMin` and `deleteMax`;
 		* Forget to update `x.N` in the 3 delete functions.
 		* In the recursive `delete` call, it takes two arguments: `delete(x.left, key);`.
 		* `delete()` don't throw.
+		* `delete()`, update the `x.N` and return node needs to be out side the if-else
+		 	loop.
 
 ## Red-Black Tree
 
