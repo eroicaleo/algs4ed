@@ -378,7 +378,7 @@ public static void sort(Comparable[] a) {
 
 | `check` | `isBST` | `isRankConsistent` | `isSizeConsistent` |
 | :-----: | :-----: | :----------------: | :----------------: |
-| 5 | 5 | 5 | 5 |
+| 6 | 6 | 6 | 6 |
 
 **Easy to make mistakes:**
 
