@@ -450,7 +450,7 @@ public static void sort(Comparable[] a) {
 
 | `Graph(int V)`  | `Graph(In in)`  | `Graph(Graph G)` |
 | :-------------: | :-------------: | :--------------: |
-| 4               | 4               | 4                |
+| 5               | 5               | 5                |
 
 * methods
 
@@ -473,6 +473,8 @@ public static void sort(Comparable[] a) {
 			`V` is `final`.
 		* In other two constructors, when we call the first constructor, we need to
 			use `this(G.V());`, not `MyGraph(G.V());`
+		* `Graph(Graph G)`: we don't use `addEdge(v, w)`, instead, we use `adj[v].add(w);`.
+			This is because it will updates the `E` twice.
 
 ## Depth First Search
 
