@@ -454,9 +454,9 @@ public static void sort(Comparable[] a) {
 
 * methods
 
-| `V()` | `E()` | `validVertex()` | `addEdge()` | `adj(int v)` | `degree(int v)` | `toString()` |
+| `V()` | `E()` | `validateVertex()` | `addEdge()` | `adj(int v)` | `degree(int v)` | `toString()` |
 | :---: | :---: | :-------------: | :---------: | :---------: | :---------: | :---------: |
-| 4 | 4 | 4 | 4 | 4 | 4 | 4 |
+| 5 | 5 | 5 | 5 | 5 | 5 | 5 |
 
 **Easy to make mistakes:**
 
@@ -475,6 +475,9 @@ public static void sort(Comparable[] a) {
 			use `this(G.V());`, not `MyGraph(G.V());`
 		* `Graph(Graph G)`: we don't use `addEdge(v, w)`, instead, we use `adj[v].add(w);`.
 			This is because it will updates the `E` twice.
+* methods:
+		* `validateVertex`: it's a `private` method and returns nothing but only throws.
+		* `addEdge`, `adj` and `degree` all need to use `validateVertex`
 
 ## Depth First Search
 
