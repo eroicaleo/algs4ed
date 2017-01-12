@@ -450,13 +450,13 @@ public static void sort(Comparable[] a) {
 
 | `Graph(int V)`  | `Graph(In in)`  | `Graph(Graph G)` |
 | :-------------: | :-------------: | :--------------: |
-| 5               | 5               | 5                |
+| 6               | 6               | 6                |
 
 * methods
 
 | `V()` | `E()` | `validateVertex()` | `addEdge()` | `adj(int v)` | `degree(int v)` | `toString()` |
 | :---: | :---: | :-------------: | :---------: | :---------: | :---------: | :---------: |
-| 5 | 5 | 5 | 5 | 5 | 5 | 5 |
+| 6 | 6 | 6 | 6 | 6 | 6 | 6 |
 
 **Easy to make mistakes:**
 

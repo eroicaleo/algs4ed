@@ -1,13 +1,10 @@
 import edu.princeton.cs.algs4.*;
 
-import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-/**
- * Created by yangge on 4/20/2016.
- */
 public class MyGraph {
 
-    private final String NEWLINE = System.getProperty("line.separator");
+    private static final String NEWLINE = System.getProperty("line.separator");
     private final int V;
     private int E;
     private Bag<Integer>[] adj;
@@ -23,13 +20,25 @@ public class MyGraph {
     }
 
     public MyGraph(In in) {
-        this(in.readInt());
-        int E = in.readInt();
-        if (E < 0) throw new IllegalArgumentException("Number of edges must be nonnegative");
-        for (int i = 0; i < E; i++) {
-            int v = in.readInt();
-            int w = in.readInt();
-            addEdge(v, w);
+        try {
+            this.V = in.readInt();
+            if (V < 0) throw new IllegalArgumentException("Number of vertices must be nonnegative");
+            this.adj = (Bag<Integer>[]) new Bag[V];
+            for (int v = 0; v < V; v++) {
+                adj[v] = (Bag<Integer>) new Bag<Integer>();
+            }
+            int E = in.readInt();
+            if (E < 0) throw new IllegalArgumentException("Number of edges must be nonnegative");
+            for (int e = 0; e < E; e++) {
+                int v = in.readInt();
+                int w = in.readInt();
+                validateVertex(v);
+                validateVertex(w);
+                addEdge(v, w);
+            }
+        }
+        catch (NoSuchElementException e) {
+            throw new IllegalArgumentException("", e);
         }
     }
 
@@ -56,7 +65,8 @@ public class MyGraph {
     }
 
     private void validateVertex(int v) {
-        if (v < 0 || v >= V) throw new IndexOutOfBoundsException("vertex " + v + " is not between 0 and " + (V-1));
+        if (v < 0 || v >= V)
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
     }
 
     public void addEdge(int v, int w) {
@@ -91,9 +101,8 @@ public class MyGraph {
     }
 
     public static void main(String[] args) {
-        In in = new In("tinyCG.txt");
+        In in = new In("tinyG.txt");
         MyGraph G = new MyGraph(in);
         StdOut.println(G);
     }
-
 }
