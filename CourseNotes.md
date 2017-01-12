@@ -37,16 +37,18 @@ Notes on Algorithms
 2. In your IntelliJ project, on the top right corner, click the "Project Structure"
 	icon, or simply use hotkey `Ctrl+Alt+Shift+S`.
 3. In the pop up "Project Structure" menu, select Project Settings | Modules
-4. In right part, click the green "+" sign or use hotkey `Alt+Insert`.
+4. In right part, click the `Dependencies` tab then click the "+" sign or use
+   hotkey `Alt+Insert` in Windows and `Cmd+N` key in Mac.
 5. Then select "JARs or directories".
 6. Navigate to `C:\Users\username\algs4`, which is the default install location.
 7. Double click the "algs4.jar".
 8. Verify the `algs4.jar` is in the Project | External Libraries.
 9. Now you can simply test the following snippet.
-	```java
-	import edu.princeton.cs.algs4.StdOut; // IntelliJ automatically adds for you
-	StdOut.println("Hello world!")
-	```
+
+```java
+import edu.princeton.cs.algs4.StdOut; // IntelliJ automatically adds for you
+StdOut.println("Hello world!")
+```
 
 # Lecture 6 Merge Sort (Book 2.2)
 
