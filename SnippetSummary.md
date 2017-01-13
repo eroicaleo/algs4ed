@@ -488,7 +488,7 @@ public static void sort(Comparable[] a) {
 
 | `dfs()` | `hasPathTo()` | `pathTo()` |
 | :---: | :---: | :-------------: |
-| 3 | 3 | 3 |
+| 4 | 4 | 4 |
 
 **Easy to make mistakes:**
 
@@ -496,6 +496,7 @@ public static void sort(Comparable[] a) {
 * `pathTo`: use `x` in the `for` loop.
 * `dfs`: the first thing is to mark the node `v`.
 * `dfs`: set the `edgeTo` before recursively calling `dfs()`.
+* `dfs`: In recursive call, it's `dfs(G, w)`, not `dfs(G, v)`.
 
 ## Breadth First Search
 
