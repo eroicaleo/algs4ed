@@ -14,7 +14,7 @@
     * Can use `*` (any pattern) and space (end of pattern) in the search pattern.
     * Can use CamelWord to search, just need to type some prefix. For example,
       I want to search `MergeSort`, I just need to type `MeSo`.
-* `Ctrl+Q`: quick documentation.
+* `F1`: quick documentation.
 * `Ctrl+Shift+I`: quick definition for a variable/method/variable.
     * Can also be used in code completion drop down list.
     * Can also preview a picture.

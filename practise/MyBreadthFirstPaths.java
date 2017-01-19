@@ -1,3 +1,5 @@
+package com.company;
+
 import edu.princeton.cs.algs4.*;
 
 /**
@@ -13,8 +15,8 @@ public class MyBreadthFirstPaths {
         marked = new boolean[G.V()];
         edgeTo = new int[G.V()];
         distTo = new int[G.V()];
+        validateVertex(s);
         bfs(G, s);
-
         assert check(G, s);
     }
 
@@ -39,18 +41,21 @@ public class MyBreadthFirstPaths {
     }
 
     public boolean hasPathTo(int v) {
+        validateVertex(v);
         return marked[v];
     }
 
     public int distTo(int v) {
+        validateVertex(v);
         return distTo[v];
     }
 
     public Iterable<Integer> pathTo(int v) {
+        validateVertex(v);
         if (!hasPathTo(v)) return null;
         Stack<Integer> path = new Stack<Integer>();
         int x;
-        for (x = v; distTo(x) != 0; x = edgeTo[x])
+        for (x = v; distTo[x] != 0; x = edgeTo[x])
             path.push(x);
         path.push(x);
         return path;
@@ -70,7 +75,7 @@ public class MyBreadthFirstPaths {
                     System.out.println("hasPathTo(" + w + ") = " + hasPathTo(w));
                     return false;
                 }
-                if (hasPathTo(v) && (distTo(w) > distTo(v) + 1)) {
+                if (hasPathTo(v) && (distTo[w] > distTo[v] + 1)) {
                     System.out.println("edge " + v + "-" + w);
                     System.out.println("distTo(" + v + ") = " + distTo(v));
                     System.out.println("distTo(" + w + ") = " + distTo(w));
@@ -82,7 +87,7 @@ public class MyBreadthFirstPaths {
         for (int w = 0; w < G.V(); w++) {
             if (!hasPathTo(w) || w == s) continue;
             int v = edgeTo[w];
-            if (distTo(w) != distTo(v) + 1) {
+            if (distTo[w] != distTo[v] + 1) {
                 System.out.println("shortest path edge " + v + "-" + w);
                 System.out.println("distTo(" + v + ") = " + distTo(v));
                 System.out.println("distTo(" + w + ") = " + distTo(w));
@@ -90,6 +95,12 @@ public class MyBreadthFirstPaths {
             }
         }
         return true;
+    }
+
+    private void validateVertex(int v) {
+        int V = marked.length;
+        if (v < 0 || v >= V)
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
     }
 
     public static void main(String[] args) {
@@ -102,18 +113,14 @@ public class MyBreadthFirstPaths {
                 StdOut.printf("%d to %d:  ", s, v);
                 for (int x : bfs.pathTo(v)) {
                     if (x == s) StdOut.print(x);
-                    else        StdOut.print("-" + x);
+                    else StdOut.print("-" + x);
                 }
                 StdOut.printf("\ndistance from %d to 0 is %d.", v, bfs.distTo(v));
                 StdOut.println();
-            }
-
-            else {
+            } else {
                 StdOut.printf("%d to %d:  not connected\n", s, v);
             }
 
         }
-
     }
-
 }
