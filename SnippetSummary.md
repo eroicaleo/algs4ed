@@ -530,13 +530,15 @@ public static void sort(Comparable[] a) {
 
 | `dfs()` | `id()` | `size()` | `count()` | `connected()` |
 | :-----: | :----: | :------: | :-------: | :---------: |
-| 2 | 2 | 2 | 2 | 2 |
+| 3 | 3 | 3 | 3 | 3 |
 
 **Easy to make mistakes:**
 
 * count increasing needs to be done in constructor `for` loop, not in the
  recursive call of `dfs()`. Otherwise after visiting each vertex, the `count`
  will be increased.
+* In the `for` loop, it needs to be inside `if (marked[v]) {}`, otherwise still
+	will be increased.
 
 ## Topological sort simple version
 

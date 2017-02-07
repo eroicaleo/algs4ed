@@ -1,10 +1,9 @@
-import edu.princeton.cs.algs4.Graph;
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.Queue;
-import edu.princeton.cs.algs4.StdOut;
+package com.company;
+
+import edu.princeton.cs.algs4.*;
 
 /**
- * Created by yangge on 4/29/2016.
+ * Created by yg943079 on 1/23/17.
  */
 public class MyCC {
     private boolean[] marked;
@@ -36,10 +35,12 @@ public class MyCC {
     }
 
     public int id(int v) {
+        validateVertex(v);
         return id[v];
     }
 
     public int size(int v) {
+        validateVertex(v);
         return size[id[v]];
     }
 
@@ -48,21 +49,29 @@ public class MyCC {
     }
 
     public boolean connected(int v, int w) {
-        return id[v] == id[w];
+        validateVertex(v);
+        validateVertex(w);
+        return id(v) == id(w);
+    }
+
+    private void validateVertex(int v) {
+        int V = marked.length;
+        if (v < 0 || v >= V)
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
     }
 
     public static void main(String[] args) {
-        In in = new In("testCC.txt");
+        In in = new In("tinyG.txt");
         Graph G = new Graph(in);
         MyCC cc = new MyCC(G);
 
         // number of connected components
-        int M = cc.count();
-        StdOut.println(M + " components");
+        int m = cc.count();
+        StdOut.println(m + " components");
 
         // compute list of vertices in each connected component
-        Queue<Integer>[] components = (Queue<Integer>[]) new Queue[M];
-        for (int i = 0; i < M; i++) {
+        Queue<Integer>[] components = (Queue<Integer>[]) new Queue[m];
+        for (int i = 0; i < m; i++) {
             components[i] = new Queue<Integer>();
         }
         for (int v = 0; v < G.V(); v++) {
@@ -70,17 +79,21 @@ public class MyCC {
         }
 
         // print results
-        for (int i = 0; i < M; i++) {
+        for (int i = 0; i < m; i++) {
             for (int v : components[i]) {
                 StdOut.print(v + " ");
             }
             StdOut.println();
         }
 
-        System.out.println("0 and 1 connected? " + cc.connected(0, 1));
-        System.out.println("0 and 2 connected? " + cc.connected(0, 2));
+        // test size
         for (int v = 0; v < G.V(); v++) {
-            System.out.println("The size of the component which " + v + " is in: " + cc.size(v));
+            StdOut.println(v + "'s component size: " + cc.size(v));
         }
+
+        // test connect
+        System.out.println("0 and 1 connected? " + cc.connected(0, 1));
+        System.out.println("0 and 7 connected? " + cc.connected(0, 7));
     }
+
 }
