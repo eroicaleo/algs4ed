@@ -5,20 +5,20 @@
 * `Double Shift`: Search anywhere.
 * `Alt+F7`: find all usage of a class, method and variable in the project.
 * just type: speed search in the any tree view.
+* `Cmd+Shift+A`: Find Action.
 * `Ctrl+Alt+F7`: bring forward the list of all usages of a class, method or
   variable across the whole project, and quickly jump to the selected usage.
-* `Cmd+Shift+A`: Find Action.
 
 ## Definition, Declaration and Documentation
+* `F1`: quick documentation.
+* `Cmd+G`: go to declaration. Can be used in code completion pop-up list.
 * `Alt+Shift+G`：open any classes. Can be used in code completion pop-up list.
     * Can use `*` (any pattern) and space (end of pattern) in the search pattern.
     * Can use CamelWord to search, just need to type some prefix. For example,
       I want to search `MergeSort`, I just need to type `MeSo`.
-* `F1`: quick documentation.
 * `Ctrl+Shift+I`: quick definition for a variable/method/variable.
     * Can also be used in code completion drop down list.
     * Can also preview a picture.
-* `Alt+Period`, `Ctrl+Alt+G`: go to declaration. Can be used in code completion pop-up list.
 * `Shift+F1`: Open definition in browser.
 * `Alt+Q`: Context info, see the declaration of the current method without the
   need to scroll to it.
@@ -26,8 +26,8 @@
 ## Compile and Debug
 * `Cmd+F9`: Make the project.
 * `Cmd+Shift+F9`: Compile current file.
-* `Shift+F9`: Debug the code.
-* `Shift+10`: run the code.
+* `Ctrl+Shift+D`: Debug the code.
+* `Ctrl+Shift+R`: run the code.
 * right-click breakpoints: bring up more details.
 * `Ctrl+Shift+F10`: run current code.
 * `Alt+F8` in debug mode: evaluate the value of highlighted expression.
@@ -36,10 +36,10 @@
 * `Alt+Shift+F10`: access Run/Debug drop down.
 
 ## Code Completion
+* `Shift+F6`: Rename classes, methods and variables across the whole project.
 * `Alt+Slash`: auto completion.
   * Can suggest variable names, File | Setting | Code Style
   * Can be used in search text in current file
-* `Shift+F6`: Rename classes, methods and variables across the whole project.
 * `Ctrl+Shift+Space`: SmartType code completion, helps to find methods and
   variables that are suitable in the current context, by analyzing the expected
   type of the whole expression.
@@ -71,8 +71,8 @@
 
 ## Navigation
 
+* `Cmd+F12`: Navigate|File Structure, navigate in the currently edited file.
 * `Alt+Home`: Navigation bar.
-* `Ctrl+F12`: Navigate|File Structure, navigate in the currently edited file.
 * `Alt+F1`: To quickly select the currently edited element (class, file, method
   or field) in any view.
 * `Ctrl+Shift+Backspace`: brings you back to last edited position.

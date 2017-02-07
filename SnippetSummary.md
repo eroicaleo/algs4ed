@@ -492,6 +492,7 @@ public static void sort(Comparable[] a) {
 
 **Easy to make mistakes:**
 
+* remember the check `if (marked[v])` is always in the recursive `dfs(G, v)`.
 * `hasPathTo`: no need to return `marked[v] == true;`, just return `marked[v];`
 * `pathTo`: use `x` in the `for` loop.
 * `dfs`: the first thing is to mark the node `v`.
@@ -507,7 +508,7 @@ public static void sort(Comparable[] a) {
 
 | `bfs()` | `hasPathTo()` | `distTo()` | `pathTo()` | `check` |
 | :---: | :---: | :-------------: | :---: | :---: |
-| 3 | 3 | 3 | 3 | 3 |
+| 4 | 4 | 4 | 4 | 4 |
 
 **Easy to make mistakes:**
 
