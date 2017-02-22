@@ -37,9 +37,7 @@
 
 ## Code Completion
 * `Shift+F6`: Rename classes, methods and variables across the whole project.
-* `Alt+Slash`: auto completion.
-  * Can suggest variable names, File | Setting | Code Style
-  * Can be used in search text in current file
+* `Ctrl+O`: Override methods of base class.
 * `Ctrl+Shift+Space`: SmartType code completion, helps to find methods and
   variables that are suitable in the current context, by analyzing the expected
   type of the whole expression.
@@ -47,6 +45,10 @@
     * In can work with type cast. You just need to type `()` and type this.
     * To accept current highlighted one, you can use `,`, `.`, `;`, and ` `. The
       selected name will be followed by these characters.
+* Confirmed in Mac
+* `Alt+Slash`: auto completion.
+  * Can suggest variable names, File | Setting | Code Style
+  * Can be used in search text in current file
 * `Ctrl+I`: Implement methods of the interface that the current class implements
   or of the abstract base class.
 * `Alt+Insert`: generate getter and setter methods for any fields of your class.

@@ -540,6 +540,25 @@ public static void sort(Comparable[] a) {
 * In the `for` loop, it needs to be inside `if (marked[v]) {}`, otherwise still
 	will be increased.
 
+## Digraph
+
+* members and constructors
+
+| `MyDigraph(int V)`  | `MyDigraph(In in)`  | `MyDigraph(MyDigraph G)` |
+| :-----------------: | :-----------------: | :------------------: |
+| 0                   | 0                   | 0                    |
+
+* methods
+
+| `V()` | `E()` | `validateVertex()` | `addEdge()` | `adj(int v)` | `degree(int v)` | `toString()` |
+| :---: | :---: | :-------------: | :---------: | :---------: | :---------: | :---------: |
+| 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+
+**Easy to make mistakes:**
+
+* The reason the 2nd constructor needs to use `try` statement is because the input
+	file format can be wrong.
+
 ## Topological sort simple version
 
 * members and constructors
