@@ -28,6 +28,7 @@
 * `Cmd+Shift+F9`: Compile current file.
 * `Ctrl+Shift+D`: Debug the code.
 * `Ctrl+Shift+R`: run the code.
+* Confirmed in Mac
 * right-click breakpoints: bring up more details.
 * `Ctrl+Shift+F10`: run current code.
 * `Alt+F8` in debug mode: evaluate the value of highlighted expression.
@@ -97,6 +98,8 @@
 * `Ctrl+BackQuote`: quickly change color scheme view mode and etc.
 
 ## Edit
+* `Ctrl+Shift+J`: Join two lines.
+* Confirmed in Mac
 * `Ctrl+Alt+W`: extend selection, from word to line to paragraph.
 * `Ctrl+Alt+/`: `/* */` comment code
 * `Alt+;`: `//` comment code
@@ -111,7 +114,6 @@
 * `F2`, `Shift+F2`: jump between highlighted syntax errors.
 * `Ctrl+Alt+Up`, `Ctrl+Alt+Down`: jump between compiler error or search operation
   results.
-* `Ctrl+Shift+J`: Join two lines.
 * `Ctrl+Shift+Down`, `Ctrl+Shift+Up`: move a block of codes up and down.
 * `Cmd+Del`: delete one line.
 
