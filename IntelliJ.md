@@ -46,13 +46,13 @@
     * In can work with type cast. You just need to type `()` and type this.
     * To accept current highlighted one, you can use `,`, `.`, `;`, and ` `. The
       selected name will be followed by these characters.
+* `Cmd+N`: generate getter and setter methods for any fields of your class.
 * Confirmed in Mac
 * `Alt+Slash`: auto completion.
   * Can suggest variable names, File | Setting | Code Style
   * Can be used in search text in current file
 * `Ctrl+I`: Implement methods of the interface that the current class implements
   or of the abstract base class.
-* `Alt+Insert`: generate getter and setter methods for any fields of your class.
 * `Ctrl+Alt+T`: Surround code by `try/catch`, `if/else`, and `for/while` etc.
 * `Ctrl+Alt+V`: Extract variable refactoring. Here is an example:
   ```java
@@ -75,9 +75,10 @@
 ## Navigation
 
 * `Cmd+F12`: Navigate|File Structure, navigate in the currently edited file.
-* `Alt+Home`: Navigation bar.
 * `Alt+F1`: To quickly select the currently edited element (class, file, method
   or field) in any view.
+* Confirmed in Mac
+* `Alt+Home`: Navigation bar.
 * `Ctrl+Shift+Backspace`: brings you back to last edited position.
   Navigation | Last Edit Location
 * `Alt+Up`, `Alt+Down`: Move between methods.
@@ -89,16 +90,18 @@
 
 * `Cmd+0`: show messages.
 * `Cmd+1`: project tree.
-* `Cmd+7`：file Structure, like `Ctrl+F12`, but in the left pane.
-* `Shift+left-click` or `mid-click` or `Ctrl+F4`: close tabs in the editor and the tool
+* `Cmd+7`：file Structure, like `Cmd+F12`, but in the left pane.
+* `Shift+left-click` or `mid-click` or `Cmd+w`: close tabs in the editor and the tool
   windows of IntelliJ.
 * `Escape, Escape`: focus on editor.
 * `Shift+Escapse`：focus on editor and close current tool window.
 * `F12`: move focus from editor to last focused tool window.
+* Confirmed in Mac
 * `Ctrl+BackQuote`: quickly change color scheme view mode and etc.
 
 ## Edit
 * `Ctrl+Shift+J`: Join two lines.
+* `F2`, `Shift+F2`: jump between highlighted syntax errors.
 * Confirmed in Mac
 * `Ctrl+Alt+W`: extend selection, from word to line to paragraph.
 * `Ctrl+Alt+/`: `/* */` comment code
@@ -111,7 +114,6 @@
       press the combination, and select the desired interface from the list.
     * To view all exit points of a method, place the caret at one of them, e.g.
       the return statement and press the combination.
-* `F2`, `Shift+F2`: jump between highlighted syntax errors.
 * `Ctrl+Alt+Up`, `Ctrl+Alt+Down`: jump between compiler error or search operation
   results.
 * `Ctrl+Shift+Down`, `Ctrl+Shift+Up`: move a block of codes up and down.

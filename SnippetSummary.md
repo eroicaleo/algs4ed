@@ -544,20 +544,43 @@ public static void sort(Comparable[] a) {
 
 * members and constructors
 
+* `NEWLINE`, `V`, `E`, `adj`, `indegree`
+
 | `MyDigraph(int V)`  | `MyDigraph(In in)`  | `MyDigraph(MyDigraph G)` |
 | :-----------------: | :-----------------: | :------------------: |
-| 0                   | 0                   | 0                    |
+| 1                   | 1                   | 1                    |
 
 * methods
 
-| `V()` | `E()` | `validateVertex()` | `addEdge()` | `adj(int v)` | `degree(int v)` | `toString()` |
-| :---: | :---: | :-------------: | :---------: | :---------: | :---------: | :---------: |
-| 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| `V()` | `E()` | `validateVertex()` | `addEdge()` | `adj(int v)` | `toString()` |
+| :---: | :---: | :-------------: | :---------: | :---------: | :---------: |
+| 1 | 1 | 1 | 1 | 1 | 1 |
+
+| `indegree` | `outdegree` | `reverse` |
+| :--------: | :---------: | :-------: |
+| 1 | 1 | 1 |
 
 **Easy to make mistakes:**
 
 * The reason the 2nd constructor needs to use `try` statement is because the input
 	file format can be wrong.
+
+## DirectedCycle
+
+* members and constructors
+
+* `marked`, `edgeTo`, `onStack`, `cycle`
+
+* methods
+
+| `dfs()` | `hasCycle()` | `cycle()`| `check()` |
+| :-----: | :----------: | :------: | :-------: |
+| 1       | 1            | 1        | 1         |
+
+**Easy to make mistakes:**
+
+* in `dfs()`, always set `edgeTo` array first before recursive call to `dfs()`
+* when generate cycle, the first and last vertex is `v`.
 
 ## Topological sort simple version
 
