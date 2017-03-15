@@ -619,3 +619,20 @@ public static void sort(Comparable[] a) {
 # Optional algorithm:
 
 * `DirectedCycle`
+
+# Tries
+
+## TrieST
+
+* members and constructors
+
+* methods
+
+| `get` | `put` | `size` | `contains` | `isEmpty` | `collect` | `keysWithPrefix` |
+| :---: | :---: | :----: | :--------: | :-------: | :-------: | :--------------: |
+|  1    |   1   | 1      | 1          | 1         | 1         | 1                |
+
+**Easy to make mistakes**
+
+* `keysWithPrefix`: start from internal node, not from root.
+* `collect`: `for` loop needs to use `char`
