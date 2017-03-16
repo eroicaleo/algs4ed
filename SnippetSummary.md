@@ -239,7 +239,7 @@ public static Comparable select(Comparable[] a, int k) {
 
 ```
 
-## Quick Sort 3 Way, practiced: 9
+## Quick Sort 3 Way, practiced: 10
 
 **Easy to make mistakes:**
 * I will forget the `if (hi <= lo) return;` in `sort`.
