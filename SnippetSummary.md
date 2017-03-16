@@ -35,7 +35,7 @@
 
 # Merge Sort
 
-## Regular Merge Sort, practiced: 10
+## Regular Merge Sort, practiced: 11
 * `merge`, `sort`, `sort`
 
 ```java
@@ -164,7 +164,7 @@ public static void sort(Comparable[] a) {
 
 # Quick Sort
 
-## Regular Quick Sort + Quick Select, practiced: 9
+## Regular Quick Sort + Quick Select, practiced: 10
 
 * `partition`, `sort`, `select`
 

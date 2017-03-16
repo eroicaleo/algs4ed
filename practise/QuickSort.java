@@ -1,15 +1,17 @@
+package com.company;
+
 import edu.princeton.cs.algs4.StdRandom;
 
 /**
- * Created by yangge on 2/10/2016.
+ * Created by yg943079 on 3/15/17.
  */
 public class QuickSort {
-
-    private QuickSort() { }
+    private QuickSort() {}
 
     private static int partition(Comparable[] a, int lo, int hi) {
         int i = lo, j = hi + 1;
         Comparable v = a[lo];
+
         while (true) {
             while (less(a[++i], v))
                 if (i == hi) break;
@@ -43,7 +45,7 @@ public class QuickSort {
     public static Comparable select(Comparable[] a, int k) {
         if (k < 0 || k >= a.length) throw new IndexOutOfBoundsException("Selected element out of bounds");
         StdRandom.shuffle(a);
-        int lo = 0, hi = a.length - 1;
+        int lo = 0, hi = a.length-1;
         while (hi > lo) {
             int i = partition(a, lo, hi);
             if      (i > k) hi = i - 1;
@@ -64,9 +66,9 @@ public class QuickSort {
     }
 
     private static boolean isSorted(Comparable[] a, int lo, int hi) {
-        for (int i = lo; i < hi; i++) {
-            if (!less(a[i], a[i+1])) return false;
-        }
+        for (int i = lo; i < hi; i++)
+            if (less(a[i+1], a[i]))
+                return false;
         return true;
     }
 
