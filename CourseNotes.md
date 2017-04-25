@@ -35,7 +35,7 @@ Notes on Algorithms
 1. Download and install the binaries and .jar library using official installer.
 	Can be found in official booksite [here](http://algs4.cs.princeton.edu/windows/)
 2. In your IntelliJ project, on the top right corner, click the "Project Structure"
-	icon, or simply use hotkey `Ctrl+Alt+Shift+S`.
+	icon, or simply use hotkey `Ctrl+Alt+Shift+S` and `Cmd+;` in Mac.
 3. In the pop up "Project Structure" menu, select Project Settings | Modules
 4. In right part, click the `Dependencies` tab then click the "+" sign or use
    hotkey `Alt+Insert` in Windows and `Cmd+N` key in Mac.
@@ -1107,6 +1107,8 @@ strong connected component: how to compute? constant-time query.
 * Edge weights are distinct.
 * Graph is connected.
 
+find MST of a connected edge-weighted graph with arbitrary but distinct weights.
+
 *Consequence:* MST is unique and exists.
 
 **Cut property**
@@ -1125,7 +1127,9 @@ Pf: Contradiction.
 
 **Greedy MST algorithm: correctness proof**
 
-Proposition: The greedy algorithm computes the MST.
+Proposition: The greedy algorithm computes the MST. starting with all edges
+colored gray, find a cut with no black edges, color its minimum-weight edge
+black, and continue until V-1 edges have been colored black.
 
 Pf:
 
@@ -1196,3 +1200,28 @@ Efficient solution: Use the Union-Find data structure:
 **Kruskal's algorithm: running time**
 
 Proposition: computes MST in time proportional to ElogE. `delMin` operation.
+
+# Lecture Tries (Book 5.2)
+
+Tries have following performance characteristics: (Remarkable)
+
+* Search hits with time proportional to the length of the search key
+* Search misses involves examining only a few characters.
+
+| `public class` | `StringST(Value)` | notes |
+| -------------: | :---------------- |
+| Item One       | Item Two       |
+
+## Tries
+
+### Basic properties of Tries
+
+* Tries are composed with nodes and links that are either null or pointing to other
+nodes.
+* Each node is pointed by one node (parent), and has R links (Alphabet size).
+* Each node is labeled with char value corresponding to the link that points to
+it.
+* Each node has a corresponding value, maybe null or the value associated with the
+string.
+* **Very important**, nodes with null value exist to facilitate the search and
+do not corresponding to any key.
