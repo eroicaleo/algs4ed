@@ -8,8 +8,8 @@ public class MyEdge implements Comparable<MyEdge> {
     private final double weight;
 
     public MyEdge(int v, int w, double weight) {
-        if (v < 0) throw new IllegalArgumentException("Vertex number must be a nonnegative integer");
-        if (w < 0) throw new IllegalArgumentException("Vertex number must be a nonnegative integer");
+        if (v < 0) throw new IllegalArgumentException("vertex index must be a nonnegative integer");
+        if (w < 0) throw new IllegalArgumentException("vertex index must be a nonnegative integer");
         if (Double.isNaN(weight)) throw new IllegalArgumentException("Weight is NaN");
         this.v = v;
         this.w = w;
@@ -32,9 +32,7 @@ public class MyEdge implements Comparable<MyEdge> {
 
     @Override
     public int compareTo(MyEdge that) {
-        if      (this.weight() < that.weight()) return -1;
-        else if (this.weight() > that.weight()) return +1;
-        else                                    return  0;
+        return Double.compare(this.weight, that.weight);
     }
 
     public String toString() {

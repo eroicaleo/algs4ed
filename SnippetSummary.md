@@ -608,7 +608,7 @@ public static void sort(Comparable[] a) {
 
 | `weight()` | `either()` | `other()` | `compareTo()` | `toString()` |
 | :-----: | :----: | :------: | :-------: | :---------: |
-| 1 | 1 | 1 | 1 | 1 |
+| 2 | 2 | 2 | 2 | 2 |
 
 ## Edge-weighted graph API (skip, similar to `Graph` API)
 
