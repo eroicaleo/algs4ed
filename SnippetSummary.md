@@ -279,26 +279,26 @@ public static void sort(Comparable[] a) {
 
 | `MaxPQ()` | `MaxPQ(int)` | `MaxPQ(Comparator<key>)` | `MaxPQ(int, Comparator<key>)` | `MaxPQ(Key[])` |
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 8 | 8 | 8 | 8 | 8 |
+| 9 | 9 | 9 | 9 | 9 |
 
 
 * public method: `delMax`, `insert`, `isEmpty`, `isMaxHeap`, `max`, `size`
 
 | `delMax` | `insert` | `isEmpty` | `isMaxHeap` | `max` | `size`
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 8 | 8 | 8 | 8 | 8 | 8 |
+| 9 | 9 | 9 | 9 | 9 | 9 |
 
 * private helper functions: `resize`, `sink`, `swim`
 
 | `resize` | `sink` | `swim` |
 | :-------------: | :-------------: | :-------------: |
-| 8 | 8 | 8 |
+| 9 | 9 | 9 |
 
 * Iterators: `iterator`, `HeapIterator`
 
 | `iterator` | `HeapIterator` |
 | :------------- | :------------- |
-| 8 | 8 |
+| 9 | 9 |
 
 **Easy to make mistakes:**
 * Class declaration and members:
@@ -338,7 +338,7 @@ public static void sort(Comparable[] a) {
 
 | `sort` | `sink` | `exch` | `less` |
 | :----: | :----: | :----: | :----: |
-| 5 | 5 | 5 | 5 |
+| 6 | 6 | 6 | 6 |
 
 **Easy to make mistakes:**
 
