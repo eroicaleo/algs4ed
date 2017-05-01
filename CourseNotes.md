@@ -1176,6 +1176,35 @@ Pf:
 | `Iterable<Edge>` | `edges()` | edges in MST |
 | `double` | `weight()` | weight in MST |
 
+## Prim's algorithm
+
+start with any vertex as a single-vertex tree; then add V 1 edges to it, always
+taking next (coloring black) the minimum-weight edge that connects a vertex on
+the tree to a vertex not yet on the tree (a crossing edge for the cut defined by
+tree vertices).
+
+Correctness: immediately follow greedy MST algorithm.
+
+* Data structure needed
+	* Vertices on the tree: `marked[v]`
+	* Edges in MST: `queue<Edge>` or `edgeTo[v]`
+	* Crossing edges: `MinPQ<Edge>`
+
+* Implementation
+	* Build the tree in constructor
+	* Use `visit`/`scan` method to mark `v` visited and add all edges e incident
+	  to v onto pq if the other endpoint has not yet been scanned. Non-recursive,
+	  and use `while` is enough.
+	 * `check` function for the following steps, rely heavily on `UF`.
+	 	* weight: weight of mst is the sum of all edges in mst.
+		* is acyclic: Use Union-Find data structure to find if `v` and `w` is
+		  connected, if yes, then `return false;`
+		* is spanning forest: Use the Union-Find data structure built in step 2
+		  to check edge of `mst`, if not connected, then `return false;`
+		* is min spanning forest: Still use Union-Find data structure, build 2
+		  cut from `mst`, use Union-Find by removing one edge `e`. Check the weight
+		  of every edge `f` to see if the `f.weight() < e.weight()`.
+
 ## Kruskal's algorithm
 
 Consider edges in ascending order of weight,
