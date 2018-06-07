@@ -50,6 +50,50 @@ import edu.princeton.cs.algs4.StdOut; // IntelliJ automatically adds for you
 StdOut.println("Hello world!")
 ```
 
+# Lecture 1 Union Find (Book 1.5)
+
+## Dynamic connectivity
+
+* Steps to develop a usable algorithm
+    * Model the problem
+		* Find an algorithm to solve it
+		* Fast enough? Fits in memory?
+		* If not, figure out why?
+		* Find a way to address the problem.
+		* Iterate until satisfied.
+* Implementing
+		* Find query
+		* Union command
+
+## Quick Find
+
+* Cost: initialize, N, union, N, find, 1.
+* Union is too expensive.
+
+## Quick Union
+
+* Cost: initialize, N, union, N, find, N.
+* Quick Find defects:
+		* Trees are flat, but expensive the keep them flat.
+* Quick Union defects:
+		* Trees can get tall
+		* Find too expensive.
+
+## Quick Union Improvements
+
+* Weighting.
+		* Keep tracking of the size of each tree
+		* link the small tree to the large tree.
+* Proposition: Depth of any node x is at most lgN .
+* Cost: initialize, N, union, lg N, find, lg N.
+* With path compression, make every node on the path pointing to the root.
+		* Two path implementation
+		* Simple one-pass variant: every other node in path point to it's grandparent.
+
+## Application
+
+* Percolation
+
 # Lecture 6 Merge Sort (Book 2.2)
 
 ## 6.1 Merge sort

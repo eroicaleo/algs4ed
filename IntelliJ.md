@@ -40,7 +40,7 @@
 ## Code Completion
 * `Shift+F6`: Rename classes, methods and variables across the whole project.
 * `Ctrl+O`: Override methods of base class.
-* `Ctrl+Shift+Space`: SmartType code completion, helps to find methods and
+* `Ctrl+Shift+Space (w&M)`: SmartType code completion, helps to find methods and
   variables that are suitable in the current context, by analyzing the expected
   type of the whole expression.
     * It can work with `new`. You just need to type `new` and type this.
@@ -55,7 +55,8 @@
   * Can be used in search text in current file
 * `Ctrl+I`: Implement methods of the interface that the current class implements
   or of the abstract base class.
-* `Ctrl+Alt+T`: Surround code by `try/catch`, `if/else`, and `for/while` etc.
+* `Ctrl+Alt+T(win)`, `Cmd+Alt+T(mac)`:
+  Surround code by `try/catch`, `if/else`, and `for/while` etc.
 * `Ctrl+Alt+V`: Extract variable refactoring. Here is an example:
   ```java
   myEditorPane.setBorder(BoarderFactory.createEmptyBorder(5,5,5,5));
@@ -87,6 +88,7 @@
 * `Ctrl+H`: see the inheritance hierarchy for a selected class. Navigate | Type
   Hierarchy.
 * `Ctrl+Alt+Shift+N`: open any symbol, Navigate | Symbol
+* `Cmd+Alt+B`: navigate to the implementation of an abstract method.
 
 ## View and Windows
 
@@ -105,7 +107,7 @@
 * `Ctrl+Shift+J`: Join two lines.
 * `F2`, `Shift+F2`: jump between highlighted syntax errors.
 * Confirmed in Mac
-* `Ctrl+Alt+W`: extend selection, from word to line to paragraph.
+* `Ctrl+Alt+W (win), Alt+up (mac)`: extend selection, from word to line to paragraph.
 * `Ctrl+Alt+/`: `/* */` comment code
 * `Alt+;`: `//` comment code
 * `Alt+Home, Alt+Insert`: create new Java classes.
