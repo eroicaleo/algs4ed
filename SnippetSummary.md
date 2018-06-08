@@ -35,7 +35,7 @@
 
 # Merge Sort
 
-## Regular Merge Sort, practiced: 11
+## Regular Merge Sort, practiced: 12
 * `merge`, `sort`, `sort`
 
 ```java
@@ -82,7 +82,7 @@ private static void sort(Comparable[] a) {
 * One gotcha: we need allocate the aux at the top, not in the recursive
   programming.
 
-## Bottom Up Merge Sort, practiced: 10
+## Bottom Up Merge Sort, practiced: 11
 * `merge` (same as regular merge sort), `sort`
 
 ```java
@@ -102,7 +102,7 @@ public static void sort(Comparable[] a) {
 }
 ```
 
-## Merge Sort X, practiced: 10
+## Merge Sort X, practiced: 11
 * `merge`, `insertionSort`, `sort`
 
 **Easy to make mistakes:**
@@ -164,7 +164,7 @@ public static void sort(Comparable[] a) {
 
 # Quick Sort
 
-## Regular Quick Sort + Quick Select, practiced: 10
+## Regular Quick Sort + Quick Select, practiced: 12
 
 * `partition`, `sort`, `select`
 
@@ -175,6 +175,7 @@ public static void sort(Comparable[] a) {
 * In `partition`, I forget `return j`, and it should return `int`.
 * In `partition`, give `a[lo]` a name `v`, like `Comparable v = a[lo];`.
 * In `sort`, I do `if (hi >= lo) return;`, should be `if (hi <= lo) return;`
+* In `sort`, I do `sort(a, lo, j);`, should be `sort(a, lo, j-1);`
 * In `select`, I do `if (i < k) lo = i`, should be `if (i < k) lo = i + 1`.
   Otherwise, it can be infinite loop. For example, `lo = 0, hi = 2, a = {4, 8, 11}, k = 1`.
   Then `i = 0` all the time.
@@ -185,6 +186,7 @@ public static void sort(Comparable[] a) {
 * In `select`, the `Exception` name is `IndexOutOfBoundsException`.
 * In `select`, I do `lo = lo + 1;`, should be `lo = i + 1;`
 * In `select`, I do `if (i > k) lo = i + 1;` should be the other way.
+* In `select`, don't forget to shuffle.
 
 ```java
 private static int partition(Comparable[] a, int lo, int hi) {
@@ -239,7 +241,7 @@ public static Comparable select(Comparable[] a, int k) {
 
 ```
 
-## Quick Sort 3 Way, practiced: 10
+## Quick Sort 3 Way, practiced: 12
 
 **Easy to make mistakes:**
 * I will forget the `if (hi <= lo) return;` in `sort`.

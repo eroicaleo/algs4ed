@@ -57,7 +57,7 @@
   or of the abstract base class.
 * `Ctrl+Alt+T(win)`, `Cmd+Alt+T(mac)`:
   Surround code by `try/catch`, `if/else`, and `for/while` etc.
-* `Ctrl+Alt+V`: Extract variable refactoring. Here is an example:
+* `Ctrl+Alt+V(win)`, `Cmd+Alt+V(mac)`: Extract variable refactoring. Here is an example:
   ```java
   myEditorPane.setBorder(BoarderFactory.createEmptyBorder(5,5,5,5));
   // Highlight the code inside braket and Refractor to
@@ -108,7 +108,8 @@
 * `F2`, `Shift+F2`: jump between highlighted syntax errors.
 * Confirmed in Mac
 * `Ctrl+Alt+W (win), Alt+up (mac)`: extend selection, from word to line to paragraph.
-* `Ctrl+Alt+/`: `/* */` comment code
+* `Ctrl+Alt+/(win)`, `Cmd+Alt+/(mac)`: `/* */` comment code
+* `Ctrl+/(win)`, `Cmd+/(mac)`: `//` comment code
 * `Alt+;`: `//` comment code
 * `Alt+Home, Alt+Insert`: create new Java classes.
 * `Ctrl+Shift+F7`: quickly highlight the usage of some variables in the current

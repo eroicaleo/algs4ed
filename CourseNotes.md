@@ -94,6 +94,12 @@ StdOut.println("Hello world!")
 
 * Percolation
 
+# Lecture 3 Stacks and Queues
+
+## Stacks
+
+## Resizing Array
+
 # Lecture 6 Merge Sort (Book 2.2)
 
 ## 6.1 Merge sort

@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdRandom;
  */
 public class QuickSort3way {
 
-    private QuickSort3way() { }
+    private QuickSort3way() {}
 
     private static void sort(Comparable[] a, int lo, int hi) {
         if (hi <= lo) return;
