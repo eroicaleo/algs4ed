@@ -274,33 +274,33 @@ public static void sort(Comparable[] a) {
 
 # Priority Queues
 
-## `MaxPQ`, practiced: 7
+## `MaxPQ`, practiced: 10
 
 * class declaration and members: `pq`, `N`, `comparator`.
 * Constructors:
 
 | `MaxPQ()` | `MaxPQ(int)` | `MaxPQ(Comparator<key>)` | `MaxPQ(int, Comparator<key>)` | `MaxPQ(Key[])` |
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 9 | 9 | 9 | 9 | 9 |
+| 10 | 10 | 10 | 10 | 10 |
 
 
 * public method: `delMax`, `insert`, `isEmpty`, `isMaxHeap`, `max`, `size`
 
 | `delMax` | `insert` | `isEmpty` | `isMaxHeap` | `max` | `size`
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 9 | 9 | 9 | 9 | 9 | 9 |
+| 10 | 10 | 10 | 10 | 10 | 10 |
 
 * private helper functions: `resize`, `sink`, `swim`
 
 | `resize` | `sink` | `swim` |
 | :-------------: | :-------------: | :-------------: |
-| 9 | 9 | 9 |
+| 10 | 10 | 10 |
 
 * Iterators: `iterator`, `HeapIterator`
 
 | `iterator` | `HeapIterator` |
 | :------------- | :------------- |
-| 9 | 9 |
+| 10 | 10 |
 
 **Easy to make mistakes:**
 * Class declaration and members:
@@ -317,6 +317,7 @@ public static void sort(Comparable[] a) {
 * Private helper functions:
     * `resize`, `for (int i = 0; i < pq.length; i++)`, should be `i <= N`. Otherwise,
       throws `ArrayIndexOutOfBoundsException`.
+		* `resize`, should be `assert capacity > N;` I do `assert capacity > 0;`
 		* `sink`, I do `j = 2 * N;`, throws `ArrayIndexOutOfBoundsException`.
 		* `sink`, I do `if (less(k, j)) exch(k, j);`, should be `if (!less(k, j)) break; exch(k, j);`
 		* `sink`, I do `if (j + 1 <= N && less(j, j+1))`, better be `if (j < N && less(j, j+1))`
@@ -335,6 +336,7 @@ public static void sort(Comparable[] a) {
 		* `next` method, I do `return delMax();` should be `return copy.delMax();`.
 			Otherwise, the instance will be modified and further `delMax()` will throw
 			`NoSuchElementException`.
+		* `hasNext()`, should use `copy.isEmpty();`
 
 ## Heap Sort
 

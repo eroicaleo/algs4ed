@@ -63,11 +63,11 @@ public class MyMaxPQ<Key> implements Iterable<Key> {
         return N == 0;
     }
 
-    public boolean isMaxHeap() {
+    private boolean isMaxHeap() {
         return isMaxHeap(1);
     }
 
-    public boolean isMaxHeap(int k) {
+    private boolean isMaxHeap(int k) {
         if (k > N) return true;
         int left = 2 * k, right = 2 * k + 1;
         if (left  <= N && less(k, left))  return false;
