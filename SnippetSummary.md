@@ -342,7 +342,7 @@ public static void sort(Comparable[] a) {
 
 | `sort` | `sink` | `exch` | `less` |
 | :----: | :----: | :----: | :----: |
-| 6 | 6 | 6 | 6 |
+| 7 | 7 | 7 | 7 |
 
 **Easy to make mistakes:**
 

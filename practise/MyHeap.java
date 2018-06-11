@@ -1,8 +1,5 @@
 import edu.princeton.cs.algs4.StdRandom;
 
-/**
- * Created by yangge on 2/19/2016.
- */
 public class MyHeap {
 
     private MyHeap() { }
