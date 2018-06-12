@@ -33,6 +33,17 @@
     * `MaxPQ`: `isMaxHeap` after `delMax`, `insert` and `MaxPQ(Key[])`.
     * `BST`: `check` after `put`, `deleteMin`, `deleteMax`, `delete`.
 
+# Stack
+
+# Queue
+
+## ResizingArrayQueue
+
+**easy to make mistakes**
+
+* `resize`: don't forget `temp[i] = q[(first + i) % q.length];` since the queue
+	doesn't start with 0, it starts with `first`.
+
 # Merge Sort
 
 ## Regular Merge Sort, practiced: 12
@@ -358,31 +369,31 @@ public static void sort(Comparable[] a) {
 
 ## Binary Search Tree
 
-* Class definition and members: 6
+* Class definition and members: 7
 
 * public methods:
 
 | `contains` | `get` | `put` | `isEmpty` | `size` |
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 6 | 6 | 6 | 6 | 6 |
+| 7 | 7 | 7 | 7 | 7 |
 
 * public ordered operation methods:
 
 | `min` | `max` | `floor` | `ceiling` | `select` | `rank` | `keys` | `size` | `height` | `levelOrder` |
 | :---: | :---: | :-----: | :-------: | :------: | :----: | :----: | :----: | :------: | :----------: |
-| 6 | 6 | 6 | 6 | 6 | 6 | 6 | 6 | 6 | 6 |
+| 7 | 7 | 7 | 7 | 7 | 7 | 7 | 7 | 7 | 7 |
 
 * public delete operation methods:
 
 | `deleteMin` | `deleteMax` | `delete` |
 | :---------: | :---------: | :------: |
-| 6 | 6 | 6 |
+| 7 | 7 | 7 |
 
 * private sanity check helper functions
 
 | `check` | `isBST` | `isRankConsistent` | `isSizeConsistent` |
 | :-----: | :-----: | :----------------: | :----------------: |
-| 6 | 6 | 6 | 6 |
+| 7 | 7 | 7 | 7 |
 
 **Easy to make mistakes:**
 

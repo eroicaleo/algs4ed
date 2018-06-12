@@ -100,6 +100,21 @@ StdOut.println("Hello world!")
 
 ## Resizing Array
 
+* Double the array when it's full
+* Half the array when it's 25% full
+* amortized complexity: construct 1, push 1, pop 1, size 1.
+* Linked list:
+		* every operation takes constant time in the worst case.
+		* Cons: Use extra time and space to deal with links.
+* Resizing-array implemetation:
+		* amortized constant time
+		* Less wasted space.
+
+## Queue
+
+* Linked list implementation:
+		* first and last pointer.
+
 # Lecture 6 Merge Sort (Book 2.2)
 
 ## 6.1 Merge sort

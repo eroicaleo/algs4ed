@@ -5,9 +5,6 @@ import edu.princeton.cs.algs4.StdRandom;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
-/**
- * Created by yangge on 2/16/2016.
- */
 public class MyBST<Key extends Comparable<Key>, Value> {
     private Node root;
 
