@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -103,15 +105,21 @@ public class MyLinkedStack<Item> implements Iterable<Item> {
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        File file = new File("StackQueueInput.txt");
         MyLinkedStack<String> stack = new MyLinkedStack<>();
-        while (scanner.hasNext()) {
-            String item = scanner.next();
-            if (!item.equals("-")) {
-                stack.push(item);
-            } else {
-                System.out.printf("%s ", stack.pop());
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(file);
+            while (scanner.hasNext()) {
+                String item = scanner.next();
+                if (!item.equals("-")) {
+                    stack.push(item);
+                } else {
+                    System.out.printf("%s ", stack.pop());
+                }
             }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
         System.out.printf("(%d left on stack)", stack.size());
     }

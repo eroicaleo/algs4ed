@@ -43,6 +43,9 @@
 
 * `resize`: don't forget `temp[i] = q[(first + i) % q.length];` since the queue
 	doesn't start with 0, it starts with `first`.
+* `dequeue`: I am easy to forget loitering problem.
+* `ArrayIterator`: Should be `private class ArrayIterator implements Iterator<Item>`
+   Not `private class ArrayIterator<Item> implements Iterator<Item>`
 
 # Merge Sort
 
