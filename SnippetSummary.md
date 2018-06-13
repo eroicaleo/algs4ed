@@ -46,7 +46,7 @@
 
 # Merge Sort
 
-## Regular Merge Sort, practiced: 12
+## Regular Merge Sort, practiced: 13
 * `merge`, `sort`, `sort`
 
 ```java
@@ -92,9 +92,15 @@ private static void sort(Comparable[] a) {
 * `int mid = lo + (lo+hi)/2`, should be `int mid = lo + (hi - lo) / 2`
 * One gotcha: we need allocate the aux at the top, not in the recursive
   programming.
+* All the methods are `static`.
 
-## Bottom Up Merge Sort, practiced: 11
+## Bottom Up Merge Sort, practiced: 12
 * `merge` (same as regular merge sort), `sort`
+
+**Easy to make mistakes:**
+
+* There is no `isSorted(Comparable[] a, int lo, int hi)` just
+  `isSorted(Comparable[] a)`
 
 ```java
 public static void sort(Comparable[] a) {
@@ -113,7 +119,7 @@ public static void sort(Comparable[] a) {
 }
 ```
 
-## Merge Sort X, practiced: 11
+## Merge Sort X, practiced: 12
 * `merge`, `insertionSort`, `sort`
 
 **Easy to make mistakes:**
@@ -125,6 +131,8 @@ public static void sort(Comparable[] a) {
 * In the `sort`, I do `if (!less(src[mid], src[mid+1]))` should be `if (!less(src[mid+1], src[mid]))`.
 * Again, in the recursive `sort`, the signature is `sort(Comparable[] src, Comparable[] dst, int lo, int hi);`
  	not `sort(Comparable[] a, int lo, int hi);`
+* `exch` takes 3 arguments `exch(Object[] a, int i, int j)` not just
+  `exch(a[i], a[j])`
 
 ```java
 public static void merge(Comparable[] src, Comparable[] dst, int lo, int mid, int hi) {

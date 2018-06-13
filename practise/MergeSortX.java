@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdRandom;
  */
 public class MergeSortX {
 
-    public static final int CUT_OFF = 7;
+    private static final int CUT_OFF = 7;
 
     private static void merge(Comparable[] src, Comparable[] dst, int lo, int mid, int hi) {
         assert isSorted(src, lo, mid);
