@@ -48,7 +48,8 @@
     * To accept current highlighted one, you can use `,`, `.`, `;`, and ` `. The
       selected name will be followed by these characters.
 * `Cmd+N`: generate getter and setter methods for any fields of your class.
-* `Ctrl+Space`: code completion.
+* `Ctrl+Space (w&M)`: code completion.
+    * Can suggest a name.
 * Confirmed in Mac
 * `Alt+Slash`: auto completion.
   * Can suggest variable names, File | Setting | Code Style

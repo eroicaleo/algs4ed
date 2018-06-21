@@ -1,8 +1,5 @@
 import edu.princeton.cs.algs4.StdRandom;
 
-/**
- * Created by yangge on 2/10/2016.
- */
 public class QuickSort3way {
 
     private QuickSort3way() {}

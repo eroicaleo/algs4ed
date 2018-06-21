@@ -186,7 +186,7 @@ public static void sort(Comparable[] a) {
 
 # Quick Sort
 
-## Regular Quick Sort + Quick Select, practiced: 12
+## Regular Quick Sort + Quick Select, practiced: 13
 
 * `partition`, `sort`, `select`
 
@@ -263,10 +263,13 @@ public static Comparable select(Comparable[] a, int k) {
 
 ```
 
-## Quick Sort 3 Way, practiced: 12
+## Quick Sort 3 Way, practiced: 13
 
 **Easy to make mistakes:**
 * I will forget the `if (hi <= lo) return;` in `sort`.
+* `sort`, `while` loop, I sometimes do `while (i <= hi)`, should be `while (i <= gt)`.
+* `sort`, should be `int cmp = a[i].compareTo(v);` this way, it's more consistent
+  to do `if (cmp < 0)`.
 
 ```java
 private static void sort(Comparable[] a, int lo, int hi) {

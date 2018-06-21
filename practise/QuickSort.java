@@ -1,10 +1,5 @@
-package com.company;
-
 import edu.princeton.cs.algs4.StdRandom;
 
-/**
- * Created by yg943079 on 3/15/17.
- */
 public class QuickSort {
     private QuickSort() {}
 
