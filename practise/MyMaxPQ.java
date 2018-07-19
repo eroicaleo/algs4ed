@@ -4,9 +4,6 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-/**
- * Created by yangge on 2/12/2016.
- */
 public class MyMaxPQ<Key> implements Iterable<Key> {
     private Key[] pq;
     private int N;
@@ -32,8 +29,8 @@ public class MyMaxPQ<Key> implements Iterable<Key> {
     }
 
     public MyMaxPQ(Key[] keys) {
-        pq = (Key[]) new Object[keys.length+1];
-        N = keys.length;
+        int N = keys.length;
+        pq = (Key[]) new Object[N+1];
         for (int i = 0; i < N; i++)
             pq[i+1] = keys[i];
         for (int k = N / 2; k >= 1; k--)

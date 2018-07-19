@@ -67,7 +67,7 @@
   ```
 * Live Templates: File | Setting | Live Templates `Ctrl+Alt+S`.
     * `Ctrl+J`: complete any valid live template abbreviation.
-* `Alt+Shift+P`: If the cursor is between the parentheses of a method call,
+* `Alt+Shift+P (win), cmd+P(mac)`: If the cursor is between the parentheses of a method call,
   brings up a list of valid parameters. Can be used in code completion pop-up list.
 * `Alt+Enter`: automatically fix the errors or bugs.
 * `Refactor | Copy`: create a class which is a copy of the selected class. Useful
@@ -83,7 +83,7 @@
   or field) in any view.
 * Confirmed in Mac
 * `Alt+Home`: Navigation bar.
-* `Ctrl+Shift+Backspace`: brings you back to last edited position.
+* `Ctrl+Shift+Backspace (win)`, `Cmd+Shift+Delete (mac)`: brings you back to last edited position.
   Navigation | Last Edit Location
 * `Alt+Up`, `Alt+Down`: Move between methods.
 * `Ctrl+H`: see the inheritance hierarchy for a selected class. Navigate | Type
@@ -113,8 +113,10 @@
 * `Ctrl+/(win)`, `Cmd+/(mac)`: `//` comment code
 * `Alt+;`: `//` comment code
 * `Alt+Home, Alt+Insert`: create new Java classes.
-* `Ctrl+Shift+F7`: quickly highlight the usage of some variables in the current
-  file, `F3` and `Shift+F3` to navigate the highlighted usages. `Escape, Escape`
+* `Ctrl+Shift+F7 (win)`, `Cmd+Shift+F7 (mac)`: quickly highlight the usage of
+  some variables in the current
+  file, `F3 (win) Cmd+G (mac)` and `Shift+F3 (win) Shift+Cmd+G (mac)` to navigate
+  the highlighted usages. `Escape, Escape`
   to remove highlighting. This can highlight multiple variables.
     * place the carat at the `implements` keyword in the class definition, and
       press the combination, and select the desired interface from the list.
