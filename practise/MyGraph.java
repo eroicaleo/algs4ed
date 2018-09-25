@@ -23,9 +23,9 @@ public class MyGraph {
         try {
             this.V = in.readInt();
             if (V < 0) throw new IllegalArgumentException("Number of vertices must be nonnegative");
-            this.adj = (Bag<Integer>[]) new Bag[V];
+            adj = (Bag<Integer>[]) new Bag[V];
             for (int v = 0; v < V; v++) {
-                adj[v] = (Bag<Integer>) new Bag<Integer>();
+                adj[v] = new Bag<Integer>();
             }
             int E = in.readInt();
             if (E < 0) throw new IllegalArgumentException("Number of edges must be nonnegative");
