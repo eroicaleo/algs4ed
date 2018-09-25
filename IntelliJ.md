@@ -21,8 +21,8 @@
     * Can also be used in code completion drop down list.
     * Can also preview a picture.
 * `Shift+F1`: Open definition in browser.
-* `Alt+Q`: Context info, see the declaration of the current method without the
-  need to scroll to it.
+* `Alt+Q (win)`, `Ctrl+Shift+Q`: Context info, see the declaration of the current
+  method without the need to scroll to it.
 
 ## Compile and Debug
 * `Cmd+F9`: Make the project.

@@ -306,26 +306,26 @@ public static void sort(Comparable[] a) {
 
 | `MaxPQ()` | `MaxPQ(int)` | `MaxPQ(Comparator<key>)` | `MaxPQ(int, Comparator<key>)` | `MaxPQ(Key[])` |
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 10 | 10 | 10 | 10 | 10 |
+| 11 | 11 | 11 | 11 | 11 |
 
 
 * public method: `delMax`, `insert`, `isEmpty`, `isMaxHeap`, `max`, `size`
 
 | `delMax` | `insert` | `isEmpty` | `isMaxHeap` | `max` | `size`
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 10 | 10 | 10 | 10 | 10 | 10 |
+| 11 | 11 | 11 | 11 | 11 | 11 |
 
 * private helper functions: `resize`, `sink`, `swim`
 
 | `resize` | `sink` | `swim` |
 | :-------------: | :-------------: | :-------------: |
-| 10 | 10 | 10 |
+| 11 | 11 | 11 |
 
 * Iterators: `iterator`, `HeapIterator`
 
 | `iterator` | `HeapIterator` |
 | :------------- | :------------- |
-| 10 | 10 |
+| 11 | 11 |
 
 **Easy to make mistakes:**
 * Class declaration and members:
@@ -367,7 +367,7 @@ public static void sort(Comparable[] a) {
 
 | `sort` | `sink` | `exch` | `less` |
 | :----: | :----: | :----: | :----: |
-| 7 | 7 | 7 | 7 |
+| 8 | 8 | 8 | 8 |
 
 **Easy to make mistakes:**
 
@@ -383,13 +383,13 @@ public static void sort(Comparable[] a) {
 
 ## Binary Search Tree
 
-* Class definition and members: 7
+* Class definition and members: 8
 
 * public methods:
 
 | `contains` | `get` | `put` | `isEmpty` | `size` |
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| 7 | 7 | 7 | 7 | 7 |
+| 8 | 7 | 7 | 7 | 7 |
 
 * public ordered operation methods:
 
@@ -479,13 +479,13 @@ public static void sort(Comparable[] a) {
 
 | `Graph(int V)`  | `Graph(In in)`  | `Graph(Graph G)` |
 | :-------------: | :-------------: | :--------------: |
-| 6               | 6               | 6                |
+| 7               | 7               | 7                |
 
 * methods
 
 | `V()` | `E()` | `validateVertex()` | `addEdge()` | `adj(int v)` | `degree(int v)` | `toString()` |
 | :---: | :---: | :-------------: | :---------: | :---------: | :---------: | :---------: |
-| 6 | 6 | 6 | 6 | 6 | 6 | 6 |
+| 7 | 7 | 7 | 7 | 7 | 7 | 7 |
 
 **Easy to make mistakes:**
 
@@ -515,15 +515,15 @@ public static void sort(Comparable[] a) {
 
 * methods
 
-| `dfs()` | `hasPathTo()` | `pathTo()` |
-| :---: | :---: | :-------------: |
-| 4 | 4 | 4 |
+| `dfs()` | `hasPathTo()` | `pathTo()` | `validateVertex()` |
+| :-----: | :-----------: | :--------: | :----------------: |
+| 5 | 5 | 5 | 5 |
 
 **Easy to make mistakes:**
 
 * remember the check `if (marked[v])` is always in the recursive `dfs(G, v)`.
 * `hasPathTo`: no need to return `marked[v] == true;`, just return `marked[v];`
-* `pathTo`: use `x` in the `for` loop.
+* `pathTo`: use `x` in the `for` loop. And `for` loop is clear than `while` loop.
 * `dfs`: the first thing is to mark the node `v`.
 * `dfs`: set the `edgeTo` before recursively calling `dfs()`.
 * `dfs`: In recursive call, it's `dfs(G, w)`, not `dfs(G, v)`.
