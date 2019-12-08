@@ -39,7 +39,7 @@
 
 ## Code Completion
 * `Shift+F6`: Rename classes, methods and variables across the whole project.
-* `Ctrl+O`: Override methods of base class.
+* `Ctrl+O (W&M)`: Override methods of base class.
 * `Ctrl+Shift+Space (w&M)`: SmartType code completion, helps to find methods and
   variables that are suitable in the current context, by analyzing the expected
   type of the whole expression.
@@ -66,7 +66,7 @@
   myEditorPane.setBorder(emptyBorder);
   ```
 * Live Templates: File | Setting | Live Templates `Ctrl+Alt+S`.
-    * `Ctrl+J`: complete any valid live template abbreviation.
+    * `Ctrl+J(win)`, `Cmd+J(mac)`: complete any valid live template abbreviation.
 * `Alt+Shift+P (win), cmd+P(mac)`: If the cursor is between the parentheses of a method call,
   brings up a list of valid parameters. Can be used in code completion pop-up list.
 * `Alt+Enter`: automatically fix the errors or bugs.
